@@ -1140,6 +1140,10 @@
             </div>
           </div>
 
+          <div id="liveCommercialBar" class="alert-box alert-info" style="margin-bottom:10px; font-size:0.8rem;">
+            <strong>Proiecție Comercială &amp; Alocare Hub Tech-Con:</strong> Investiție standard <strong>130.000 EUR</strong> (contribuție Tech-Con <strong>20.000 EUR</strong>) &bull; Hub regional alocat: <strong>Timișoara</strong> (&lt; 10 km) &bull; Livrare referință: <strong>~4 luni</strong> (comandă până la 31 aug.).
+          </div>
+
           <div class="cell-preview">
             <div class="cell-preview-top">
               <img src="./assets/puratos_ur20.jpg" alt="Celulă UR20 PURATOS" />
@@ -1995,6 +1999,13 @@
       ? '<span style="color:var(--green); font-weight:800;">OK</span><span><strong>Vedere SICK 2D &amp; Orientare Mâner:</strong> Necesară pentru identificarea poziției mânerului înainte de preluare.</span>'
       : '<span style="color:var(--blue); font-weight:800;">INFO</span><span><strong>Recipient fără mâner:</strong> Camera 2D poate fi simplificată; validați suprafața de prindere la auditul FAT.</span>';
 
+    const commBar = document.getElementById('liveCommercialBar');
+    if (commBar) {
+      const selCounty = (document.getElementById('inCounty') && document.getElementById('inCounty').value) || 'Timiș';
+      const rInfo = routeLeadByCounty(selCounty);
+      commBar.innerHTML = `<strong>Proiecție Comercială &amp; Alocare Hub Tech-Con:</strong> Investiție standard <strong>${fmtEur(cellsNeeded * 130000)}</strong> (contribuție Tech-Con <strong>${fmtEur(cellsNeeded * 20000)}</strong>) &bull; Hub alocat: <strong>${escHtml(rInfo.hub)}</strong> (${rInfo.km === 0 ? '&lt; 10 km' : '≈' + rInfo.km + ' km'} din jud. ${escHtml(selCounty)}) &bull; Livrare: <strong>~4 luni</strong> (poartă comenzi: 31 aug.).`;
+    }
+
     const warnCount = alerts.filter((a) => a.includes('alert-warn') || a.includes('alert-err')).length + 2;
     const resObj = {
       valid: totalPayload <= 20 && space >= 6 && sector !== 'atex',
@@ -2020,33 +2031,72 @@
     return resObj;
   }
 
-  // CRM Leads storage (localStorage + default benchmark demo)
-  const STORE_KEY = 'ur20_sysup072jd_crm_v2';
-  const SEQ_KEY = 'ur20_sysup072jd_seq_v2';
-  const DEFAULT_LEAD = {
-    id: 'UR20-2026-0001',
-    company: 'Panificație Sud Demo SA (Fictiv)',
-    contact: 'Mihai Pop (Fictiv)',
-    role: 'Director Producție',
-    county: 'Ilfov',
-    hub: 'Dragomirești-Deal',
-    km: 10,
-    spec: '13,0 kg (total 17,0 kg) • 2 celule UR20',
-    score: 92,
-    stage: 'Cerere relevantă (Audit Programat)',
-    email: 'demo@panificatie-fictiv.ro',
-    timeline: '0–3 luni',
-    utm: 'google_search',
-    touches: 1,
-    created: '20.11.2026'
-  };
+  // CRM Leads storage (localStorage + 3-hub benchmark pipeline demo)
+  const STORE_KEY = 'ur20_sysup072jd_crm_v3';
+  const SEQ_KEY = 'ur20_sysup072jd_seq_v3';
+  const DEFAULT_LEADS = [
+    {
+      id: 'UR20-2026-0001',
+      company: 'Panificație Sud Demo SA (Fictiv)',
+      contact: 'Mihai Pop (Fictiv)',
+      role: 'Director Producție',
+      county: 'Ilfov',
+      hub: 'Dragomirești-Deal',
+      km: 10,
+      cells: 2,
+      spec: '13,0 kg (total 17,0 kg) • 2 celule UR20',
+      score: 92,
+      stage: 'Cerere Relevantă Calificată',
+      email: 'demo@panificatie-fictiv.ro',
+      timeline: '0–3 luni',
+      utm: 'google_search',
+      touches: 1,
+      created: '20.11.2026'
+    },
+    {
+      id: 'UR20-2026-0002',
+      company: 'Lactate Banat HoReCa SRL (Fictiv)',
+      contact: 'Elena Ionescu (Fictiv)',
+      role: 'Responsabil Investiții (CAPEX)',
+      county: 'Arad',
+      hub: 'Timișoara',
+      km: 48,
+      cells: 1,
+      spec: '10,0 kg (total 14,0 kg) • 1 celulă UR20',
+      score: 100,
+      stage: 'Cerere Relevantă Calificată',
+      email: 'capex@lactatebanat-fictiv.ro',
+      timeline: '0–3 luni',
+      utm: 'linkedin_abm',
+      touches: 1,
+      created: '20.11.2026'
+    },
+    {
+      id: 'UR20-2026-0003',
+      company: 'Sosuri & Creme Moldova SA (Fictiv)',
+      contact: 'Radu Munteanu (Fictiv)',
+      role: 'Director Tehnic / Inginerie',
+      county: 'Iași',
+      hub: 'Iași',
+      km: 0,
+      cells: 2,
+      spec: '8,0 kg (total 12,0 kg) • 2 celule UR20',
+      score: 95,
+      stage: 'Cerere Relevantă Calificată',
+      email: 'tehnic@sosurimoldova-fictiv.ro',
+      timeline: '3–6 luni',
+      utm: 'direct/QR + linkedin_abm',
+      touches: 2,
+      created: '20.11.2026'
+    }
+  ];
 
   function loadCrmLeads() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
       if (Array.isArray(saved) && saved.length > 0) return saved;
     } catch (e) {}
-    return [{ ...DEFAULT_LEAD }];
+    return DEFAULT_LEADS.map((l) => ({ ...l }));
   }
   let crmLeads = loadCrmLeads();
 
@@ -2057,7 +2107,7 @@
   function nextLeadId() {
     let n = crmLeads.length + 1;
     try {
-      n = (parseInt(localStorage.getItem(SEQ_KEY), 10) || 1) + 1;
+      n = (parseInt(localStorage.getItem(SEQ_KEY), 10) || DEFAULT_LEADS.length) + 1;
       localStorage.setItem(SEQ_KEY, String(n));
     } catch (e) {}
     return 'UR20-2026-' + String(n).padStart(4, '0');
@@ -2066,21 +2116,31 @@
   function renderCrmTable() {
     const tbody = document.getElementById('crmTableBody');
     let totalTouches = 0;
+    let totalCells = 0;
+    const hubCells = { 'Dragomirești-Deal': 0, 'Timișoara': 0, 'Iași': 0 };
     tbody.innerHTML = crmLeads.map((l) => {
       const touches = Math.max(1, l.touches || 1);
+      const cells = Math.max(1, l.cells || (String(l.spec).includes('2 celule') ? 2 : 1));
       totalTouches += touches;
+      totalCells += cells;
+      if (hubCells[l.hub] !== undefined) hubCells[l.hub] += cells;
       const utmLabel = l.utm || 'direct/QR';
       return `
       <tr>
         <td><strong>${escHtml(l.id)}</strong><br/><span style="font-size:0.78rem;">${escHtml(l.company)}</span></td>
         <td>Hub ${escHtml(l.hub)} (${l.km === 0 ? '< 10 km' : '≈' + l.km + ' km'})<br/><span class="hint">Sursă: <code>${escHtml(utmLabel)}</code>${touches > 1 ? ` (${touches} contacte → 1 cerere)` : ''}</span></td>
-        <td>${escHtml(l.spec)}<br/><span class="hint">Scor ${l.score}/100</span></td>
+        <td>${escHtml(l.spec)}<br/><span class="hint">Scor ${l.score}/100 &bull; ${(cells * 130).toLocaleString('ro-RO')}k EUR</span></td>
         <td><span style="color:#065F46; font-weight:700;">${escHtml(l.stage)}</span></td>
       </tr>`;
     }).join('');
     const statsEl = document.getElementById('crmDedupeStats');
     if (statsEl) {
-      statsEl.innerHTML = `Cereri unice în campanie: <strong>${crmLeads.length}</strong> &bull; Interacțiuni totale (touchpoints): <strong>${totalTouches}</strong> (deduplicare multi-canal conform Paginii 6)`;
+      const pipeRev = (totalCells * 130000).toLocaleString('ro-RO');
+      const pipeContrib = (totalCells * 20000).toLocaleString('ro-RO');
+      const targetPct = Math.round((totalCells / 20) * 100);
+      statsEl.innerHTML = `
+        <div><strong>Cereri unice (Pag. 6):</strong> ${crmLeads.length} (${totalTouches} interacțiuni deduplicate) &bull; <strong>Pipeline CRM Activ:</strong> <strong>${totalCells} celule UR20</strong> = <strong>${pipeRev} EUR</strong> venit potențial (<strong>${pipeContrib} EUR</strong> contribuție brută &bull; ${targetPct}% din pragul anual de 20 celule)</div>
+        <div style="margin-top:4px; font-size:0.76rem; color:#1E3A8A;"><strong>Alocare regională pe Hub-uri:</strong> Dragomirești-Deal: <strong>${hubCells['Dragomirești-Deal']} cel.</strong> &bull; Timișoara: <strong>${hubCells['Timișoara']} cel.</strong> &bull; Iași: <strong>${hubCells['Iași']} cel.</strong></div>`;
     }
   }
 
@@ -2146,17 +2206,20 @@
   }
 
   function exportCrmCsv() {
-    const rows = [['ID Lead', 'Companie', 'Contact', 'Rol', 'Județ', 'Hub Alocat', 'Distanță (km)', 'Specificație', 'Scor', 'Etapă', 'E-mail', 'Termen', 'Creat']];
-    crmLeads.forEach((l) => rows.push([l.id, l.company, l.contact || '', l.role || '', l.county, l.hub, l.km, l.spec, l.score, l.stage, l.email || '', l.timeline || '', l.created || '']));
+    const rows = [['ID Lead', 'Companie', 'Contact', 'Rol', 'Județ', 'Hub Alocat', 'Distanță (km)', 'Celule UR20', 'Venit Estimat (EUR)', 'Specificație', 'Scor', 'Etapă', 'Sursă UTM', 'Contacte Deduplicate', 'E-mail', 'Termen', 'Creat']];
+    crmLeads.forEach((l) => {
+      const c = Math.max(1, l.cells || 1);
+      rows.push([l.id, l.company, l.contact || '', l.role || '', l.county, l.hub, l.km, c, c * 130000, l.spec, l.score, l.stage, l.utm || 'direct/QR', l.touches || 1, l.email || '', l.timeline || '', l.created || '']);
+    });
     const csv = '\ufeff' + rows.map((r) => r.map(csvSafeCell).join(';')).join('\r\n');
     downloadFile('crm_techcon_ur20_SYSUP072JD.csv', 'text/csv;charset=utf-8', csv);
   }
 
   function clearCrmData() {
     try { localStorage.removeItem(STORE_KEY); localStorage.removeItem(SEQ_KEY); } catch (e) {}
-    crmLeads = [DEFAULT_LEAD];
+    crmLeads = DEFAULT_LEADS.map((l) => ({ ...l }));
     renderCrmTable();
-    alert('Datele salvate local au fost șterse și resetate la exemplul inițial.');
+    alert('Datele salvate local au fost șterse și resetate la pachetul demonstrativ pe cele 3 hub-uri.');
   }
 
   function submitLead() {
@@ -2234,6 +2297,7 @@
       existing.county = county;
       existing.hub = route.hub;
       existing.km = route.km;
+      existing.cells = res.cellsNeeded;
       existing.spec = specTxt;
       existing.score = res.score;
       existing.stage = stage;
@@ -2249,6 +2313,7 @@
         county,
         hub: route.hub,
         km: route.km,
+        cells: res.cellsNeeded,
         spec: specTxt,
         score: res.score,
         stage,
