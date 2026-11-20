@@ -953,7 +953,7 @@
             <div class="field" id="fld-weight">
               <label for="inWeight">Masă găleată plină (kg)</label>
               <input type="number" id="inWeight" step="0.1" value="10" oninput="runEvaluator()" />
-              <span class="hint">Studiu PURATOS: 5 kg și 13 kg (max ~16 kg cu gripper de 4 kg)</span>
+              <span class="hint">Studiu PURATOS: 5 kg și 13 kg. Gripper 4 kg = ipoteză editabilă (masa reală se confirmă la evaluare)</span>
               <span class="err-msg" id="err-weight"></span>
             </div>
 
@@ -1096,6 +1096,13 @@
             <div class="field full" id="fld-notes">
               <label for="inNotes">Observații linie (opțional)</label>
               <input type="text" id="inNotes" value="Găleți plastic 10 kg cu mâner, europalet, interes pentru evaluare în fabrică." />
+            </div>
+            <div class="field full" id="fld-consent">
+              <label style="display:flex; gap:8px; align-items:flex-start; font-weight:500; cursor:pointer;">
+                <input type="checkbox" id="inConsent" checked style="width:auto; margin-top:3px;" />
+                <span>Sunt de acord ca Tech-Con Industry să mă contacteze pentru evaluarea tehnică (GDPR, temei: consimțământ). Mă pot dezabona oricând (STOP).</span>
+              </label>
+              <span class="err-msg" id="err-consent"></span>
             </div>
           </div>
           <button type="button" class="btn-primary" onclick="submitLead()">Validează, Califică și Înregistrează Cererea CRM</button>
@@ -1752,6 +1759,7 @@
       document.getElementById('inContact').value = '';
       document.getElementById('inEmail').value = 'director@';
       document.getElementById('inNotes').value = 'Test caz date lipsă / invalide.';
+      document.getElementById('inConsent').checked = false;
       runEvaluator();
       submitLead();
       return;
@@ -1796,6 +1804,7 @@
       document.getElementById('inTimeline').value = '0–3 luni';
       document.getElementById('inNotes').value = 'Benchmark Anexa 2: 2 celule UR20, 7,4 găleți/min (13 kg) / 8,6/min (5 kg).';
     }
+    if (type !== 'invalid') document.getElementById('inConsent').checked = true;
     runEvaluator();
   }
 
@@ -2117,13 +2126,19 @@
     const tbody = document.getElementById('crmTableBody');
     let totalTouches = 0;
     let totalCells = 0;
+    let escalated = 0;
     const hubCells = { 'Dragomirești-Deal': 0, 'Timișoara': 0, 'Iași': 0 };
     tbody.innerHTML = crmLeads.map((l) => {
       const touches = Math.max(1, l.touches || 1);
       const cells = Math.max(1, l.cells || (String(l.spec).includes('2 celule') ? 2 : 1));
+      const qualified = !String(l.stage || '').startsWith('Escaladat');
       totalTouches += touches;
-      totalCells += cells;
-      if (hubCells[l.hub] !== undefined) hubCells[l.hub] += cells;
+      if (qualified) {
+        totalCells += cells;
+        if (hubCells[l.hub] !== undefined) hubCells[l.hub] += cells;
+      } else {
+        escalated += 1;
+      }
       const utmLabel = l.utm || 'direct/QR';
       return `
       <tr>
@@ -2139,7 +2154,7 @@
       const pipeContrib = (totalCells * 20000).toLocaleString('ro-RO');
       const targetPct = Math.round((totalCells / 20) * 100);
       statsEl.innerHTML = `
-        <div><strong>Cereri unice (Pag. 6):</strong> ${crmLeads.length} (${totalTouches} interacțiuni deduplicate) &bull; <strong>Pipeline CRM Activ:</strong> <strong>${totalCells} celule UR20</strong> = <strong>${pipeRev} EUR</strong> venit potențial (<strong>${pipeContrib} EUR</strong> contribuție brută &bull; ${targetPct}% din pragul anual de 20 celule)</div>
+        <div><strong>Cereri unice (Pag. 6):</strong> ${crmLeads.length} (${totalTouches} interacțiuni deduplicate) &bull; <strong>Pipeline calificat (date demo):</strong> <strong>${totalCells} celule UR20</strong> = <strong>${pipeRev} EUR</strong> venit potențial (<strong>${pipeContrib} EUR</strong> contribuție brută &bull; ${targetPct}% din pragul anual de 20 celule)${escalated > 0 ? ` &bull; <span style="color:#991B1B;">${escalated} escaladat(e) inginerie, excluse din pipeline</span>` : ''}</div>
         <div style="margin-top:4px; font-size:0.76rem; color:#1E3A8A;"><strong>Alocare regională pe Hub-uri:</strong> Dragomirești-Deal: <strong>${hubCells['Dragomirești-Deal']} cel.</strong> &bull; Timișoara: <strong>${hubCells['Timișoara']} cel.</strong> &bull; Iași: <strong>${hubCells['Iași']} cel.</strong></div>`;
     }
   }
@@ -2252,6 +2267,10 @@
     }
     if (!res || res.inputError) {
       errs.push('Datele tehnice ale liniei sunt invalide sau incomplete.');
+    }
+    if (!document.getElementById('inConsent').checked) {
+      setFieldError('fld-consent', 'err-consent', 'Bifați acordul de contactare (GDPR) pentru a trimite cererea.');
+      errs.push('Lipsește acordul GDPR de contactare.');
     }
 
     if (errs.length > 0) {
