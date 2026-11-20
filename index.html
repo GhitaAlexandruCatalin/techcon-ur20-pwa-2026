@@ -68,25 +68,25 @@
   </script>
   <style>
     :root {
-      --navy: #1E1B4B;
-      --navy-dark: #0F172A;
-      --blue: #0284C7;
-      --blue-soft: #E0F2FE;
-      --orange: #EA580C;
+      --navy: #0B192C;
+      --navy-dark: #070F1C;
+      --blue: #0F4C81;
+      --blue-soft: #EFF6FF;
+      --orange: #D9531E;
       --orange-soft: #FFF7ED;
-      --green: #10B981;
+      --green: #059669;
       --green-soft: #ECFDF5;
       --red: #DC2626;
       --red-soft: #FEF2F2;
-      --amber: #D97706;
+      --amber: #B45309;
       --amber-soft: #FFFBEB;
-      --bg: #F1F5F9;
+      --bg: #F4F6F9;
       --card: #FFFFFF;
       --text: #0F172A;
       --muted: #475569;
-      --border: #CBD5E1;
-      --radius: 14px;
-      --shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+      --border: #DCE3EC;
+      --radius: 8px;
+      --shadow: 0 1px 3px rgba(11, 25, 44, 0.06), 0 1px 2px rgba(11, 25, 44, 0.04);
     }
     * { box-sizing: border-box; }
     html, body {
@@ -94,17 +94,19 @@
       padding: 0;
       max-width: 100%;
       overflow-x: hidden;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      font-variant-numeric: tabular-nums;
       background: var(--bg);
       color: var(--text);
       line-height: 1.48;
+      -webkit-font-smoothing: antialiased;
     }
     /* Header */
     .topbar {
-      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1E3A8A 100%);
+      background: var(--navy);
       color: #fff;
-      padding: 14px 16px;
-      border-bottom: 4px solid var(--orange);
+      padding: 12px 16px;
+      border-bottom: 3px solid var(--orange);
     }
     .topbar-inner {
       max-width: 1220px;
@@ -118,28 +120,28 @@
     .brand {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 11px;
       min-width: 0;
       flex: 1 1 280px;
     }
     .brand > div { min-width: 0; }
     .brand img {
-      width: 44px;
-      height: 44px;
-      border-radius: 10px;
+      width: 38px;
+      height: 38px;
+      border-radius: 6px;
       flex-shrink: 0;
     }
     .brand h1 {
       margin: 0;
-      font-size: clamp(1rem, 2.5vw, 1.18rem);
-      font-weight: 800;
-      letter-spacing: -0.01em;
+      font-size: clamp(0.98rem, 2.3vw, 1.12rem);
+      font-weight: 700;
+      letter-spacing: -0.015em;
       overflow-wrap: break-word;
     }
     .brand p {
-      margin: 2px 0 0;
-      font-size: 0.8rem;
-      color: #CBD5E1;
+      margin: 1px 0 0;
+      font-size: 0.78rem;
+      color: #94A3B8;
       overflow-wrap: break-word;
     }
     .badges {
@@ -153,50 +155,34 @@
       display: inline-flex;
       align-items: center;
       gap: 5px;
-      font-size: 0.74rem;
-      font-weight: 700;
-      padding: 5px 10px;
-      border-radius: 12px;
-      background: rgba(255, 255, 255, 0.12);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      color: #fff;
+      font-size: 0.72rem;
+      font-weight: 600;
+      padding: 4px 9px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      color: #E2E8F0;
       max-width: 100%;
       white-space: normal;
       line-height: 1.25;
     }
     .badge-warn {
-      background: rgba(234, 88, 12, 0.22);
-      border-color: rgba(251, 146, 60, 0.6);
-      color: #FFEDD5;
+      background: rgba(217, 83, 30, 0.16);
+      border-color: rgba(217, 83, 30, 0.45);
+      color: #FDBA74;
     }
-    /* PWA Info Strip */
-    .pwa-strip {
-      max-width: 1220px;
-      margin: 10px auto 0;
-      background: rgba(2, 132, 199, 0.18);
-      border: 1px solid rgba(56, 189, 248, 0.35);
-      border-radius: 10px;
-      padding: 9px 12px;
-      display: flex;
-      flex-wrap: wrap;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      font-size: 0.8rem;
-      color: #E0F2FE;
-    }
-    .pwa-strip > div { min-width: 0; flex: 1 1 240px; }
-    .pwa-strip strong { color: #fff; }
     .btn-install {
-      background: var(--orange);
-      color: #fff;
-      border: none;
-      padding: 7px 12px;
-      border-radius: 8px;
-      font-weight: 700;
-      font-size: 0.78rem;
+      background: transparent;
+      color: #F8FAFC;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: 600;
+      font-size: 0.73rem;
       cursor: pointer;
+      font-family: inherit;
     }
+    .btn-install:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
     /* Nav Tabs */
     .nav-wrap {
       background: #fff;
@@ -204,34 +190,34 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
     }
     .nav-tabs {
       max-width: 1220px;
       margin: 0 auto;
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
-      padding: 8px 14px;
+      gap: 4px;
+      padding: 7px 14px;
     }
     .tab-btn {
-      border: 1px solid var(--border);
-      background: #F8FAFC;
+      border: 1px solid transparent;
+      background: transparent;
       color: var(--muted);
-      padding: 8px 12px;
-      border-radius: 10px;
-      font-weight: 700;
-      font-size: 0.83rem;
+      padding: 7px 12px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.82rem;
       cursor: pointer;
-      transition: all 0.15s;
+      transition: all 0.12s;
       flex: 1 1 auto;
       text-align: center;
+      font-family: inherit;
     }
     @media (max-width: 600px) {
-      .nav-tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 8px 10px; }
-      .tab-btn { font-size: 0.76rem; padding: 7px 6px; }
+      .nav-tabs { display: grid; grid-template-columns: 1fr 1fr; padding: 6px 10px; }
+      .tab-btn { font-size: 0.75rem; padding: 7px 6px; }
     }
-    .tab-btn:hover { border-color: var(--blue); color: var(--navy); }
+    .tab-btn:hover { background: #F1F5F9; color: var(--navy); }
     .tab-btn.active {
       background: var(--navy);
       color: #fff;
@@ -277,23 +263,33 @@
     }
     .preset-btn {
       text-align: left;
-      padding: 10px 12px;
-      border-radius: 10px;
-      border: 1.5px solid var(--border);
-      background: #F8FAFC;
+      padding: 9px 11px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--border);
+      background: #FFFFFF;
       cursor: pointer;
-      font-size: 0.83rem;
+      font-size: 0.81rem;
       font-weight: 700;
       color: var(--text);
-      transition: transform 0.1s, border-color 0.15s;
+      transition: border-color 0.12s, background 0.12s;
       min-width: 0;
+      font-family: inherit;
     }
-    .preset-btn:hover { transform: translateY(-1px); }
-    .preset-btn small { display: block; font-weight: 500; color: var(--muted); margin-top: 2px; font-size: 0.75rem; }
-    .preset-btn.p-ok { border-color: #34D399; background: var(--green-soft); }
-    .preset-btn.p-err { border-color: #F87171; background: var(--red-soft); }
-    .preset-btn.p-warn { border-color: #FB923C; background: var(--orange-soft); }
-    .preset-btn.p-ref { border-color: #38BDF8; background: var(--blue-soft); }
+    .preset-btn:hover { background: #F8FAFC; border-color: #94A3B8; }
+    .preset-btn small { display: block; font-weight: 500; color: var(--muted); margin-top: 3px; font-size: 0.74rem; line-height: 1.3; }
+    .preset-btn.p-ok { border-left-color: var(--green); }
+    .preset-btn.p-err { border-left-color: var(--red); }
+    .preset-btn.p-warn { border-left-color: var(--orange); }
+    .preset-btn.p-ref { border-left-color: var(--blue); }
+    .tag-dot {
+      display: inline-block;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      margin-right: 5px;
+      vertical-align: middle;
+    }
     /* Grid Layout */
     .grid-2 {
       display: grid;
@@ -694,42 +690,45 @@
     details.mail-prev summary { cursor: pointer; font-weight: 700; color: var(--navy); }
     /* Ad-Landing Hero Banner */
     .ad-hero {
-      background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 65%, #1E3A8A 100%);
+      background-color: #0B192C;
+      background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 24px 24px;
       color: #fff;
       border-radius: var(--radius);
-      padding: 16px 18px;
+      padding: 18px 20px;
       margin-bottom: 14px;
-      border: 1.5px solid #0284C7;
+      border: 1px solid #1E293B;
+      border-top: 3px solid var(--orange);
       display: grid;
       grid-template-columns: 1.35fr 1fr;
-      gap: 16px;
+      gap: 18px;
       align-items: center;
       box-shadow: var(--shadow);
     }
     @media (max-width: 820px) {
       .ad-hero { grid-template-columns: 1fr; }
     }
-    .ad-hero h2 { margin: 0 0 6px; font-size: clamp(1.08rem, 2.5vw, 1.32rem); color: #fff; line-height: 1.24; }
-    .ad-hero h2 em { font-style: normal; color: #38BDF8; }
-    .ad-hero p { margin: 0 0 10px; font-size: 0.85rem; color: #CBD5E1; line-height: 1.42; }
+    .ad-hero h2 { margin: 0 0 6px; font-size: clamp(1.06rem, 2.4vw, 1.3rem); color: #fff; line-height: 1.25; font-weight: 700; letter-spacing: -0.015em; }
+    .ad-hero h2 em { font-style: normal; color: #FDBA74; }
+    .ad-hero p { margin: 0 0 11px; font-size: 0.84rem; color: #CBD5E1; line-height: 1.46; }
     .ad-proofs { display: flex; flex-wrap: wrap; gap: 6px; }
     .ad-proof {
-      background: rgba(255, 255, 255, 0.1);
-      border: 1px solid rgba(56, 189, 248, 0.4);
-      padding: 4px 9px;
-      border-radius: 999px;
-      font-size: 0.74rem;
-      font-weight: 700;
-      color: #E0F2FE;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      padding: 3px 8px;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: #E2E8F0;
     }
     .ad-photo {
-      border-radius: 10px;
+      border-radius: 6px;
       overflow: hidden;
-      border: 1.5px solid #38BDF8;
-      background: #0F172A;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      background: #070F1C;
     }
-    .ad-photo img { width: 100%; height: 138px; object-fit: cover; display: block; }
-    .ad-photo small { display: block; padding: 5px 8px; font-size: 0.72rem; color: #CBD5E1; background: rgba(15,23,42,0.9); }
+    .ad-photo img { width: 100%; height: 144px; object-fit: cover; display: block; }
+    .ad-photo small { display: block; padding: 6px 9px; font-size: 0.71rem; color: #94A3B8; background: #070F1C; }
     .scanner-strip {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -741,12 +740,103 @@
     @media (max-width: 520px) {
       .scanner-strip { grid-template-columns: 1fr; }
     }
-    .sc-zone { padding: 4px 6px; border-radius: 6px; font-weight: 700; }
+    .sc-zone {
+      padding: 6px 8px;
+      border-radius: 7px;
+      font-weight: 700;
+      font-size: 0.72rem;
+      cursor: pointer;
+      font-family: inherit;
+      transition: transform .12s, box-shadow .12s;
+    }
+    .sc-zone:hover { transform: translateY(-1px); }
+    .sc-zone.active { box-shadow: 0 0 0 2px #fff; }
     .sc-g { background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; color: #A7F3D0; }
     .sc-y { background: rgba(217, 119, 6, 0.22); border: 1px solid #F59E0B; color: #FDE68A; }
     .sc-r { background: rgba(220, 38, 38, 0.22); border: 1px solid #EF4444; color: #FECACA; }
+    .twin-wrap {
+      margin-top: 9px;
+      background: #090F1E;
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 9px;
+      padding: 8px;
+    }
+    .twin-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 0.72rem;
+      color: #94A3B8;
+      margin-bottom: 5px;
+    }
+    .twin-status {
+      font-weight: 800;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.7rem;
+    }
+    .twin-status.ok { background: rgba(16, 185, 129, 0.22); color: #6EE7B7; }
+    .twin-status.warn { background: rgba(245, 158, 11, 0.22); color: #FCD34D; }
+    .twin-status.err { background: rgba(239, 68, 68, 0.25); color: #FCA5A5; }
+    .utm-switcher {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 5px;
+      margin-top: 8px;
+      font-size: 0.72rem;
+      color: #93C5FD;
+    }
+    .utm-pill {
+      background: rgba(15, 23, 42, 0.55);
+      border: 1px solid rgba(147, 197, 253, 0.35);
+      color: #E0F2FE;
+      border-radius: 999px;
+      padding: 3px 9px;
+      font-size: 0.71rem;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: inherit;
+    }
+    .utm-pill.active {
+      background: #0284C7;
+      border-color: #7DD3FC;
+      color: #fff;
+    }
+    .pwa-help {
+      margin-top: 8px;
+      padding: 9px 12px;
+      background: rgba(15, 23, 42, 0.72);
+      border: 1px solid rgba(56, 189, 248, 0.45);
+      border-radius: 8px;
+      font-size: 0.78rem;
+      color: #E2E8F0;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .chart-box {
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      margin-bottom: 12px;
+    }
+    .cpa-pill {
+      display: inline-block;
+      padding: 2px 7px;
+      border-radius: 999px;
+      font-size: 0.71rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+    .cpa-pill.ok { background: var(--green-soft); color: #065F46; }
+    .cpa-pill.bad { background: var(--red-soft); color: #991B1B; }
+    .cpa-pill.muted { background: #F1F5F9; color: #64748B; }
     @media print {
-      .nav-wrap, .preset-bar, .btn-primary, .btn-tap, .btn-sec, .ad-hero { display: none !important; }
+      .nav-wrap, .preset-bar, .btn-primary, .btn-tap, .btn-sec, .ad-hero, .utm-switcher { display: none !important; }
       body { background: #fff; }
       .card { box-shadow: none; border: 1px solid #ccc; }
     }
@@ -759,30 +849,28 @@
     <div class="brand">
       <img src="./assets/icon.svg" alt="Tech-Con UR20" />
       <div>
-        <h1>Tech-Con Industry | UR20 LineFit &amp; ROI Studio</h1>
-        <p>Evaluare tehnică de paletizare pe telefon și model comercial pentru România (Cod Echipă: <strong>SYSUP072JD</strong>)</p>
+        <h1>Tech-Con Industry &mdash; Configurator Paletizare UR20</h1>
+        <p>Evaluare tehnică de linie și planificare comercială RO &bull; Echipă <strong>SYSUP072JD</strong></p>
       </div>
     </div>
     <div class="badges">
-      <span class="badge">📍 Hub-uri: Dragomirești-Deal • Timișoara • Iași</span>
-      <span class="badge badge-warn">⚠️ Prototip Web PWA — Date fictive (Fără date personale reale)</span>
+      <span class="badge">Hub-uri: Dragomirești-Deal &bull; Timișoara &bull; Iași</span>
+      <span class="badge badge-warn">Mediu demonstrativ (date fictive)</span>
+      <button type="button" class="btn-install" id="btnInstallPwa">Mod Hală / PWA</button>
     </div>
   </div>
-  <div class="pwa-strip">
-    <div>
-      <strong>De ce PWA pe GitHub Pages (0 EUR găzduire)?</strong>
-      Tot bugetul de 3.000 EUR intră în funcționalitate și SEO/AI (zero taxe App Store/server). Un singur link urmărește toate campaniile (<code>?utm_source=...</code>) și funcționează inclusiv offline în hală.
-    </div>
-    <button class="btn-install" id="btnInstallPwa" style="display:none;">📲 Instalează PWA pe ecran</button>
+  <div id="pwaHelp" class="pwa-help" style="display:none;">
+    <strong>Acces rapid de pe telefon în hală (PWA pe GitHub Pages, 0 EUR găzduire):</strong>
+    Pe Android/Chrome selectați <code>⋮ → Instalează aplicația</code>; pe iOS/Safari folosiți <code>Share → Add to Home Screen</code>. Funcționează offline prin <code>sw.js</code> și urmărește campaniile prin <code>?utm_source=</code>.
   </div>
 </header>
 
 <nav class="nav-wrap" aria-label="Navigare module">
   <div class="nav-tabs">
-    <button class="tab-btn active" data-tab="tab1">1. Evaluator Linie UR20</button>
+    <button class="tab-btn active" data-tab="tab1">1. Evaluare Linie UR20</button>
     <button class="tab-btn" data-tab="tab2">2. Referința PURATOS</button>
-    <button class="tab-btn" data-tab="tab3">3. Model Financiar (30k→300k)</button>
-    <button class="tab-btn" data-tab="tab4">4. Ghid Juriu &amp; CRM</button>
+    <button class="tab-btn" data-tab="tab3">3. Model Financiar (30k–300k)</button>
+    <button class="tab-btn" data-tab="tab4">4. Documentație &amp; CRM</button>
   </div>
 </nav>
 
@@ -792,44 +880,51 @@
   <section id="tab1" class="tab-panel active">
     <div class="ad-hero">
       <div>
-        <h2>13 kg × 7 găleți/min = ~5,5 t/oră ridicate de mână. <em>Verifică în 60s dacă linia ta se potrivește cu UR20.</em></h2>
-        <p>
-          Soluție replicată după aplicația reală implementată de <strong>Tech-Con la PURATOS</strong> pentru fabrici alimentare din România (găleți 5–15 kg). Fără garanții false, fără promisiuni salariale: verificăm sarcina reală cu tot cu gripper, cadența și blocajele amonte/aval.
+        <h2>13 kg &times; 7 găleți/min = ~5,5 t/oră ridicate manual. <em>Verifică în 60s compatibilitatea cu UR20.</em></h2>
+        <p id="adHeadlineSub">
+          Soluție replicată după aplicația implementată de <strong>Tech-Con la PURATOS</strong> pentru fabrici alimentare din România (găleți 5–15 kg). Fără garanții automate sau promisiuni salariale: calculăm sarcina reală cu gripper inclus, cadența și eventualele blocaje amonte/aval.
         </p>
         <div class="ad-proofs">
-          <span class="ad-proof">✅ Test PURATOS: 7,4/min (13 kg) &amp; 8,6/min (5 kg)</span>
-          <span class="ad-proof">👁️ Vedere SICK 2D + 3 Scanere siguranță</span>
-          <span class="ad-proof">🚀 0 erori FAT • Livrare ~4 luni</span>
-          <span class="ad-proof" id="utmBadge">🔗 Sursă campanie: direct/QR</span>
+          <span class="ad-proof">PURATOS: 7,4/min (13 kg) &amp; 8,6/min (5 kg)</span>
+          <span class="ad-proof">Vedere SICK 2D + 3 Scanere acces</span>
+          <span class="ad-proof">0 preluări ratate FAT &bull; Livrare ~4 luni</span>
+          <span class="ad-proof" id="utmBadge">Sursă campanie: direct/QR</span>
+        </div>
+        <div class="utm-switcher" aria-label="Simulator sursă campanie">
+          <span>Simulează sursă trafic (<code>?utm_source=</code>):</span>
+          <button type="button" class="utm-pill" data-utm="direct/QR" onclick="setUtmChannel('direct/QR')">QR Afiș</button>
+          <button type="button" class="utm-pill" data-utm="linkedin_abm" onclick="setUtmChannel('linkedin_abm')">LinkedIn ABM</button>
+          <button type="button" class="utm-pill" data-utm="google_search" onclick="setUtmChannel('google_search')">Google Search</button>
+          <button type="button" class="utm-pill" data-utm="youtube_demo" onclick="setUtmChannel('youtube_demo')">YouTube Video</button>
         </div>
       </div>
       <div class="ad-photo">
         <img src="./assets/puratos_ur20.jpg" alt="Celule UR20 PURATOS" />
-        <small>📸 Aplicație reală PURATOS (2 celule UR20, 2 poziții). Rezultate de test, nu garanții.</small>
+        <small>Aplicație industrială PURATOS (2 celule UR20, 2 poziții). Rezultate de test, nu garanții.</small>
       </div>
     </div>
 
     <div class="preset-bar">
       <div class="preset-title">
-        <span>⚡ Testare Rapidă Juriu (1-Click — Caz Normal, Date Lipsă/Greșite, Incompatibilitate &amp; Referință PURATOS)</span>
-        <span style="font-weight:600; color:var(--muted); font-size:0.78rem;">Validare conform Anexei 1 (Q8) și Paginii 3</span>
+        <span>Scenarii Pre-Configurate de Validare Tehnică</span>
+        <span style="font-weight:500; color:var(--muted); font-size:0.76rem; text-transform:none; letter-spacing:0;">Testare rapidă: caz normal, date lipsă/invalide, depășire sarcină și referință PURATOS</span>
       </div>
       <div class="preset-btns">
         <button type="button" class="preset-btn p-ok" onclick="loadPreset('normal')">
-          🟢 Caz Normal (Fabrică Lactate/Sosuri)
-          <small>Găleată 10 kg • 6,5 buc/min • Schimb palet 3,5 min • Timișoara</small>
+          <span class="tag-dot" style="background:var(--green);"></span>Caz 1: Linie Alimentară Eligibilă
+          <small>Găleată 10 kg &bull; 6,5 buc/min &bull; Schimb 3,5 min &bull; Timiș</small>
         </button>
         <button type="button" class="preset-btn p-err" onclick="loadPreset('invalid')">
-          🔴 Caz 2A: Date Lipsă / Invalide
-          <small>Câmpuri goale, masă -5 kg, debit 0, e-mail invalid (blochează trimiterea)</small>
+          <span class="tag-dot" style="background:var(--red);"></span>Caz 2A: Date Lipsă / Invalide
+          <small>Câmpuri goale, masă -5 kg, debit 0, e-mail invalid (blochează CRM)</small>
         </button>
         <button type="button" class="preset-btn p-warn" onclick="loadPreset('overload')">
-          🟠 Caz 2B: Depășire Sarcină &amp; Blocaj Aval
-          <small>17,5 kg + gripper 4 kg &gt; 20 kg UR20 + schimb manual 12 min &gt; umplere</small>
+          <span class="tag-dot" style="background:var(--orange);"></span>Caz 2B: Suprasarcină &amp; Blocaj Aval
+          <small>17,5 kg + gripper 4 kg &gt; 20 kg &bull; schimb manual 12 min</small>
         </button>
         <button type="button" class="preset-btn p-ref" onclick="loadPreset('puratos')">
-          🔵 Referința PURATOS (Studiu Caz 13 kg)
-          <small>13 kg • 44 buc/palet • 7,4 găleți/min • 2 celule UR20 • Dragomirești</small>
+          <span class="tag-dot" style="background:var(--blue);"></span>Referința PURATOS (13 kg)
+          <small>13 kg &bull; 44 buc/palet &bull; 7,4/min &bull; 2 celule UR20 &bull; Ilfov</small>
         </button>
       </div>
     </div>
@@ -839,17 +934,17 @@
       <div>
         <div class="card">
           <h2>
-            <span>⚙️ Parametrii Liniei de Producție (Capăt de Linie)</span>
+            <span>Parametrii Liniei de Producție</span>
             <button type="button" class="btn-sec" onclick="resetForm()">Resetează</button>
           </h2>
 
           <div class="tap-box">
             <div>
-              <strong style="font-size:0.86rem; color:var(--navy);">Unealtă Mobilă în Hală: Cronometru Cadență (Tap-to-Measure)</strong>
+              <strong style="font-size:0.84rem; color:var(--navy);">Cronometru Cadență la Bandă (Tap-to-Measure)</strong>
               <div class="hint" id="tapStatus">Apasă butonul de 3–5 ori la fiecare găleată trecută pe transportor pentru a măsura debitul real.</div>
             </div>
             <div style="display:flex; gap:6px; align-items:center;">
-              <button type="button" class="btn-tap" id="btnTap" onclick="registerTap()">⏱️ Găleată pe transportor (Tap)</button>
+              <button type="button" class="btn-tap" id="btnTap" onclick="registerTap()">Măsoară pas (Tap)</button>
               <button type="button" class="btn-sec" onclick="resetTaps()">Reset</button>
             </div>
           </div>
@@ -956,7 +1051,7 @@
 
         <!-- Lead Form to Tech-Con CRM -->
         <div class="card">
-          <h2>📩 Solicită Evaluare Tehnică &amp; Demo (Flux Automat CRM)</h2>
+          <h2>Solicită Evaluare Tehnică &amp; Demo</h2>
           <p class="hint" style="margin-top:0;">Folosiți date fictive în concurs. Validarea blochează câmpurile lipsă/eronate și simulează rutarea Haversine pe județ către Dragomirești-Deal, Timișoara sau Iași.</p>
           <div class="form-grid">
             <div class="field" id="fld-company">
@@ -1003,7 +1098,7 @@
               <input type="text" id="inNotes" value="Găleți plastic 10 kg cu mâner, europalet, interes pentru evaluare în fabrică." />
             </div>
           </div>
-          <button type="button" class="btn-primary" onclick="submitLead()">📤 Validează, Califică și Declanșează Fluxul CRM</button>
+          <button type="button" class="btn-primary" onclick="submitLead()">Validează, Califică și Înregistrează Cererea CRM</button>
           <div id="formErrorBanner" class="alert-box alert-err" style="display:none; margin-top:10px;"></div>
           <div id="crmReceipt" class="crm-receipt"></div>
         </div>
@@ -1013,7 +1108,7 @@
       <div>
         <div class="card">
           <h2>
-            <span>📊 Diagnostic Tehnic &amp; Configurație</span>
+            <span>Diagnostic Tehnic &amp; Configurație</span>
             <span class="score-pill ok" id="lineFitScore">Scor LineFit: 94/100</span>
           </h2>
           <div id="diagAlerts"></div>
@@ -1049,7 +1144,7 @@
             <div class="cell-preview-top">
               <img src="./assets/puratos_ur20.jpg" alt="Celulă UR20 PURATOS" />
               <div>
-                <div style="font-size:0.82rem; font-weight:800; color:#38BDF8;">🏭 Cum funcționează în hală (Referință PURATOS)</div>
+                <div style="font-size:0.82rem; font-weight:700; color:#93C5FD;">Arhitectură Celulă în Hală (Referință PURATOS)</div>
                 <div style="font-size:0.75rem; color:#CBD5E1; margin-top:3px;" id="liveFlowSummary">
                   Conveyor (6,5/min) → Cameră SICK 2D (mâner) → Braț UR20 + Gripper (14,0 kg) → 2 poziții europalet (60 buc, 4 straturi).
                 </div>
@@ -1057,33 +1152,81 @@
             </div>
             <div class="pos-grid">
               <div class="pos-box" id="posRobotBox">
-                <strong>🤖 Poziția A (Robot Activ)</strong><br/>
+                <strong>Poziția A &mdash; Robot UR20 Activ</strong><br/>
                 <span id="posRobotDesc">Încarcă 60 găleți în 9,2 min (15/strat)</span>
               </div>
-              <div style="text-align:center; font-weight:800; color:#38BDF8;">⇄</div>
+              <div style="text-align:center; font-weight:700; color:#93C5FD;">&harr;</div>
               <div class="pos-box manual" id="posHumanBox">
-                <strong>👷 Poziția B (Operator + 3 Scanere)</strong><br/>
+                <strong>Poziția B &mdash; Operator + 3 Scanere</strong><br/>
                 <span id="posHumanDesc">Schimb palet (3,5 min) &amp; separator ×3/palet</span>
               </div>
             </div>
-            <div class="scanner-strip" aria-label="Zone de siguranță cu 3 scanere laser">
-              <span class="sc-zone sc-g">🟢 Acces liber Poziția B</span>
-              <span class="sc-zone sc-y">🟡 3 Scanere: Încetinire UR20</span>
-              <span class="sc-zone sc-r">🔴 Oprire sigură (fără gard perimetral)</span>
+            <div class="twin-wrap">
+              <div class="twin-head">
+                <span>Vedere Top-Down Celulă &amp; Simulare Zone de Siguranță (Selectați zona):</span>
+                <span class="twin-status ok" id="twinSafetyBadge">Zonă liberă &bull; Viteză 100%</span>
+              </div>
+              <svg id="cellTwinSvg" viewBox="0 0 540 156" style="width:100%; height:auto; display:block;" role="img" aria-label="Schemă interactivă celulă UR20 cu 2 poziții și 3 scanere">
+                <!-- Conveyor -->
+                <rect x="6" y="56" width="112" height="42" rx="5" fill="#1E293B" stroke="#475569" stroke-width="1.5"/>
+                <text x="60" y="46" fill="#94A3B8" font-size="9" text-anchor="middle" font-weight="700" id="svgConvLabel">TRANSPORTOR (6,5/min)</text>
+                <circle cx="28" cy="77" r="9.5" fill="#38BDF8" opacity="0.85"/><circle cx="56" cy="77" r="9.5" fill="#38BDF8" opacity="0.85"/><circle cx="84" cy="77" r="9.5" fill="#0EA5E9"/>
+                <!-- SICK 2D Vision -->
+                <rect x="122" y="34" width="40" height="18" rx="3" fill="#0F4C81" stroke="#93C5FD" stroke-width="1"/>
+                <text x="142" y="46" fill="#fff" font-size="8.5" text-anchor="middle" font-weight="700">SICK 2D</text>
+                <polygon points="142,52 126,77 156,77" fill="#38BDF8" opacity="0.22"/>
+                <!-- Safety Scanner Zones around Pos A / B -->
+                <path id="svgZoneGreen" d="M 190 14 A 150 130 0 0 1 520 78 L 520 148 L 190 148 Z" fill="#10B981" fill-opacity="0.08" stroke="#10B981" stroke-dasharray="4 3" stroke-width="1.2"/>
+                <path id="svgZoneYellow" d="M 215 32 A 115 98 0 0 1 460 100 L 460 146 L 215 146 Z" fill="#F59E0B" fill-opacity="0.11" stroke="#F59E0B" stroke-dasharray="3 3" stroke-width="1.2"/>
+                <path id="svgZoneRed" d="M 240 52 A 76 68 0 0 1 395 112 L 395 144 L 240 144 Z" fill="#EF4444" fill-opacity="0.12" stroke="#EF4444" stroke-width="1.2"/>
+                <!-- Robot Pedestal 1 (+ optional 2) -->
+                <circle cx="222" cy="76" r="24" fill="#0F4C81" stroke="#93C5FD" stroke-width="2"/>
+                <text x="222" y="79" fill="#fff" font-size="10.5" text-anchor="middle" font-weight="700" id="svgUrLabel">UR20</text>
+                <line id="svgArm" x1="222" y1="76" x2="294" y2="48" stroke="#E0F2FE" stroke-width="5" stroke-linecap="round"/>
+                <circle cx="294" cy="48" r="6.5" fill="#D9531E" stroke="#fff" stroke-width="1.5"/>
+                <g id="svgSecondRobot" style="display:none;">
+                  <circle cx="176" cy="118" r="17" fill="#0F4C81" stroke="#93C5FD" stroke-width="2"/>
+                  <text x="176" y="122" fill="#fff" font-size="8.5" text-anchor="middle" font-weight="700">UR20 #2</text>
+                </g>
+                <!-- Pallet Position A (Robot active) -->
+                <rect x="290" y="18" width="92" height="54" rx="5" fill="#065F46" fill-opacity="0.55" stroke="#34D399" stroke-width="1.8"/>
+                <text x="336" y="40" fill="#ECFDF5" font-size="10" text-anchor="middle" font-weight="700">POZIȚIA A (Activă)</text>
+                <text x="336" y="55" fill="#A7F3D0" font-size="9.5" text-anchor="middle" id="svgPosASub">60 buc &bull; 9,2 min</text>
+                <!-- Pallet Position B (Human swap) -->
+                <rect id="svgPosBRect" x="290" y="88" width="92" height="54" rx="5" fill="#7C2D12" fill-opacity="0.55" stroke="#FB923C" stroke-width="1.8"/>
+                <text x="336" y="110" fill="#FFF7ED" font-size="10" text-anchor="middle" font-weight="700">POZIȚIA B (Manual)</text>
+                <text x="336" y="125" fill="#FED7AA" font-size="9.5" text-anchor="middle" id="svgPosBSub">Schimb 3,5 min</text>
+                <!-- 3 Safety Scanners icons -->
+                <rect x="256" y="12" width="12" height="8" rx="2" fill="#FACC15"/><rect x="404" y="68" width="10" height="12" rx="2" fill="#FACC15"/><rect x="256" y="138" width="12" height="8" rx="2" fill="#FACC15"/>
+                <!-- Moving Operator -->
+                <g id="svgOperator" transform="translate(476, 114)">
+                  <circle cx="0" cy="0" r="13" fill="#0B192C" stroke="#FBBF24" stroke-width="2"/>
+                  <text x="0" y="4" fill="#FDE68A" font-size="10" font-weight="800" text-anchor="middle">OP</text>
+                  <text x="0" y="24" fill="#CBD5E1" font-size="8.5" text-anchor="middle" font-weight="700" id="svgOpLabel">Zonă externă</text>
+                </g>
+              </svg>
+            </div>
+            <div class="scanner-strip" aria-label="Simulator interactiv 3 scanere laser">
+              <button type="button" class="sc-zone sc-g active" id="btnScFree" onclick="setSafetyMode('free')">Zonă Liberă (100% viteză)</button>
+              <button type="button" class="sc-zone sc-y" id="btnScWarn" onclick="setSafetyMode('warn')">Scanere: Încetinire UR20</button>
+              <button type="button" class="sc-zone sc-r" id="btnScStop" onclick="setSafetyMode('stop')">Intrare B: Oprire Sigură</button>
             </div>
             <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
-              <span style="font-size:0.72rem; color:#94A3B8;">Document pregătit pentru aprobare management / achiziții (fără promisiuni financiare).</span>
-              <button type="button" class="btn btn-outline btn-sm" style="background:rgba(255,255,255,0.08); color:#F8FAFC; border-color:rgba(255,255,255,0.28);" onclick="downloadCapexBrief()">📄 Descarcă Fișa de Pre-Evaluare CAPEX (.txt)</button>
+              <span style="font-size:0.72rem; color:#94A3B8;">Export intern (fără promisiuni financiare):</span>
+              <div style="display:flex; gap:6px; flex-wrap:wrap;">
+                <button type="button" class="btn btn-outline btn-sm" style="background:rgba(255,255,255,0.08); color:#F8FAFC; border-color:rgba(255,255,255,0.28);" onclick="copyTechSummary()">Copiază Rezumat</button>
+                <button type="button" class="btn btn-outline btn-sm" style="background:rgba(255,255,255,0.12); color:#F8FAFC; border-color:#93C5FD;" onclick="downloadCapexBrief()">Fișa Pre-Evaluare CAPEX (.txt)</button>
+              </div>
             </div>
           </div>
 
-          <h3>⚖️ Delimitare Domeniu &amp; Checklist Înainte de Replicare (Pag. 3)</h3>
+          <h3>Delimitare Domeniu &amp; Checklist Înainte de Replicare (Pag. 3)</h3>
           <ul class="checklist" id="techChecklist">
-            <li><span>✅</span><span><strong>Sarcina totală include gripperul:</strong> Verificat sub limita nominală de 20 kg a robotului UR20.</span></li>
-            <li><span>✅</span><span><strong>Vedere SICK 2D &amp; Orientare Mâner:</strong> Previne interferența mânerului cu gripperul pneumatic.</span></li>
-            <li><span>✅</span><span><strong>Protecție Persoane (3 Scanere):</strong> Reducere viteză sau oprire de protecție la accesul operatorului pentru schimb palet / separator.</span></li>
-            <li><span>⚠️</span><span><strong>Activități care RĂMÂN MANUALE:</strong> Schimbarea paleților și amplasarea separatoarelor (2 poziții pe celulă).</span></li>
-            <li><span>🚫</span><span><strong>ÎN AFARA PROIECTULUI DE BAZĂ (130.000 EUR):</strong> Transportul paleților către logistică (AGV/MiR), înfolierea și expedierea nu sunt incluse.</span></li>
+            <li><span style="color:var(--green); font-weight:800;">OK</span><span><strong>Sarcina totală include gripperul:</strong> Verificat sub limita nominală de 20 kg a robotului UR20.</span></li>
+            <li><span style="color:var(--green); font-weight:800;">OK</span><span><strong>Vedere SICK 2D &amp; Orientare Mâner:</strong> Previne interferența mânerului cu gripperul pneumatic.</span></li>
+            <li><span style="color:var(--green); font-weight:800;">OK</span><span><strong>Protecție Persoane (3 Scanere):</strong> Reducere viteză sau oprire de protecție la accesul operatorului pentru schimb palet / separator.</span></li>
+            <li><span style="color:var(--amber); font-weight:800;">MAN</span><span><strong>Activități care RĂMÂN MANUALE:</strong> Schimbarea paleților și amplasarea separatoarelor (2 poziții pe celulă).</span></li>
+            <li><span style="color:var(--red); font-weight:800;">EXCL</span><span><strong>ÎN AFARA PROIECTULUI DE BAZĂ (130.000 EUR):</strong> Transportul paleților către logistică (AGV/MiR), înfolierea și expedierea nu sunt incluse.</span></li>
           </ul>
           <p class="hint" style="margin-top:10px; padding-top:8px; border-top:1px dashed var(--border);">
             <strong>Notă de transparență (Pag. 2):</strong> Reperele de viteză (7,4 găleți/min la 13 kg; 8,6 găleți/min la 5 kg) sunt rezultate de test ale aplicației PURATOS, nu o garanție universală fără evaluare tehnică la fața locului.
@@ -1097,7 +1240,7 @@
   <section id="tab2" class="tab-panel">
     <div class="grid-2">
       <div class="card">
-        <h2>🏭 Aplicația Reală PURATOS — Celulele UR20 Implementate de Tech-Con</h2>
+        <h2>Aplicația Industrială PURATOS — Celulele UR20 Implementate de Tech-Con</h2>
         <img src="./assets/puratos_ur20.jpg" alt="Celule de paletizare UR20 implementate de Tech-Con la PURATOS" class="puratos-img" />
         <p class="hint" style="margin-top:6px;">Sursă imagine: Documentul oficial al probei, Pagina 10 (prezentarea Tech-Con, slide 9). Sunt vizibile celulele UR20, transportorul de alimentare și cele două poziții de paletizare.</p>
 
@@ -1120,7 +1263,7 @@
       </div>
 
       <div class="card">
-        <h2>📋 Fapte Verificate vs. Ipoteze de Extindere (Verificare Coerență Pag. 9)</h2>
+        <h2>Fapte Verificate vs. Ipoteze de Extindere (Coerență Pag. 9)</h2>
         <div class="table-wrap">
         <table>
           <thead>
@@ -1167,10 +1310,10 @@
   <section id="tab3" class="tab-panel">
     <div class="card">
       <h2>
-        <span>💶 Simulator Financiar Editabil &amp; Funnel Comercial (EUR fără TVA • 1 An Calendaristic)</span>
+        <span>Simulator Financiar Editabil &amp; Funnel Comercial (EUR fără TVA &bull; 1 An)</span>
         <div style="display:flex; gap:8px; flex-wrap:wrap;">
-          <a href="./03_Model_Financiar_TechCon_UR20.xlsx" download class="btn-navy">⬇️ Descarcă Excel (.xlsx) cu Formule</a>
-          <button type="button" class="btn-sec" onclick="downloadLiveCsv()">📄 Exportă Scenariul Curent (.csv)</button>
+          <a href="./03_Model_Financiar_TechCon_UR20.xlsx" download class="btn-navy">Descarcă Excel (.xlsx) cu Formule</a>
+          <button type="button" class="btn-sec" onclick="downloadLiveCsv()">Exportă Scenariul (.csv)</button>
         </div>
       </h2>
 
@@ -1232,16 +1375,23 @@
           </table>
           </div>
 
-          <h3>2. Repartizare Buget Anual de Promovare (Plafon 30.000 EUR)</h3>
+          <h3>
+            <span>2. Repartizare Buget &amp; Control Regula 2× CPA (30.000 EUR)</span>
+          </h3>
+          <div style="display:flex; gap:6px; flex-wrap:wrap; margin-bottom:8px;">
+            <button type="button" class="btn-sec" onclick="simulateWastefulChannel()">Simulează Audit 60z (Canal &gt;2× CPA)</button>
+            <button type="button" class="btn-sec" onclick="resetBudgetDefaults()">Resetează Plan 30k</button>
+          </div>
           <div id="budgetAlert"></div>
           <div class="table-wrap">
           <table>
             <thead>
               <tr>
                 <th>Direcție / Canal</th>
-                <th>Tip</th>
                 <th class="num">Alocare (EUR)</th>
+                <th class="num">Cereri</th>
                 <th class="num">%</th>
+                <th>CPL / 2× CPA</th>
               </tr>
             </thead>
             <tbody id="budgetBody"></tbody>
@@ -1252,6 +1402,13 @@
         <!-- Right: Computed Results -->
         <div>
           <h3>3. Rezultate Calculate Automat (Conform Paginii 7)</h3>
+          <div class="chart-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:6px; margin-bottom:6px;">
+              <strong style="font-size:0.8rem; color:var(--navy);">Prag Profit Net Comparativ (15 vs. 17 vs. 20 vs. 24 celule)</strong>
+              <span style="font-size:0.72rem; color:#DC2626; font-weight:700;">&mdash; &mdash; Țintă acționari: 300.000 EUR net</span>
+            </div>
+            <svg id="profitChartSvg" viewBox="0 0 500 155" style="width:100%; height:auto; display:block;" role="img" aria-label="Grafic profit net comparativ 15, 17, 20 și 24 celule"></svg>
+          </div>
           <div class="kpi-grid">
             <div class="kpi-box info">
               <div class="kpi-label">Contribuție pe Celulă</div>
@@ -1306,30 +1463,34 @@
   <section id="tab4" class="tab-panel">
     <div class="grid-2">
       <div class="card">
-        <h2>🧪 Instrucțiuni Scurte de Testare pentru Juriu (30 secunde)</h2>
-        <ol style="padding-left:18px; font-size:0.88rem; line-height:1.6;">
-          <li><strong>Caz Normal:</strong> În Tab 1, apăsați butonul verde <em>„🟢 Caz Normal (Fabrică Lactate/Sosuri)”</em>. Verificați sarcina totală (<code>14,0 kg / 20 kg</code>), recomandarea (<code>1 Celulă UR20</code>), rezerva de timp la schimbul manual al paletului (<code>+5,7 min</code>) și apăsați <em>„📤 Validează și Înregistrează Cererea”</em> pentru a genera fișa CRM.</li>
-          <li><strong>Caz Date Lipsă / Greșite:</strong> Apăsați butonul roșu <em>„🔴 Caz 2A: Date Lipsă / Invalide”</em> și încercați trimiterea formularului — aplicația evidențiază erorile pe fiecare câmp (masă negativă, debit 0, spațiu insuficient, companie goală, e-mail invalid) și blochează înregistrarea.</li>
-          <li><strong>Caz Incompatibilitate &amp; Blocaj Aval:</strong> Apăsați butonul portocaliu <em>„🟠 Caz 2B”</em> — deși găleata are 17,5 kg (&lt;20 kg), cu gripperul SICK 2D de 4 kg depășește <strong>21,5 kg &gt; 20 kg</strong>, iar schimbul manual de 12 min creează <strong>blocaj în aval</strong>.</li>
-          <li><strong>Model Financiar Editabil:</strong> În Tab 3, comutați între <em>15, 17 și 20 celule</em> sau modificați bugetul de promovare (vedeți alerta automată la depășirea plafonului de 30.000 EUR).</li>
+        <h2>Instrucțiuni de Testare &amp; Arhitectură Campanie (0 EUR Găzduire)</h2>
+        <ol style="padding-left:18px; font-size:0.86rem; line-height:1.6;">
+          <li><strong>Caz 1 (Linie Eligibilă):</strong> În Tab 1, apăsați <em>„Caz 1: Linie Alimentară Eligibilă”</em>. Verificați sarcina totală (<code>14,0 kg / 20 kg</code>), recomandarea (<code>1 Celulă UR20</code>), marja la schimb manual (<code>+5,7 min</code>) și declanșați fluxul CRM.</li>
+          <li><strong>Caz 2A (Date Lipsă / Greșite):</strong> Apăsați <em>„Caz 2A: Date Lipsă / Invalide”</em> și încercați trimiterea — câmpurile eronate (<code>-5 kg</code>, debit <code>0</code>, e-mail invalid) sunt semnalizate și trimiterea este blocată.</li>
+          <li><strong>Caz 2B (Incompatibilitate &amp; Blocaj Aval):</strong> Apăsați <em>„Caz 2B: Suprasarcină &amp; Blocaj Aval”</em> — găleata de 17,5 kg + gripper 4 kg = <strong>21,5 kg &gt; 20 kg</strong>, iar schimbul de 12 min arată procentul exact de staționare a robotului.</li>
+          <li><strong>Model Financiar &amp; Regula 2× CPA:</strong> În Tab 3, comparați <em>15, 17, 20 și 24 celule</em> pe graficul live al profitului net și testați butonul <em>„Simulează Audit 60z”</em>.</li>
+          <li><strong>Deduplicare Multi-Canal (Pag. 6) &amp; Scanere:</strong> În Tab 1, testați cele 3 zone ale scanerelor și sursele <code>?utm_source=</code>. Dacă aceeași firmă revine din alt canal, CRM-ul o contopește într-o <strong>singură cerere unică</strong>. Tot bugetul de 3.000 EUR pentru aplicație intră în funcționalitate și SEO/AI (găzduire GitHub Pages = 0 EUR).</li>
         </ol>
       </div>
 
       <div class="card">
         <h2>
-          <span>🗂️ Panou CRM Simulat (Cereri Relevante LocalStorage)</span>
+          <span>Panou CRM Simulat (Cereri Relevante &amp; Deduplicare Multi-Canal)</span>
           <div style="display:flex; gap:6px; flex-wrap:wrap;">
-            <button type="button" class="btn-sec" onclick="exportCrmCsv()">⬇️ Exportă CRM (.csv)</button>
-            <button type="button" class="btn-sec" onclick="clearCrmData()">🗑️ Șterge datele</button>
+            <button type="button" class="btn-sec" onclick="exportCrmCsv()">Exportă CRM (.csv)</button>
+            <button type="button" class="btn-sec" onclick="clearCrmData()">Resetează datele</button>
           </div>
         </h2>
+        <div id="crmDedupeStats" class="alert-box alert-info" style="margin-bottom:10px; font-size:0.8rem;">
+          Cereri unice în campanie: <strong>1</strong> • Interacțiuni totale: <strong>1</strong> (deduplicare multi-canal conform Paginii 6)
+        </div>
         <p class="hint" style="margin-top:0;">Include o cerere demonstrativă + toate cererile valide trimise din Tab 1 (salvate local în browser; nimic nu pleacă spre server).</p>
         <div class="table-wrap">
         <table>
           <thead>
             <tr>
               <th>ID &amp; Companie (Fictivă)</th>
-              <th>Hub &amp; Distanță</th>
+              <th>Hub &amp; Sursă UTM</th>
               <th>Config &amp; Scor</th>
               <th>Etapă Pâlnie</th>
             </tr>
@@ -1354,16 +1515,115 @@
   window.addEventListener('beforeinstallprompt', (e) => {
     e.preventDefault();
     deferredPrompt = e;
-    const btn = document.getElementById('btnInstallPwa');
-    if (btn) btn.style.display = 'inline-block';
   });
   document.getElementById('btnInstallPwa').addEventListener('click', async () => {
-    if (!deferredPrompt) return;
-    deferredPrompt.prompt();
-    await deferredPrompt.userChoice;
-    deferredPrompt = null;
-    document.getElementById('btnInstallPwa').style.display = 'none';
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      await deferredPrompt.userChoice;
+      deferredPrompt = null;
+      return;
+    }
+    const help = document.getElementById('pwaHelp');
+    if (help) help.style.display = help.style.display === 'none' ? 'block' : 'none';
   });
+
+  // Dynamic UTM Source & Digital Twin Controls
+  const UTM_COPY = {
+    linkedin_abm: 'Campanie LinkedIn ABM (Directori Producție & CAPEX): verificare rapidă în 60s după modelul PURATOS — fără garanții false, cu calcul complet de sarcină (inclusiv gripper) și blocaje aval.',
+    google_search: 'Căutare Google Search (intenție activă paletizare): verificați în timp real dacă gălețile dvs. de 5–15 kg și cadența liniei se potrivesc configurației standard UR20.',
+    youtube_demo: 'Trafic Video YouTube Demonstrativ: comparați parametrii liniei proprii cu testul real Tech-Con de la PURATOS (7,4/min la 13 kg și 8,6/min la 5 kg) și zonele de siguranță fără gard.',
+    'direct/QR': 'Soluție replicată după aplicația implementată de <strong>Tech-Con la PURATOS</strong> pentru fabrici alimentare din România (găleți 5–15 kg). Fără garanții automate sau promisiuni salariale: calculăm sarcina reală cu gripper inclus, cadența și eventualele blocaje amonte/aval.'
+  };
+
+  function getUtmSource() {
+    try {
+      return (new URLSearchParams(location.search).get('utm_source') || '').trim().slice(0, 32) || 'direct/QR';
+    } catch (e) {
+      return 'direct/QR';
+    }
+  }
+
+  function applyUtmUi(utm) {
+    const badge = document.getElementById('utmBadge');
+    if (badge) badge.textContent = `Sursă campanie: ${utm}`;
+    const sub = document.getElementById('adHeadlineSub');
+    if (sub) sub.innerHTML = UTM_COPY[utm] || UTM_COPY['direct/QR'];
+    document.querySelectorAll('.utm-pill').forEach((btn) => {
+      btn.classList.toggle('active', btn.dataset.utm === utm);
+    });
+  }
+
+  function setUtmChannel(source) {
+    try {
+      const url = new URL(location.href);
+      if (source === 'direct/QR') url.searchParams.delete('utm_source');
+      else url.searchParams.set('utm_source', source);
+      history.replaceState(null, '', url.toString());
+    } catch (e) {}
+    applyUtmUi(source);
+  }
+
+  function setSafetyMode(mode) {
+    const op = document.getElementById('svgOperator');
+    const opLabel = document.getElementById('svgOpLabel');
+    const arm = document.getElementById('svgArm');
+    const badge = document.getElementById('twinSafetyBadge');
+    const zg = document.getElementById('svgZoneGreen');
+    const zy = document.getElementById('svgZoneYellow');
+    const zr = document.getElementById('svgZoneRed');
+    document.getElementById('btnScFree').classList.toggle('active', mode === 'free');
+    document.getElementById('btnScWarn').classList.toggle('active', mode === 'warn');
+    document.getElementById('btnScStop').classList.toggle('active', mode === 'stop');
+    if (!op || !arm || !badge) return;
+    if (mode === 'warn') {
+      op.setAttribute('transform', 'translate(422, 114)');
+      opLabel.textContent = 'Zonă avertizare';
+      arm.setAttribute('stroke', '#FBBF24');
+      zg.setAttribute('fill-opacity', '0.04');
+      zy.setAttribute('fill-opacity', '0.28');
+      zr.setAttribute('fill-opacity', '0.10');
+      badge.className = 'twin-status warn';
+      badge.textContent = '3 Scanere: Operator detectat — Încetinire UR20';
+    } else if (mode === 'stop') {
+      op.setAttribute('transform', 'translate(358, 130)');
+      opLabel.textContent = 'Acces Poziția B';
+      arm.setAttribute('stroke', '#F87171');
+      zg.setAttribute('fill-opacity', '0.03');
+      zy.setAttribute('fill-opacity', '0.08');
+      zr.setAttribute('fill-opacity', '0.35');
+      badge.className = 'twin-status err';
+      badge.textContent = 'Intrare B: Oprire de protecție (fără gard)';
+    } else {
+      op.setAttribute('transform', 'translate(476, 114)');
+      opLabel.textContent = 'Zonă externă';
+      arm.setAttribute('stroke', '#E0F2FE');
+      zg.setAttribute('fill-opacity', '0.12');
+      zy.setAttribute('fill-opacity', '0.10');
+      zr.setAttribute('fill-opacity', '0.10');
+      badge.className = 'twin-status ok';
+      badge.textContent = 'Zonă liberă • Viteză 100%';
+    }
+  }
+
+  function updateTwinVisual(res) {
+    const conv = document.getElementById('svgConvLabel');
+    const ur = document.getElementById('svgUrLabel');
+    const sec = document.getElementById('svgSecondRobot');
+    const posA = document.getElementById('svgPosASub');
+    const posB = document.getElementById('svgPosBSub');
+    const rectB = document.getElementById('svgPosBRect');
+    if (!conv || !ur) return;
+    conv.textContent = `TRANSPORTOR (${fmtNum(res.rate, 1)}/min)`;
+    ur.textContent = `${res.cellsNeeded}x UR20`;
+    if (sec) sec.style.display = res.cellsNeeded >= 2 ? 'block' : 'none';
+    if (posA) posA.textContent = `${res.perPallet} buc • ${fmtNum(res.palletFillTime, 1)} min`;
+    const isBlocked = res.swapTime > res.palletFillTime;
+    if (posB) posB.textContent = isBlocked ? `BLOCAJ (${fmtNum(res.swapTime, 1)} min)` : `Schimb ${fmtNum(res.swapTime, 1)} min`;
+    if (rectB) {
+      rectB.setAttribute('stroke', isBlocked ? '#EF4444' : '#FB923C');
+      rectB.setAttribute('fill', isBlocked ? '#7F1D1D' : '#7C2D12');
+    }
+  }
 
   // Tab Navigation
   document.querySelectorAll('.tab-btn').forEach((btn) => {
@@ -1605,7 +1865,7 @@
     if (hasTechInputErr) {
       document.getElementById('diagAlerts').innerHTML = `
         <div class="alert-box alert-err">
-          <strong>⛔ Date tehnice lipsă sau invalide:</strong> Corectați câmpurile evidențiate cu roșu din stânga pentru a calcula fezabilitatea celulei UR20.
+          <strong>EROARE DATE TEHNICE:</strong> Corectați câmpurile evidențiate cu roșu din stânga pentru a calcula fezabilitatea celulei UR20.
         </div>`;
       document.getElementById('kpiPayload').textContent = 'Date invalide';
       document.getElementById('kpiCells').textContent = '—';
@@ -1630,15 +1890,15 @@
       score -= 45;
       payloadBox.className = 'kpi-box err';
       barPayload.style.background = '#DC2626';
-      alerts.push(`<div class="alert-box alert-err"><strong>⛔ DEPĂȘIRE SARCINĂ TOTALĂ UR20 (${fmtNum(totalPayload,1)} kg &gt; 20 kg):</strong> Chiar dacă găleata are sub 20 kg, sarcina totală include gripperul pneumatic și camera SICK 2D. Este necesară reducerea masei gripperului, alegerea unui alt robot sau testare separată Tech-Con!</div>`);
+      alerts.push(`<div class="alert-box alert-err"><strong>DEPĂȘIRE SARCINĂ TOTALĂ UR20 (${fmtNum(totalPayload,1)} kg &gt; 20 kg):</strong> Chiar dacă găleata are sub 20 kg, sarcina totală include gripperul pneumatic și camera SICK 2D. Este necesară reducerea masei gripperului, alegerea unui alt robot sau testare separată Tech-Con.</div>`);
     } else if (totalPayload > 18.5) {
       score -= 10;
       payloadBox.className = 'kpi-box warn';
-      barPayload.style.background = '#D97706';
-      alerts.push(`<div class="alert-box alert-warn"><strong>⚠️ Marjă mică de sarcină (${fmtNum(totalPayload,1)} kg din 20 kg):</strong> Validare obligatorie a centrului de greutate la testele FAT.</div>`);
+      barPayload.style.background = '#B45309';
+      alerts.push(`<div class="alert-box alert-warn"><strong>ATENȚIE — Marjă mică de sarcină (${fmtNum(totalPayload,1)} kg din 20 kg):</strong> Validare obligatorie a centrului de greutate la testele FAT.</div>`);
     } else {
       payloadBox.className = 'kpi-box ok';
-      barPayload.style.background = '#10B981';
+      barPayload.style.background = '#059669';
     }
 
     // PURATOS interpolated capacity benchmark: 8.6/min at 5kg, 7.4/min at 13kg (rounded cleanly)
@@ -1655,12 +1915,12 @@
     document.getElementById('kpiCellsSub').textContent = `Încărcare ${loadPct}% • ${fmtNum(secPerBucket, 1)} s/găleată (reper ~${fmtNum(singleCellCap, 1)}/min)`;
 
     if (isPuratosPreset) {
-      alerts.push(`<div class="alert-box alert-info"><strong>🔵 Referință PURATOS (Anexa 2):</strong> Tech-Con a implementat <strong>2 celule UR20</strong> (cadență testată 7,4 găleți/min la 13 kg și 8,6/min la 5 kg, 0 erori FAT).</div>`);
+      alerts.push(`<div class="alert-box alert-info"><strong>Referință PURATOS (Anexa 2):</strong> Tech-Con a implementat <strong>2 celule UR20</strong> (cadență testată 7,4 găleți/min la 13 kg și 8,6/min la 5 kg, 0 preluări ratate la FAT).</div>`);
     } else if (rate < 4.0) {
       score -= 8;
-      alerts.push(`<div class="alert-box alert-info"><strong>ℹ️ Limitare în AMONTE (${fmtNum(rate,1)} găleți/min):</strong> Celula UR20 va lucra la doar ${loadPct}% încărcare; un robot mai rapid nu crește debitul fără mărirea vitezei mașinii de umplere.</div>`);
+      alerts.push(`<div class="alert-box alert-info"><strong>Limitare în AMONTE (${fmtNum(rate,1)} găleți/min):</strong> Celula UR20 va lucra la doar ${loadPct}% încărcare; un robot mai rapid nu crește debitul fără mărirea vitezei mașinii de umplere.</div>`);
     } else if (cellsNeeded >= 2) {
-      alerts.push(`<div class="alert-box alert-info"><strong>ℹ️ Configurație multi-celulă (${cellsNeeded} celule UR20, ca la PURATOS):</strong> Debitul liniei (${fmtNum(rate,1)}/min) depășește o singură celulă (~${fmtNum(singleCellCap,1)}/min); fiecare celulă preia ${fmtNum(ratePerCell,1)}/min.</div>`);
+      alerts.push(`<div class="alert-box alert-info"><strong>Configurație multi-celulă (${cellsNeeded} celule UR20, ca la PURATOS):</strong> Debitul liniei (${fmtNum(rate,1)}/min) depășește o singură celulă (~${fmtNum(singleCellCap,1)}/min); fiecare celulă preia ${fmtNum(ratePerCell,1)}/min.</div>`);
     }
 
     // Bottleneck check (2 palletizing positions per cell!)
@@ -1674,7 +1934,7 @@
       score -= 30;
       bnBox.className = 'kpi-box err';
       document.getElementById('kpiBottleneckSub').textContent = `Deficit ${fmtNum(Math.abs(marginMin), 1)} min (${idlePct}% timp mort robot)`;
-      alerts.push(`<div class="alert-box alert-err"><strong>⚠️ BLOCAJ ÎN AVAL DETECTAT (${idlePct}% staționare robot):</strong> Umplerea unui palet durează <strong>${fmtNum(palletFillTime,1)} min</strong>, dar schimbul manual + separatorul durează <strong>${fmtNum(swapTime,1)} min</strong>. Robotul va staționa ${fmtNum(Math.abs(marginMin),1)} min așteptând operatorul!<br/><span style="font-size:0.78rem;">💡 <strong>Corecție recomandată fără robot suplimentar:</strong> pre-poziționați paletul gol + separatoarele lângă Poziția B sau folosiți transpalet dedicat pentru a coborî schimbul sub ${fmtNum(palletFillTime,1)} min.</span></div>`);
+      alerts.push(`<div class="alert-box alert-err"><strong>BLOCAJ ÎN AVAL DETECTAT (${idlePct}% staționare robot):</strong> Umplerea unui palet durează <strong>${fmtNum(palletFillTime,1)} min</strong>, dar schimbul manual + separatorul durează <strong>${fmtNum(swapTime,1)} min</strong>. Robotul va staționa ${fmtNum(Math.abs(marginMin),1)} min așteptând operatorul.<br/><span style="font-size:0.78rem;"><strong>Corecție recomandată fără robot suplimentar:</strong> pre-poziționați paletul gol + separatoarele lângă Poziția B sau folosiți transpalet dedicat pentru a coborî schimbul sub ${fmtNum(palletFillTime,1)} min.</span></div>`);
     } else {
       bnBox.className = 'kpi-box ok';
       document.getElementById('kpiBottleneckSub').textContent = `Marjă operator: +${fmtNum(marginMin, 1)} min • Utilizare ciclu robot 100%`;
@@ -1682,28 +1942,28 @@
 
     if (space < 8) {
       score -= 12;
-      alerts.push(`<div class="alert-box alert-warn"><strong>⚠️ Spațiu strâmt (${fmtNum(space,1)} m²):</strong> Verificați amplasarea celor 2 poziții de europaleți și a celor 3 scanere de siguranță în evaluarea din fabrică.</div>`);
+      alerts.push(`<div class="alert-box alert-warn"><strong>ATENȚIE — Spațiu strâmt (${fmtNum(space,1)} m²):</strong> Verificați amplasarea celor 2 poziții de europaleți și a celor 3 scanere de siguranță în evaluarea din fabrică.</div>`);
     }
 
     if (palletType !== 'Europalet 1200×800') {
       score -= 5;
-      alerts.push(`<div class="alert-box alert-warn"><strong>⚠️ Format palet diferit (${escHtml(palletType)}):</strong> Pattern-ul de așezare și accesul pe cele 2 poziții trebuie validate separat față de europaletul PURATOS.</div>`);
+      alerts.push(`<div class="alert-box alert-warn"><strong>ATENȚIE — Format palet diferit (${escHtml(palletType)}):</strong> Pattern-ul de așezare și accesul pe cele 2 poziții trebuie validate separat față de europaletul PURATOS.</div>`);
     }
     if (env !== 'Uscat') {
       score -= 5;
-      alerts.push(`<div class="alert-box alert-warn"><strong>⚠️ Mediu umed / washdown:</strong> Necesită validarea protecției IP a camerei SICK 2D, gripperului și robotului pentru spălare alimentară.</div>`);
+      alerts.push(`<div class="alert-box alert-warn"><strong>ATENȚIE — Mediu umed / washdown:</strong> Necesită validarea protecției IP a camerei SICK 2D, gripperului și robotului pentru spălare alimentară.</div>`);
     }
 
     if (sector === 'paint_non_atex') {
       score -= 10;
-      alerts.push(`<div class="alert-box alert-warn"><strong>⚠️ Validare separată (Non-Alimentar, Pag. 11 Q4):</strong> Pentru vopsele/adezivi non-ATEX, Tech-Con validează separat compatibilitatea ambalajului, stabilitatea capacului și ventilația înainte de ofertare.</div>`);
+      alerts.push(`<div class="alert-box alert-warn"><strong>ATENȚIE — Validare separată (Non-Alimentar, Pag. 11 Q4):</strong> Pentru vopsele/adezivi non-ATEX, Tech-Con validează separat compatibilitatea ambalajului, stabilitatea capacului și ventilația înainte de ofertare.</div>`);
     } else if (sector === 'atex') {
       score -= 35;
-      alerts.push(`<div class="alert-box alert-err"><strong>⛔ Mediu cu risc ATEX (Neeligibil standard UR20):</strong> Celula standard PURATOS nu este certificată ATEX; necesită proiectare specializată și evaluare de risc dedicată.</div>`);
+      alerts.push(`<div class="alert-box alert-err"><strong>NEELIGIBIL STANDARD — Mediu cu risc ATEX:</strong> Celula standard PURATOS nu este certificată ATEX; necesită proiectare specializată și evaluare de risc dedicată.</div>`);
     }
 
     if (alerts.length === 0) {
-      alerts.push(`<div class="alert-box alert-ok"><strong>✅ LINIE COMPATIBILĂ CU CELULA UR20:</strong> Sarcină totală în limite, cadență acoperită și fără blocaj în aval pe cele 2 poziții de paletizare.</div>`);
+      alerts.push(`<div class="alert-box alert-ok"><strong>LINIE COMPATIBILĂ CU CELULA UR20:</strong> Sarcină totală în limite, cadență acoperită și fără blocaj în aval pe cele 2 poziții de paletizare.</div>`);
     }
     document.getElementById('diagAlerts').innerHTML = alerts.join('');
 
@@ -1732,11 +1992,11 @@
 
     const cl = document.getElementById('techChecklist');
     cl.children[1].innerHTML = hasHandle
-      ? '<span>✅</span><span><strong>Vedere SICK 2D &amp; Orientare Mâner:</strong> Necesară pentru identificarea poziției mânerului înainte de preluare.</span>'
-      : '<span>ℹ️</span><span><strong>Recipient fără mâner:</strong> Camera 2D poate fi simplificată; validați suprafața de prindere la auditul FAT.</span>';
+      ? '<span style="color:var(--green); font-weight:800;">OK</span><span><strong>Vedere SICK 2D &amp; Orientare Mâner:</strong> Necesară pentru identificarea poziției mânerului înainte de preluare.</span>'
+      : '<span style="color:var(--blue); font-weight:800;">INFO</span><span><strong>Recipient fără mâner:</strong> Camera 2D poate fi simplificată; validați suprafața de prindere la auditul FAT.</span>';
 
     const warnCount = alerts.filter((a) => a.includes('alert-warn') || a.includes('alert-err')).length + 2;
-    return {
+    const resObj = {
       valid: totalPayload <= 20 && space >= 6 && sector !== 'atex',
       inputError: false,
       score,
@@ -1756,6 +2016,8 @@
       sector,
       warnCount
     };
+    updateTwinVisual(resObj);
+    return resObj;
   }
 
   // CRM Leads storage (localStorage + default benchmark demo)
@@ -1774,6 +2036,8 @@
     stage: 'Cerere relevantă (Audit Programat)',
     email: 'demo@panificatie-fictiv.ro',
     timeline: '0–3 luni',
+    utm: 'google_search',
+    touches: 1,
     created: '20.11.2026'
   };
 
@@ -1782,7 +2046,7 @@
       const saved = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
       if (Array.isArray(saved) && saved.length > 0) return saved;
     } catch (e) {}
-    return [DEFAULT_LEAD];
+    return [{ ...DEFAULT_LEAD }];
   }
   let crmLeads = loadCrmLeads();
 
@@ -1801,14 +2065,23 @@
 
   function renderCrmTable() {
     const tbody = document.getElementById('crmTableBody');
-    tbody.innerHTML = crmLeads.map((l) => `
+    let totalTouches = 0;
+    tbody.innerHTML = crmLeads.map((l) => {
+      const touches = Math.max(1, l.touches || 1);
+      totalTouches += touches;
+      const utmLabel = l.utm || 'direct/QR';
+      return `
       <tr>
         <td><strong>${escHtml(l.id)}</strong><br/><span style="font-size:0.78rem;">${escHtml(l.company)}</span></td>
-        <td>Hub ${escHtml(l.hub)}<br/><span class="hint">${l.km === 0 ? '< 10 km' : '≈ ' + l.km + ' km'} (${escHtml(l.county)})</span></td>
+        <td>Hub ${escHtml(l.hub)} (${l.km === 0 ? '< 10 km' : '≈' + l.km + ' km'})<br/><span class="hint">Sursă: <code>${escHtml(utmLabel)}</code>${touches > 1 ? ` (${touches} contacte → 1 cerere)` : ''}</span></td>
         <td>${escHtml(l.spec)}<br/><span class="hint">Scor ${l.score}/100</span></td>
         <td><span style="color:#065F46; font-weight:700;">${escHtml(l.stage)}</span></td>
-      </tr>
-    `).join('');
+      </tr>`;
+    }).join('');
+    const statsEl = document.getElementById('crmDedupeStats');
+    if (statsEl) {
+      statsEl.innerHTML = `Cereri unice în campanie: <strong>${crmLeads.length}</strong> &bull; Interacțiuni totale (touchpoints): <strong>${totalTouches}</strong> (deduplicare multi-canal conform Paginii 6)`;
+    }
   }
 
   function pad2(n) { return (n < 10 ? '0' : '') + n; }
@@ -1920,12 +2193,12 @@
 
     if (errs.length > 0) {
       errBanner.style.display = 'block';
-      errBanner.innerHTML = `<strong>⛔ Trimitere blocată (Validare CRM):</strong> ${errs.join(' ')} Completați datele corecte pentru a genera o cerere relevantă.`;
+      errBanner.innerHTML = `<strong>TRIMIS BLOCAT (Validare CRM):</strong> ${errs.join(' ')} Completați datele corecte pentru a genera o cerere relevantă.`;
       return;
     }
 
     const route = routeLeadByCounty(county);
-    const idCode = nextLeadId();
+    const utm = getUtmSource();
     const now = new Date();
     const taskDue = fmtDateRo(addBizDays(now, 2));
     const hot = res.score >= 70 && res.valid;
@@ -1938,27 +2211,58 @@
       ? `Escaladare inginerie Hub ${route.hub}: validare sarcină/ATEX și probă ambalaj`
       : `Audit tehnic din Hub ${route.hub} până la ${taskDue}: semnale conveyor & probă gripper`;
 
-    const leadRec = {
-      id: idCode,
-      company,
-      contact,
-      role,
-      county,
-      hub: route.hub,
-      km: route.km,
-      spec: specTxt,
-      score: res.score,
-      stage,
-      email,
-      timeline,
-      created: fmtDateRo(now)
-    };
+    // Deduplicate same company/email across multiple ad channels (Pagina 6 rule!)
+    const normCo = company.toLowerCase();
+    const normEm = email.toLowerCase();
+    const existing = crmLeads.find((l) =>
+      (l.company && l.company.toLowerCase() === normCo) ||
+      (l.email && l.email.toLowerCase() === normEm)
+    );
+
+    let idCode = '';
+    let isDeduped = false;
+    let leadRec = null;
+    if (existing) {
+      isDeduped = true;
+      idCode = existing.id;
+      const prevSources = (existing.utm || 'direct/QR').split(' + ').filter(Boolean);
+      if (!prevSources.includes(utm)) prevSources.push(utm);
+      existing.utm = prevSources.join(' + ');
+      existing.touches = (existing.touches || 1) + 1;
+      existing.contact = contact;
+      existing.role = role;
+      existing.county = county;
+      existing.hub = route.hub;
+      existing.km = route.km;
+      existing.spec = specTxt;
+      existing.score = res.score;
+      existing.stage = stage;
+      existing.timeline = timeline;
+      leadRec = existing;
+    } else {
+      idCode = nextLeadId();
+      leadRec = {
+        id: idCode,
+        company,
+        contact,
+        role,
+        county,
+        hub: route.hub,
+        km: route.km,
+        spec: specTxt,
+        score: res.score,
+        stage,
+        email,
+        timeline,
+        utm,
+        touches: 1,
+        created: fmtDateRo(now)
+      };
+      crmLeads.unshift(leadRec);
+    }
     lastRecord = leadRec;
-    crmLeads.unshift(leadRec);
     saveCrmLeads();
     renderCrmTable();
-
-    const utm = getUtmSource();
 
     const emails = hot ? [
       { day: 0, date: fmtDateRo(now), subj: `${fmtNum(res.tonsPerShift, 1)} t/schimb ridicate manual? Rezumatul liniei ${company}` },
@@ -1973,6 +2277,7 @@
     lastCrmText = [
       `FIȘĂ CRM ${idCode} (Echipa SYSUP072JD — Prototip date fictive)`,
       `Companie: ${company} | Contact: ${contact} (${role}) | E-mail: ${email}`,
+      `Sursă UTM: ${leadRec.utm} (${leadRec.touches} contacte -> 1 cerere unică)`,
       `Județ: ${county} -> Rutare: ${route.text} | Termen: ${timeline}`,
       `Linie: ${specTxt} | ${res.palletType} | Mediu: ${res.env} | Scor LineFit: ${res.score}/100`,
       `Efort repetitiv preluat: ${fmtNum(res.tonsPerShift, 1)} t/schimb (${fmtNum(res.tonsPerDay, 1)} t/zi)`,
@@ -1984,59 +2289,87 @@
     receipt.style.display = 'block';
     receipt.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <strong style="color:#065F46; font-size:0.95rem;">✅ Fișă CRM ${escHtml(idCode)} — Scor LineFit ${res.score}/100 (${escHtml(stage)})</strong>
+        <strong style="color:#065F46; font-size:0.93rem;">${isDeduped ? 'DEDUPLICAT MULTI-CANAL' : 'CERERE ÎNREGISTRATĂ'}: ${escHtml(idCode)} &mdash; Scor ${res.score}/100 (${escHtml(stage)})</strong>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <button type="button" class="btn-sec" onclick="copyCrmSummary()">📋 Copiază</button>
-          <button type="button" class="btn-sec" onclick="downloadLastTxt()">📄 .txt</button>
-          <button type="button" class="btn-sec" onclick="downloadLastIcs()">📅 .ics</button>
-          <button type="button" class="btn-sec" onclick="window.print()">🖨️ PDF</button>
+          <button type="button" class="btn-sec" onclick="copyCrmSummary()">Copiază</button>
+          <button type="button" class="btn-sec" onclick="downloadLastTxt()">Descarcă .txt</button>
+          <button type="button" class="btn-sec" onclick="downloadLastIcs()">Calendar .ics</button>
+          <button type="button" class="btn-sec" onclick="window.print()">Print / PDF</button>
         </div>
       </div>
+      ${isDeduped ? `<div class="alert-box alert-info" style="margin-top:8px; margin-bottom:0;"><strong>Regula Paginii 6 aplicată automat:</strong> Compania/adresa există deja în CRM. Noul contact din <code>${escHtml(utm)}</code> a fost contopit în cererea unică <code>${escHtml(idCode)}</code> (surse cumulate: <code>${escHtml(leadRec.utm)}</code>).</div>` : ''}
       <div class="auto-box">
-        <strong style="font-size:0.84rem; color:var(--navy);">⚡ Flux Automat Declanșat (Simulat în Browser — Fără Server)</strong>
+        <strong style="font-size:0.84rem; color:var(--navy);">Flux Automat Declanșat (Simulat în Browser)</strong>
         <ol class="auto-tl">
           <li><span class="dot">1</span><strong>Rutare Haversine:</strong> ${escHtml(route.text)}</li>
-          <li><span class="dot">2</span><strong>Fișă CRM creată:</strong> <code>${escHtml(idCode)}</code> • sursă <code>${escHtml(utm)}</code> • salvată în Panou CRM (Tab 4)</li>
+          <li><span class="dot">2</span><strong>Fișă CRM actualizată:</strong> <code>${escHtml(idCode)}</code> &bull; sursă <code>${escHtml(leadRec.utm)}</code> &bull; salvată în Panou CRM (Tab 4)</li>
           <li><span class="dot">3</span><strong>Secvență 3 e-mailuri programată:</strong> Zi ${emails[0].day} (${emails[0].date}), Zi ${emails[1].day} (${emails[1].date}), Zi ${emails[2].day} (${emails[2].date})
             <details class="mail-prev"><summary>Previzualizare e-mail 1: ${escHtml(emails[0].subj)}</summary><pre style="white-space:pre-wrap; font-family:inherit; margin:5px 0 0;">${escHtml(mailPreviewBody)}</pre></details>
           </li>
-          <li><span class="dot">4</span><strong>Sarcină inginer (+2 zile lucrătoare):</strong> Termen <strong>${taskDue}</strong> • ${res.warnCount} puncte de verificat la audit • ${escHtml(nextStep)}</li>
+          <li><span class="dot">4</span><strong>Sarcină inginer (+2 zile lucrătoare):</strong> Termen <strong>${taskDue}</strong> &bull; ${res.warnCount} puncte de verificat la audit &bull; ${escHtml(nextStep)}</li>
         </ol>
       </div>
     `;
   }
 
   // ==================== TAB 3: FINANCIAL MODEL ====================
-  const budgetChannels = [
-    { name: '1. Google Search (intenție paletizare)', type: 'Activ', val: 6500 },
-    { name: '2. LinkedIn ABM (Directori Producție & CAPEX)', type: 'Activ', val: 6000 },
-    { name: '3. Marketing Direct & CRM (Outbound 180 fabrici)', type: 'Activ', val: 4000 },
-    { name: '4. Webinare & Parteneriate (ROMALIMENTA/ARC)', type: 'Activ', val: 3500 },
-    { name: '5. YouTube & Distribuție Video Demonstrativ', type: 'Activ', val: 2500 },
-    { name: '6. Pagină Web, PWA LineFit & Optimizare SEO/AI', type: 'Activ digital', val: 3000 },
-    { name: '7. Conținut Tehnic PURATOS (Foto/Video reutilizat)', type: 'Conținut', val: 2250 },
-    { name: '8. Rezervă Distinctă pentru Ajustări (la 60 zile)', type: 'Rezervă', val: 2250 },
+  const DEFAULT_BUDGET = [
+    { name: '1. Google Search (intenție paletizare)', type: 'Activ', val: 6500, leads: 40 },
+    { name: '2. LinkedIn ABM (Directori Producție & CAPEX)', type: 'Activ', val: 6000, leads: 30 },
+    { name: '3. Marketing Direct & CRM (Outbound 180 fabrici)', type: 'Activ', val: 4000, leads: 30 },
+    { name: '4. Webinare & Parteneriate (ROMALIMENTA/ARC)', type: 'Activ', val: 3500, leads: 10 },
+    { name: '5. YouTube & Distribuție Video Demonstrativ', type: 'Activ', val: 2500, leads: 10 },
+    { name: '6. Pagină Web, PWA LineFit & Optimizare SEO/AI', type: 'Activ digital', val: 3000, leads: 0 },
+    { name: '7. Conținut Tehnic PURATOS (Foto/Video reutilizat)', type: 'Conținut', val: 2250, leads: 0 },
+    { name: '8. Rezervă Distinctă pentru Ajustări (la 60 zile)', type: 'Rezervă', val: 2250, leads: 0 },
   ];
+  let budgetChannels = DEFAULT_BUDGET.map((c) => ({ ...c }));
 
   function renderBudgetRows() {
     const tbody = document.getElementById('budgetBody');
     tbody.innerHTML = budgetChannels.map((ch, idx) => `
       <tr>
-        <td>${ch.name}</td>
-        <td><span style="font-size:0.75rem; color:var(--muted);">${ch.type}</span></td>
+        <td>${ch.name}<br/><span style="font-size:0.71rem; color:var(--muted);">${ch.type}</span></td>
         <td class="num"><input class="tbl-input" type="number" step="250" min="0" value="${ch.val}" oninput="updateBudget(${idx}, this.value)" /></td>
+        <td class="num">${ch.type === 'Activ' ? `<input class="tbl-input" style="width:68px;" type="number" step="1" min="0" value="${ch.leads}" oninput="updateChannelLeads(${idx}, this.value)" />` : '<span class="hint">—</span>'}</td>
         <td class="num" id="bPct${idx}">—</td>
+        <td id="bAudit${idx}"><span class="cpa-pill muted">—</span></td>
       </tr>
     `).join('') + `
       <tr style="background:#ECFDF5; font-weight:800;">
-        <td colspan="2">TOTAL BUGET PROMOVARE (Plafon 30.000 EUR)</td>
+        <td>TOTAL BUGET PROMOVARE (Plafon 30.000 EUR)</td>
         <td class="num" id="bTotal">30.000 EUR</td>
+        <td class="num" id="bLeadsTotal">120</td>
         <td class="num" id="bPctTotal">100,0%</td>
+        <td id="bAvgCpl" style="font-size:0.74rem;">187,5 EUR/cer.</td>
       </tr>`;
   }
 
   function updateBudget(idx, val) {
     budgetChannels[idx].val = Math.max(0, parseFloat(val) || 0);
+    calcFin();
+  }
+
+  function updateChannelLeads(idx, val) {
+    budgetChannels[idx].leads = Math.max(0, parseInt(val, 10) || 0);
+    const totalActiveLeads = budgetChannels.reduce((acc, c) => acc + (c.type === 'Activ' ? c.leads : 0), 0);
+    document.getElementById('finLeads').value = Math.max(1, totalActiveLeads);
+    calcFin();
+  }
+
+  function simulateWastefulChannel() {
+    budgetChannels[3].leads = 4; // Webinare scade la 4 cereri => CPL 875 EUR > 2x media => declanseaza auditul
+    budgetChannels[3].val = 3500;
+    const totalActiveLeads = budgetChannels.reduce((acc, c) => acc + (c.type === 'Activ' ? c.leads : 0), 0);
+    document.getElementById('finLeads').value = Math.max(1, totalActiveLeads);
+    renderBudgetRows();
+    calcFin();
+  }
+
+  function resetBudgetDefaults() {
+    budgetChannels = DEFAULT_BUDGET.map((c) => ({ ...c }));
+    document.getElementById('finLeads').value = 120;
+    renderBudgetRows();
     calcFin();
   }
 
@@ -2047,6 +2380,43 @@
 
   function fmtEur(v, dec = 0) {
     return v.toLocaleString('ro-RO', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + ' EUR';
+  }
+
+  function drawProfitChartSvg(price, cost, totalPromo, indirect, taxRate) {
+    const svg = document.getElementById('profitChartSvg');
+    if (!svg) return;
+    const unitContrib = price - cost;
+    const scenarios = [
+      { n: 15, tag: '15 cel. (AI greșit)' },
+      { n: 17, tag: '17 cel. (brut)' },
+      { n: 20, tag: '20 cel. (minim net)' },
+      { n: 24, tag: '24 cel. (+20%)' }
+    ].map((s) => {
+      const ebt = s.n * unitContrib - totalPromo - indirect;
+      const net = ebt - Math.max(0, ebt) * taxRate;
+      return { ...s, net };
+    });
+    const maxVal = Math.max(400000, ...scenarios.map((s) => s.net + 45000));
+    const baseY = 126;
+    const topY = 18;
+    const scaleH = baseY - topY;
+    const targetY = baseY - Math.max(0, Math.min(1, 300000 / maxVal)) * scaleH;
+
+    let bars = `<line x1="28" y1="${baseY}" x2="486" y2="${baseY}" stroke="#CBD5E1" stroke-width="1"/>`;
+    bars += `<line x1="28" y1="${targetY.toFixed(1)}" x2="486" y2="${targetY.toFixed(1)}" stroke="#DC2626" stroke-dasharray="5 3" stroke-width="1.5"/>`;
+    bars += `<text x="484" y="${(targetY - 4).toFixed(1)}" fill="#DC2626" font-size="9" font-weight="700" text-anchor="end">300.000 EUR Țintă</text>`;
+
+    scenarios.forEach((s, i) => {
+      const x = 50 + i * 110;
+      const barH = Math.max(4, Math.min(scaleH, (Math.max(0, s.net) / maxVal) * scaleH));
+      const y = baseY - barH;
+      const color = s.net >= 300000 ? '#059669' : (i === 1 ? '#D97706' : '#DC2626');
+      const kLabel = (s.net / 1000).toFixed(1).replace('.', ',') + 'k EUR';
+      bars += `<rect x="${x}" y="${y.toFixed(1)}" width="68" height="${barH.toFixed(1)}" rx="3" fill="${color}" opacity="0.88"/>`;
+      bars += `<text x="${x + 34}" y="${(y - 5).toFixed(1)}" fill="${color}" font-size="9.5" font-weight="800" text-anchor="middle">${kLabel}</text>`;
+      bars += `<text x="${x + 34}" y="${baseY + 13}" fill="#0F172A" font-size="9.5" font-weight="700" text-anchor="middle">${s.tag}</text>`;
+    });
+    svg.innerHTML = bars;
   }
 
   function calcFin() {
@@ -2060,26 +2430,52 @@
 
     let totalPromo = 0;
     let activePromo = 0;
+    let activeChannelLeads = 0;
     budgetChannels.forEach((c) => {
       totalPromo += c.val;
-      if (c.type === 'Activ') activePromo += c.val;
+      if (c.type === 'Activ') {
+        activePromo += c.val;
+        activeChannelLeads += c.leads;
+      }
     });
+    const avgActiveCpl = activeChannelLeads > 0 ? (activePromo / activeChannelLeads) : 0;
+    let cpaBreaches = [];
 
     budgetChannels.forEach((c, idx) => {
       const el = document.getElementById(`bPct${idx}`);
       if (el) el.textContent = totalPromo > 0 ? fmtNum((c.val / totalPromo) * 100, 1) + '%' : '0%';
+      const auditEl = document.getElementById(`bAudit${idx}`);
+      if (auditEl) {
+        if (c.type === 'Activ') {
+          const chCpl = c.leads > 0 ? (c.val / c.leads) : 99999;
+          const over2x = avgActiveCpl > 0 && chCpl > 2 * avgActiveCpl;
+          if (over2x) cpaBreaches.push(`${c.name.split('.')[1]?.trim() || c.name} (${fmtNum(chCpl, 0)} EUR/cer.)`);
+          auditEl.innerHTML = `<span class="cpa-pill ${over2x ? 'bad' : 'ok'}">${c.leads > 0 ? fmtNum(chCpl, 0) + ' EUR' : '0 cer.'} &bull; ${over2x ? '>2× CPA (-50%)' : 'OK'}</span>`;
+        } else {
+          auditEl.innerHTML = `<span class="cpa-pill muted">${c.type}</span>`;
+        }
+      }
     });
     document.getElementById('bTotal').textContent = fmtEur(totalPromo);
     document.getElementById('bPctTotal').textContent = totalPromo > 0 ? '100,0%' : '0%';
+    const leadsTotEl = document.getElementById('bLeadsTotal');
+    if (leadsTotEl) leadsTotEl.textContent = String(activeChannelLeads);
+    const avgEl = document.getElementById('bAvgCpl');
+    if (avgEl) avgEl.textContent = `${fmtNum(avgActiveCpl, 1)} EUR/cer.`;
 
     const bAlert = document.getElementById('budgetAlert');
+    let alertHtml = '';
     if (totalPromo > 30000) {
-      bAlert.innerHTML = `<div class="alert-box alert-err"><strong>⛔ DEPĂȘIRE PLAFON:</strong> Totalul alocărilor (${fmtEur(totalPromo)}) depășește plafonul de 30.000 EUR/an!</div>`;
+      alertHtml += `<div class="alert-box alert-err"><strong>DEPĂȘIRE PLAFON:</strong> Totalul alocărilor (${fmtEur(totalPromo)}) depășește plafonul de 30.000 EUR/an.</div>`;
     } else if (totalPromo < 30000) {
-      bAlert.innerHTML = `<div class="alert-box alert-warn"><strong>ℹ️ Sub plafon:</strong> Mai aveți ${fmtEur(30000 - totalPromo)} nealocați din bugetul de 30.000 EUR.</div>`;
+      alertHtml += `<div class="alert-box alert-warn"><strong>Sub plafon:</strong> Mai aveți ${fmtEur(30000 - totalPromo)} nealocați din bugetul de 30.000 EUR.</div>`;
     } else {
-      bAlert.innerHTML = `<div class="alert-box alert-ok"><strong>✅ Buget echilibrat:</strong> Suma alocărilor = exact 30.000 EUR (fără costuri numărate de două ori).</div>`;
+      alertHtml += `<div class="alert-box alert-ok"><strong>Buget echilibrat:</strong> Suma alocărilor = exact 30.000 EUR (fără costuri numărate de două ori).</div>`;
     }
+    if (cpaBreaches.length > 0) {
+      alertHtml += `<div class="alert-box alert-err"><strong>AUDIT 60 ZILE (REGULA 2× CPA DECLANȘATĂ):</strong> Canalul ${escHtml(cpaBreaches.join(', '))} depășește dublul mediei (${fmtNum(2 * avgActiveCpl, 0)} EUR/cer.). Redirecționați 50% din alocare către canalele performante sau rezerva de 2.250 EUR.</div>`;
+    }
+    bAlert.innerHTML = alertHtml;
 
     const unitContrib = price - cost;
     const minCellsPreTax = unitContrib > 0 ? Math.ceil((300000 + totalPromo + indirect) / unitContrib) : 0;
@@ -2092,6 +2488,8 @@
     const taxAmt = Math.max(0, ebt) * taxRate;
     const netProfit = ebt - taxAmt;
 
+    drawProfitChartSvg(price, cost, totalPromo, indirect, taxRate);
+
     document.getElementById('outUnitContrib').textContent = fmtEur(unitContrib);
     document.getElementById('outMinCells').textContent = `${minCellsNet} celule (net)`;
     document.getElementById('outMinCells').nextElementSibling.textContent = `După ${Math.round(taxRate * 100)}% impozit (sau ${minCellsPreTax} celule înainte de impozit)`;
@@ -2101,8 +2499,8 @@
     document.getElementById('outAfterPromoBox').className = afterPromo >= 300000 ? 'kpi-box ok' : 'kpi-box err';
     document.getElementById('outNetBox').className = netProfit >= 300000 ? 'kpi-box ok' : (afterPromo >= 300000 ? 'kpi-box warn' : 'kpi-box err');
     document.getElementById('outNetSub').textContent = netProfit >= 300000
-      ? `✅ Depășește ținta cu +${fmtEur(netProfit - 300000)}`
-      : (afterPromo >= 300000 ? `⚠️ Acoperă 300k înainte de impozit, dar scade sub 300k după impozit` : `⛔ Sub ținta de 300.000 EUR`);
+      ? `Depășește ținta cu +${fmtEur(netProfit - 300000)}`
+      : (afterPromo >= 300000 ? `Acoperă 300k înainte de impozit, dar scade sub 300k după impozit` : `Sub ținta de 300.000 EUR`);
 
     document.getElementById('tblRevenue').textContent = fmtEur(revenue);
     document.getElementById('tblDirectCost').textContent = fmtEur(directCost);
@@ -2134,19 +2532,49 @@
       ['Cost pe cerere (canale active)', document.getElementById('tblCplActive').textContent],
       ['Cost pe client castigat', document.getElementById('tblCac').textContent]
     ];
-    const csv = rows.map(r => r.map(x => `"${x}"`).join(',')).join('\n');
-    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-    const a = document.createElement('a');
-    a.href = URL.createObjectURL(blob);
-    a.download = `Model_Financiar_TechCon_${cells}_celule.csv`;
-    a.click();
+    const csv = '\ufeff' + rows.map((r) => r.map(csvSafeCell).join(';')).join('\r\n');
+    downloadFile(`Model_Financiar_TechCon_${cells}_celule.csv`, 'text/csv;charset=utf-8', csv);
   }
 
-  function getUtmSource() {
-    try {
-      return (new URLSearchParams(location.search).get('utm_source') || '').trim().slice(0, 32) || 'direct/QR';
-    } catch (e) {
-      return 'direct/QR';
+  function buildCapexBriefContent(res) {
+    const utm = getUtmSource();
+    const budgetCap = res.cellsNeeded * 130000;
+    return [
+      'TECH-CON UR20 LINEFIT — FISA TEHNICA PRE-EVALUARE CAPEX (INTERN)',
+      `Echipa: SYSUP072JD | Sursa campanie: ${utm} | Data: ${fmtDateRo(new Date())}`,
+      '========================================================================',
+      '1. PARAMETRI LINIE EVALUATA',
+      `   • Recipient: ${fmtNum(res.w, 1)} kg + gripper & camera SICK 2D = ${fmtNum(res.totalPayload, 1)} kg / 20,0 kg`,
+      `   • Cadenta linie: ${fmtNum(res.rate, 1)} galeti/min | Schimburi/zi: ${res.shifts}`,
+      `   • Paletizare: ${res.perPallet} galeti/palet (${res.palletType}) | Mediu: ${res.env}`,
+      '',
+      '2. REZULTAT CONFIGURATIE & BLOCAJE',
+      `   • Scor LineFit: ${res.score}/100`,
+      `   • Necesar estimat: ${res.cellsNeeded} x celula UR20 (2 pozitii alternante/celula)`,
+      `   • Ciclu umplere palet vs. schimb manual: ${fmtNum(res.palletFillTime, 1)} min vs. ${fmtNum(res.swapTime, 1)} min`,
+      `   • Efort ergonomic preluat: ~${fmtNum(res.tonsPerShift, 1)} tone/schimb (~${fmtNum(res.tonsPerDay, 1)} tone/zi, ${res.palletsPerShift} paleti/schimb)`,
+      `   • Puncte de verificat in audit: ${res.warnCount} (inclusiv zona 3 scanere + spatiu)`,
+      '',
+      '3. REPERE DE BUGET & LIVRARE (FARA PROMISIUNI NEACOPERITE)',
+      `   • Investitie orientativa celule standard: ${res.cellsNeeded} x 130.000 EUR = ${budgetCap.toLocaleString('ro-RO')} EUR (fara TVA)`,
+      '   • Termen orientativ de livrare si integrare: ~4 luni (referinta PURATOS)',
+      '   • Inclus in configuratia de referinta: UR20, gripper pneumatic, SICK 2D, 3 scanere, 2 pozitii palet',
+      '   • Exclus din oferta standard: infoliere palet, transport AGV/MiR, schimb palet & separatoare (raman manuale)',
+      '   • NOTA: Valorile PURATOS (8,6/min la 5 kg; 7,4/min la 13 kg; 0 erori FAT) sunt rezultate testate,',
+      '     NU garantii automate de ROI sau economii salariale. Validare finala la evaluarea in fabrica.',
+      '========================================================================'
+    ].join('\n');
+  }
+
+  function copyTechSummary() {
+    const res = runEvaluator();
+    if (!res || res.inputError) {
+      alert('Completați date tehnice valide înainte de a copia rezumatul.');
+      return;
+    }
+    const content = buildCapexBriefContent(res);
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(content).then(() => alert('Rezumatul tehnic CAPEX a fost copiat în clipboard!'));
     }
   }
 
@@ -2156,39 +2584,12 @@
       alert('Completați date tehnice valide înainte de a descărca fișa CAPEX.');
       return;
     }
-    const utm = getUtmSource();
-    const budgetCap = res.cellsNeeded * 130000;
-    const content = [
-      'TECH-CON UR20 LINEFIT — FISA TEHNICA PRE-EVALUARE CAPEX (INTERN)',
-      `Echipa: SYSUP072JD | Sursa campanie: ${utm} | Data: ${fmtDateRo(new Date())}`,
-      '========================================================================',
-      '1. PARAMETRI LINIE EVALUATA',
-      `   • Recipient: ${fmtNum(res.w, 1)} kg + gripper & camera SICK 2D = ${fmtNum(res.totalPayload, 1)} kg / 20,0 kg`,
-      `   • Cadenta linie: ${fmtNum(res.rate, 1)} galeti/min | Schimburi/zi: ${res.shifts}`,
-      `   • Paletizare: ${res.perPallet} galeti/palet (${res.palletType}) | Mediu: ${res.env}`,
-      '',
-      '2. REZULTAT CONFIGURATIE & GARGALUI',
-      `   • Scor LineFit: ${res.score}/100`,
-      `   • Necesar estimat: ${res.cellsNeeded} x celula UR20 (2 pozitii alternante/celula)`,
-      `   • Ciclu umplere palet vs. schimb manual: ${fmtNum(res.palletFillTime, 1)} min vs. ${fmtNum(res.swapTime, 1)} min`,
-      `   • Efort ergonomic preluat: ~${fmtNum(res.tonsPerShift, 1)} tone/schimb (~${fmtNum(res.tonsPerDay, 1)} tone/zi, ${res.palletsPerShift} paleti/schimb)`,
-      `   • Puncte de verificat in audit: ${res.warnCount} (inclusiv zona 3 scanere + spatiu)`,
-      '',
-      '3. REPERE DE BUZUNAR / LIVRARE (FARA PROMISIUNI NEACOPERITE)',
-      `   • Investitie orientativa celule standard: ${res.cellsNeeded} x 130.000 EUR = ${budgetCap.toLocaleString('ro-RO')} EUR (fara TVA)`,
-      '   • Termen orientativ de livrare si integrare: ~4 luni (referinta PURATOS)',
-      '   • Inclus in configuratia de referinta: UR20, gripper pneumatic, SICK 2D, 3 scanere, 2 pozitii palet',
-      '   • Exclus din oferta standard: infoliere palet, transport AGV/MiR, schimb palet & separatoare (raman manuale)',
-      '   • NOTA: Valorile PURATOS (8,6/min la 5 kg; 7,4/min la 13 kg; 0 erori FAT) sunt rezultate testate,',
-      '     NU garantii automate de ROI sau economii salariale. Validare finala la evaluarea in fabrica.',
-      '========================================================================'
-    ].join('\n');
-    downloadFile(`Fisa_CAPEX_UR20_${res.cellsNeeded}cel_Scor${res.score}.txt`, 'text/plain;charset=utf-8', '\ufeff' + content);
+    downloadFile(`Fisa_CAPEX_UR20_${res.cellsNeeded}cel_Scor${res.score}.txt`, 'text/plain;charset=utf-8', '\ufeff' + buildCapexBriefContent(res));
   }
 
   // Initial render
-  const initUtmEl = document.getElementById('utmBadge');
-  if (initUtmEl) initUtmEl.textContent = `🔗 Sursă campanie: ${getUtmSource()}`;
+  applyUtmUi(getUtmSource());
+  setSafetyMode('free');
   renderBudgetRows();
   renderCrmTable();
   runEvaluator();
