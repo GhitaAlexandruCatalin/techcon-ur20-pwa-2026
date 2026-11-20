@@ -1,0 +1,1463 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <meta name="theme-color" content="#1E1B4B" />
+  <meta name="description" content="Tech-Con Industry — Evaluator Tehnic PWA pentru celule robotice de paletizare UR20 în industria alimentară și simulator financiar comercial." />
+  <title>Tech-Con UR20 LineFit &amp; ROI Studio | Cod Echipă: TECHCON-RO-2026</title>
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      --navy: #1E1B4B;
+      --navy-dark: #0F172A;
+      --blue: #0284C7;
+      --blue-soft: #E0F2FE;
+      --orange: #EA580C;
+      --orange-soft: #FFF7ED;
+      --green: #10B981;
+      --green-soft: #ECFDF5;
+      --red: #DC2626;
+      --red-soft: #FEF2F2;
+      --amber: #D97706;
+      --amber-soft: #FFFBEB;
+      --bg: #F1F5F9;
+      --card: #FFFFFF;
+      --text: #0F172A;
+      --muted: #475569;
+      --border: #CBD5E1;
+      --radius: 14px;
+      --shadow: 0 4px 16px rgba(15, 23, 42, 0.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Inter, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.48;
+    }
+    /* Header */
+    .topbar {
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #1E3A8A 100%);
+      color: #fff;
+      padding: 16px 20px 14px;
+      border-bottom: 4px solid var(--orange);
+    }
+    .topbar-inner {
+      max-width: 1220px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .brand img {
+      width: 46px;
+      height: 46px;
+      border-radius: 10px;
+      flex-shrink: 0;
+    }
+    .brand h1 {
+      margin: 0;
+      font-size: 1.18rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+    }
+    .brand p {
+      margin: 2px 0 0;
+      font-size: 0.82rem;
+      color: #CBD5E1;
+    }
+    .badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.76rem;
+      font-weight: 700;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.12);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #fff;
+    }
+    .badge-warn {
+      background: rgba(234, 88, 12, 0.22);
+      border-color: rgba(251, 146, 60, 0.6);
+      color: #FFEDD5;
+    }
+    /* PWA Info Strip */
+    .pwa-strip {
+      max-width: 1220px;
+      margin: 12px auto 0;
+      background: rgba(2, 132, 199, 0.18);
+      border: 1px solid rgba(56, 189, 248, 0.35);
+      border-radius: 10px;
+      padding: 9px 14px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      font-size: 0.82rem;
+      color: #E0F2FE;
+    }
+    .pwa-strip strong { color: #fff; }
+    .btn-install {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.78rem;
+      cursor: pointer;
+    }
+    /* Nav Tabs */
+    .nav-wrap {
+      background: #fff;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+    }
+    .nav-tabs {
+      max-width: 1220px;
+      margin: 0 auto;
+      display: flex;
+      overflow-x: auto;
+      gap: 6px;
+      padding: 10px 16px;
+    }
+    .tab-btn {
+      border: 1px solid var(--border);
+      background: #F8FAFC;
+      color: var(--muted);
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.86rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.15s;
+    }
+    .tab-btn:hover { border-color: var(--blue); color: var(--navy); }
+    .tab-btn.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+    }
+    /* Main Container */
+    .container {
+      max-width: 1220px;
+      margin: 18px auto 48px;
+      padding: 0 16px;
+    }
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+    /* Preset Scenario Bar */
+    .preset-bar {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      box-shadow: var(--shadow);
+    }
+    .preset-title {
+      font-size: 0.85rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--navy);
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .preset-btns {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+    }
+    .preset-btn {
+      text-align: left;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1.5px solid var(--border);
+      background: #F8FAFC;
+      cursor: pointer;
+      font-size: 0.83rem;
+      font-weight: 700;
+      color: var(--text);
+      transition: transform 0.1s, border-color 0.15s;
+    }
+    .preset-btn:hover { transform: translateY(-1px); }
+    .preset-btn small { display: block; font-weight: 500; color: var(--muted); margin-top: 2px; font-size: 0.75rem; }
+    .preset-btn.p-ok { border-color: #34D399; background: var(--green-soft); }
+    .preset-btn.p-err { border-color: #F87171; background: var(--red-soft); }
+    .preset-btn.p-warn { border-color: #FB923C; background: var(--orange-soft); }
+    .preset-btn.p-ref { border-color: #38BDF8; background: var(--blue-soft); }
+    /* Grid Layout */
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.05fr 1fr;
+      gap: 18px;
+      align-items: start;
+    }
+    @media (max-width: 920px) {
+      .grid-2 { grid-template-columns: 1fr; }
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow);
+      margin-bottom: 18px;
+    }
+    .card h2 {
+      margin: 0 0 12px;
+      font-size: 1.05rem;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      border-bottom: 1px solid #E2E8F0;
+      padding-bottom: 8px;
+    }
+    .card h3 {
+      margin: 14px 0 8px;
+      font-size: 0.94rem;
+      color: var(--navy);
+    }
+    /* Forms */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    @media (max-width: 560px) {
+      .form-grid { grid-template-columns: 1fr; }
+    }
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .field.full { grid-column: 1 / -1; }
+    .field label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .field input, .field select, .field textarea {
+      width: 100%;
+      padding: 9px 11px;
+      border: 1.5px solid var(--border);
+      border-radius: 9px;
+      font-size: 0.9rem;
+      font-family: inherit;
+      background: #fff;
+      color: var(--text);
+    }
+    .field input:focus, .field select:focus {
+      outline: none;
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.14);
+    }
+    .field.invalid input, .field.invalid select {
+      border-color: var(--red);
+      background: var(--red-soft);
+    }
+    .err-msg {
+      color: var(--red);
+      font-size: 0.74rem;
+      font-weight: 700;
+      min-height: 14px;
+    }
+    .hint {
+      font-size: 0.73rem;
+      color: var(--muted);
+    }
+    /* Tap Stopwatch */
+    .tap-box {
+      background: linear-gradient(135deg, #EFF6FF 0%, #E0F2FE 100%);
+      border: 1.5px dashed var(--blue);
+      border-radius: 12px;
+      padding: 12px;
+      margin: 12px 0;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+    .btn-tap {
+      background: var(--blue);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.88rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 3px 10px rgba(2, 132, 199, 0.3);
+    }
+    .btn-tap:active { transform: scale(0.97); }
+    .btn-sec {
+      background: #fff;
+      color: var(--navy);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 7px 11px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .btn-primary {
+      background: var(--orange);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 12px 18px;
+      font-size: 0.94rem;
+      font-weight: 800;
+      cursor: pointer;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .btn-primary:hover { background: #C2410C; }
+    .btn-navy {
+      background: var(--navy);
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    /* Diagnostic Results */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .kpi-box {
+      border-radius: 11px;
+      padding: 11px 12px;
+      border: 1px solid var(--border);
+      background: #F8FAFC;
+    }
+    .kpi-box.ok { background: var(--green-soft); border-color: #6EE7B7; }
+    .kpi-box.warn { background: var(--amber-soft); border-color: #FCD34D; }
+    .kpi-box.err { background: var(--red-soft); border-color: #FCA5A5; }
+    .kpi-box.info { background: var(--blue-soft); border-color: #7DD3FC; }
+    .kpi-label { font-size: 0.74rem; font-weight: 700; color: var(--muted); text-transform: uppercase; }
+    .kpi-val { font-size: 1.25rem; font-weight: 800; color: var(--navy); margin: 2px 0; }
+    .kpi-sub { font-size: 0.75rem; color: var(--muted); }
+    .alert-box {
+      border-radius: 10px;
+      padding: 11px 13px;
+      margin-bottom: 10px;
+      font-size: 0.84rem;
+      border-left: 4px solid;
+    }
+    .alert-ok { background: var(--green-soft); border-color: var(--green); color: #065F46; }
+    .alert-warn { background: var(--amber-soft); border-color: var(--amber); color: #92400E; }
+    .alert-err { background: var(--red-soft); border-color: var(--red); color: #991B1B; }
+    .alert-info { background: var(--blue-soft); border-color: var(--blue); color: #075985; }
+    /* Progress Bar */
+    .bar-wrap {
+      height: 12px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 6px 0;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--green);
+      transition: width 0.25s;
+    }
+    /* Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.84rem;
+    }
+    th, td {
+      padding: 8px 9px;
+      border-bottom: 1px solid #E2E8F0;
+      text-align: left;
+    }
+    th {
+      background: #F8FAFC;
+      font-weight: 800;
+      color: var(--navy);
+      font-size: 0.78rem;
+      text-transform: uppercase;
+    }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+    input.tbl-input {
+      width: 105px;
+      padding: 5px 7px;
+      border: 1.5px solid #93C5FD;
+      background: #EFF6FF;
+      border-radius: 6px;
+      font-weight: 700;
+      color: #1D4ED8;
+      text-align: right;
+      font-size: 0.84rem;
+    }
+    .checklist {
+      list-style: none;
+      padding: 0;
+      margin: 8px 0 0;
+    }
+    .checklist li {
+      padding: 5px 0;
+      font-size: 0.82rem;
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+    }
+    /* CRM Receipt */
+    .crm-receipt {
+      border: 2px solid var(--green);
+      background: #F0FDF4;
+      border-radius: 12px;
+      padding: 14px;
+      margin-top: 12px;
+      display: none;
+    }
+    .flow-steps {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+      margin: 12px 0;
+    }
+    .flow-step {
+      background: #F8FAFC;
+      border: 1.5px solid var(--blue);
+      border-radius: 10px;
+      padding: 8px 11px;
+      font-size: 0.79rem;
+      font-weight: 700;
+      color: var(--navy);
+    }
+    .flow-step.manual {
+      border-color: var(--orange);
+      background: var(--orange-soft);
+    }
+    .flow-step.out {
+      border-style: dashed;
+      border-color: #94A3B8;
+      color: var(--muted);
+    }
+    .puratos-img {
+      width: 100%;
+      max-height: 320px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+    .scenario-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    @media print {
+      .nav-wrap, .preset-bar, .btn-primary, .btn-tap, .btn-sec { display: none !important; }
+      body { background: #fff; }
+      .card { box-shadow: none; border: 1px solid #ccc; }
+    }
+  </style>
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <img src="./assets/icon.svg" alt="Tech-Con UR20" />
+      <div>
+        <h1>Tech-Con Industry | UR20 LineFit &amp; ROI Studio</h1>
+        <p>Evaluare tehnică de paletizare pe telefon și model comercial pentru România (Cod Echipă: <strong>TECHCON-RO-2026</strong>)</p>
+      </div>
+    </div>
+    <div class="badges">
+      <span class="badge">📍 Hub-uri: Dragomirești-Deal • Timișoara • Iași</span>
+      <span class="badge badge-warn">⚠️ Prototip Web PWA — Date fictive pentru testare (Fără date personale reale)</span>
+    </div>
+  </div>
+  <div class="pwa-strip">
+    <div>
+      <strong>De ce aplicație web PWA (3.000 EUR) în loc de o pagină simplă sau App Store?</strong>
+      Directorul de Producție poate măsura cadența găleților direct lângă transportor pe telefon (inclusiv offline în hală, cu icon pe ecran) și vede instant blocajele din amonte/aval, fără costuri de publicare iOS/Android.
+    </div>
+    <button class="btn-install" id="btnInstallPwa" style="display:none;">📲 Instalează PWA pe ecran</button>
+  </div>
+</header>
+
+<nav class="nav-wrap" aria-label="Navigare module">
+  <div class="nav-tabs">
+    <button class="tab-btn active" data-tab="tab1">1. Evaluator Tehnic UR20 (Funcția Principală)</button>
+    <button class="tab-btn" data-tab="tab2">2. Referința PURATOS &amp; Limitele Replicării</button>
+    <button class="tab-btn" data-tab="tab3">3. Model Financiar Editabil &amp; Funnel (30k → 300k EUR)</button>
+    <button class="tab-btn" data-tab="tab4">4. Ghid Juriu &amp; Istoric Cereri CRM</button>
+  </div>
+</nav>
+
+<main class="container">
+
+  <!-- ==================== TAB 1: EVALUATOR TEHNIC UR20 ==================== -->
+  <section id="tab1" class="tab-panel active">
+    <div class="preset-bar">
+      <div class="preset-title">
+        <span>⚡ Testare Rapidă Juriu (1-Click — Caz Normal, Date Lipsă/Greșite, Incompatibilitate &amp; Referință PURATOS)</span>
+        <span style="font-weight:600; color:var(--muted); font-size:0.78rem;">Validare conform Anexei 1 (Q8) și Paginii 3</span>
+      </div>
+      <div class="preset-btns">
+        <button type="button" class="preset-btn p-ok" onclick="loadPreset('normal')">
+          🟢 Caz Normal (Fabrică Lactate/Sosuri)
+          <small>Găleată 10 kg • 6,5 buc/min • Schimb palet 3,5 min • Timișoara</small>
+        </button>
+        <button type="button" class="preset-btn p-err" onclick="loadPreset('invalid')">
+          🔴 Caz 2A: Date Lipsă / Invalide
+          <small>Câmpuri goale, masă -5 kg, debit 0, e-mail invalid (blochează trimiterea)</small>
+        </button>
+        <button type="button" class="preset-btn p-warn" onclick="loadPreset('overload')">
+          🟠 Caz 2B: Depășire Sarcină &amp; Blocaj Aval
+          <small>17,5 kg + gripper 4 kg &gt; 20 kg UR20 + schimb manual 12 min &gt; umplere</small>
+        </button>
+        <button type="button" class="preset-btn p-ref" onclick="loadPreset('puratos')">
+          🔵 Referința PURATOS (Studiu Caz 13 kg)
+          <small>13 kg • 44 buc/palet • 7,4 găleți/min • 2 celule UR20 • Dragomirești</small>
+        </button>
+      </div>
+    </div>
+
+    <div class="grid-2">
+      <!-- Left Column: Inputs + Tap Tool + Lead Form -->
+      <div>
+        <div class="card">
+          <h2>
+            <span>⚙️ Parametrii Liniei de Producție (Capăt de Linie)</span>
+            <button type="button" class="btn-sec" onclick="resetForm()">Resetează</button>
+          </h2>
+
+          <div class="tap-box">
+            <div>
+              <strong style="font-size:0.86rem; color:var(--navy);">Unealtă Mobilă în Hală: Cronometru Cadență (Tap-to-Measure)</strong>
+              <div class="hint" id="tapStatus">Apasă butonul de 3–5 ori la fiecare găleată trecută pe transportor pentru a măsura debitul real.</div>
+            </div>
+            <div style="display:flex; gap:6px; align-items:center;">
+              <button type="button" class="btn-tap" id="btnTap" onclick="registerTap()">⏱️ Găleată pe transportor (Tap)</button>
+              <button type="button" class="btn-sec" onclick="resetTaps()">Reset</button>
+            </div>
+          </div>
+
+          <div class="form-grid">
+            <div class="field" id="fld-weight">
+              <label for="inWeight">Masă găleată plină (kg)</label>
+              <input type="number" id="inWeight" step="0.1" value="10" oninput="runEvaluator()" />
+              <span class="hint">Studiu PURATOS: 5 kg și 13 kg (max ~16 kg cu gripper de 4 kg)</span>
+              <span class="err-msg" id="err-weight"></span>
+            </div>
+
+            <div class="field" id="fld-gripper">
+              <label for="inGripper">Masă gripper pneumatic + SICK 2D (kg)</label>
+              <input type="number" id="inGripper" step="0.1" value="4.0" oninput="runEvaluator()" />
+              <span class="hint">Sarcina totală UR20 (20 kg max) = găleată + gripper + cameră</span>
+              <span class="err-msg" id="err-gripper"></span>
+            </div>
+
+            <div class="field" id="fld-rate">
+              <label for="inRate">Debit linie amonte (găleți / min)</label>
+              <input type="number" id="inRate" step="0.1" value="6.5" oninput="runEvaluator()" />
+              <span class="hint">Test PURATOS: 7,4/min (13 kg) și 8,6/min (5 kg) vs ținta 6/min</span>
+              <span class="err-msg" id="err-rate"></span>
+            </div>
+
+            <div class="field" id="fld-perPallet">
+              <label for="inPerPallet">Găleți per europalet</label>
+              <input type="number" id="inPerPallet" step="1" value="60" oninput="runEvaluator()" />
+              <span class="hint">PURATOS: 100 buc (5 kg) sau 44 buc (13 kg)</span>
+              <span class="err-msg" id="err-perPallet"></span>
+            </div>
+
+            <div class="field" id="fld-swapTime">
+              <label for="inSwapTime">Timp schimb manual palet + separator (min)</label>
+              <input type="number" id="inSwapTime" step="0.5" value="3.5" oninput="runEvaluator()" />
+              <span class="hint">Intervenție umană pe una din cele 2 poziții de paletizare</span>
+              <span class="err-msg" id="err-swapTime"></span>
+            </div>
+
+            <div class="field" id="fld-shifts">
+              <label for="inShifts">Schimburi pe zi (7,5 ore utile / schimb)</label>
+              <select id="inShifts" onchange="runEvaluator()">
+                <option value="1">1 schimb / zi</option>
+                <option value="2" selected>2 schimburi / zi (ex. PURATOS 2–3)</option>
+                <option value="3">3 schimburi / zi (flux continuu)</option>
+              </select>
+              <span class="err-msg"></span>
+            </div>
+
+            <div class="field" id="fld-space">
+              <label for="inSpace">Spațiu disponibil la capăt de linie (m²)</label>
+              <input type="number" id="inSpace" step="0.5" value="14" oninput="runEvaluator()" />
+              <span class="hint">Necesar orientativ pt 1 celulă + 2 poziții + 3 scanere: ≥ 8 m²</span>
+              <span class="err-msg" id="err-space"></span>
+            </div>
+
+            <div class="field" id="fld-handle">
+              <label for="inHandle">Orientare mâner &amp; zonă prindere</label>
+              <select id="inHandle" onchange="runEvaluator()">
+                <option value="yes" selected>Găleată cu mâner — necesită vedere SICK 2D</option>
+                <option value="no">Recipient simetric fără mâner</option>
+              </select>
+              <span class="err-msg"></span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Lead Form to Tech-Con CRM -->
+        <div class="card">
+          <h2>📩 Solicită Evaluare Tehnică &amp; Demo (Trimitere către CRM Tech-Con)</h2>
+          <p class="hint" style="margin-top:0;">Folosiți date fictive în concurs. Validarea blochează câmpurile lipsă sau eronate (Caz 2A) și alocă cererea automat către hub-ul regional Tech-Con.</p>
+          <div class="form-grid">
+            <div class="field" id="fld-company">
+              <label for="inCompany">Nume fabrică / companie (fictiv)</label>
+              <input type="text" id="inCompany" value="LactoVest Banat SRL (Fictiv)" />
+              <span class="err-msg" id="err-company"></span>
+            </div>
+            <div class="field" id="fld-role">
+              <label for="inRole">Rol decident</label>
+              <select id="inRole">
+                <option value="Director Producție" selected>Director Producție / Operațiuni</option>
+                <option value="Responsabil Investiții (CAPEX)">Responsabil Investiții (CAPEX)</option>
+                <option value="Director Tehnic / Inginerie">Director Tehnic / Inginerie</option>
+              </select>
+              <span class="err-msg" id="err-role"></span>
+            </div>
+            <div class="field" id="fld-region">
+              <label for="inRegion">Regiune / Județ fabrică (Alocare Hub Tech-Con)</label>
+              <select id="inRegion" onchange="runEvaluator()">
+                <option value="Vest (Hub Timișoara)" selected>Timiș / Arad / Cluj / Vest (→ Hub Timișoara)</option>
+                <option value="Sud (Hub Dragomirești-Deal)">Ilfov / București / Muntenia / SE (→ Hub Dragomirești-Deal)</option>
+                <option value="Est (Hub Iași)">Iași / Bacău / Suceava / Moldova (→ Hub Iași)</option>
+              </select>
+              <span class="err-msg"></span>
+            </div>
+            <div class="field" id="fld-email">
+              <label for="inEmail">E-mail profesional (fictiv)</label>
+              <input type="email" id="inEmail" value="productie@lactovest-demo.ro" />
+              <span class="err-msg" id="err-email"></span>
+            </div>
+            <div class="field full" id="fld-notes">
+              <label for="inNotes">Observații linie (opțional)</label>
+              <input type="text" id="inNotes" value="Găleți plastic 10 kg cu mâner, europalet, interes pentru evaluare în fabrică." />
+            </div>
+          </div>
+          <button type="button" class="btn-primary" onclick="submitLead()">📤 Validează și Înregistrează Cererea Relevantă în CRM</button>
+          <div id="formErrorBanner" class="alert-box alert-err" style="display:none; margin-top:10px;"></div>
+          <div id="crmReceipt" class="crm-receipt"></div>
+        </div>
+      </div>
+
+      <!-- Right Column: Real-Time Diagnostic Results -->
+      <div>
+        <div class="card">
+          <h2>📊 Diagnostic Tehnic &amp; Configurație Recomandată</h2>
+          <div id="diagAlerts"></div>
+
+          <div class="kpi-grid">
+            <div class="kpi-box" id="kpiPayloadBox">
+              <div class="kpi-label">Sarcină Totală pe Braț UR20</div>
+              <div class="kpi-val" id="kpiPayload">14,0 kg / 20 kg</div>
+              <div class="kpi-sub" id="kpiPayloadSub">10 kg găleată + 4,0 kg gripper &amp; SICK 2D</div>
+              <div class="bar-wrap"><div class="bar-fill" id="barPayload" style="width:70%;"></div></div>
+            </div>
+
+            <div class="kpi-box info" id="kpiCellsBox">
+              <div class="kpi-label">Configurație Recomandată</div>
+              <div class="kpi-val" id="kpiCells">1 Celulă UR20</div>
+              <div class="kpi-sub" id="kpiCellsSub">Capacitate estimată celulă: ~7,9 găleți/min</div>
+            </div>
+
+            <div class="kpi-box" id="kpiBottleneckBox">
+              <div class="kpi-label">Timp Formare Palet vs. Schimb</div>
+              <div class="kpi-val" id="kpiPalletTime">9,2 min vs. 3,5 min</div>
+              <div class="kpi-sub" id="kpiBottleneckSub">Marjă operator la schimb manual: +5,7 min</div>
+            </div>
+
+            <div class="kpi-box ok">
+              <div class="kpi-label">Efort Repetitiv Preluat de Robot</div>
+              <div class="kpi-val" id="kpiTonnage">58,5 t / zi</div>
+              <div class="kpi-sub" id="kpiTonnageSub">29,3 t/schimb • 130 paleți/schimb (fără garanții salariale)</div>
+            </div>
+          </div>
+
+          <h3>⚖️ Delimitare Domeniu &amp; Checklist Înainte de Replicare (Pag. 3)</h3>
+          <ul class="checklist" id="techChecklist">
+            <li>✅ <strong>Sarcina totală include gripperul:</strong> Verificat sub limita nominală de 20 kg a robotului UR20.</li>
+            <li>✅ <strong>Vedere SICK 2D &amp; Orientare Mâner:</strong> Previne interferența mânerului cu gripperul pneumatic.</li>
+            <li>✅ <strong>Protecție Persoane (3 Scanere):</strong> Reducere viteză sau oprire de protecție la accesul operatorului pentru schimb palet / separator.</li>
+            <li>⚠️ <strong>Activități care RĂMÂN MANUALE:</strong> Schimbarea paleților și amplasarea separatoarelor (2 poziții pe celulă).</li>
+            <li>🚫 <strong>ÎN AFARA PROIECTULUI DE BAZĂ (130.000 EUR):</strong> Transportul paleților către logistică (AGV/MiR), înfolierea și expedierea nu sunt incluse.</li>
+          </ul>
+          <p class="hint" style="margin-top:10px; padding-top:8px; border-top:1px dashed var(--border);">
+            <strong>Notă de transparență (Pag. 2):</strong> Reperele de viteză (7,4 găleți/min la 13 kg; 8,6 găleți/min la 5 kg) sunt rezultate de test ale aplicației PURATOS, nu o garanție universală fără evaluare tehnică la fața locului.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 2: REFERINTA PURATOS ==================== -->
+  <section id="tab2" class="tab-panel">
+    <div class="grid-2">
+      <div class="card">
+        <h2>🏭 Aplicația Reală PURATOS — Celulele UR20 Implementate de Tech-Con</h2>
+        <img src="./assets/puratos_ur20.jpg" alt="Celule de paletizare UR20 implementate de Tech-Con la PURATOS" class="puratos-img" />
+        <p class="hint" style="margin-top:6px;">Sursă imagine: Documentul oficial al probei, Pagina 10 (prezentarea Tech-Con, slide 9). Sunt vizibile celulele UR20, transportorul de alimentare și cele două poziții de paletizare.</p>
+
+        <h3>Fluxul Studiat (Pagina 3 &amp; Anexa 2)</h3>
+        <div class="flow-steps">
+          <span class="flow-step">1. Umplere găleți (5 / 13 kg)</span>
+          <span>→</span>
+          <span class="flow-step">2. Transportor alimentare</span>
+          <span>→</span>
+          <span class="flow-step">3. Vedere SICK 2D (mâner)</span>
+          <span>→</span>
+          <span class="flow-step">4. Preluare gripper UR20</span>
+          <span>→</span>
+          <span class="flow-step">5. Așezare pe 2 poziții europalet</span>
+          <span>+</span>
+          <span class="flow-step manual">Manual: schimb palet &amp; separator (3 scanere)</span>
+          <span>→</span>
+          <span class="flow-step out">Exclus din bază: înfoliere &amp; MiR/logistică</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>📋 Fapte Verificate vs. Ipoteze de Extindere (Verificare Coerență Pag. 9)</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Dimensiune</th>
+              <th>Fapte Verificate (PURATOS — Anexa 2)</th>
+              <th>Ipoteze de Lucru (Scenariu Extindere RO)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Client &amp; Produse</strong></td>
+              <td>PURATOS (panificație, patiserie, ciocolaterie). Găleți plastic <strong>5 kg</strong> (100/palet) și <strong>13 kg</strong> (44/palet).</td>
+              <td>Segment prioritar: ~180 fabrici alimentare din România (lactate HoReCa, sosuri, creme, ingrediente) cu găleți 5–15 kg.</td>
+            </tr>
+            <tr>
+              <td><strong>Situația anterioară</strong></td>
+              <td>Paletizare manuală cu <strong>2 operatori/schimb</strong>, în <strong>2–3 schimburi/zi</strong>.</td>
+              <td>Reducerea ridicării repetitive (~25–60 tone/zi/linie) și stabilizarea fluxului la capăt de linie.</td>
+            </tr>
+            <tr>
+              <td><strong>Soluția Tech-Con</strong></td>
+              <td><strong>2 celule UR20</strong>, gripper pneumatic personalizat, vedere <strong>SICK 2D</strong> (mâner), <strong>3 scanere</strong> acces, 2 poziții/celulă, livrare <strong>~4 luni</strong>.</td>
+              <td>Replicare modulară (1–2 celule/fabrică) susținută din hub-urile <strong>Dragomirești-Deal, Timișoara și Iași</strong>.</td>
+            </tr>
+            <tr>
+              <td><strong>Performanță testată</strong></td>
+              <td>Ținta: min 6 găleți/min. Testat: <strong>7,4 găleți/min (13 kg, +23%)</strong> și <strong>8,6 găleți/min (5 kg, +43%)</strong>; 0 preluări ratate la FAT.</td>
+              <td>Nu garantăm aceste viteze în orice fabrică fără audit al blocajelor din amonte/aval și validarea gripperului.</td>
+            </tr>
+            <tr>
+              <td><strong>Limitele proiectului</strong></td>
+              <td>Schimbul paleților &amp; separatorul rămân manuale. MiR către logistică = etapă viitoare propusă.</td>
+              <td>Înfolierea, transportul logistic și calculele de economii salariale sunt excluse din modelul de bază (130.000 EUR).</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 3: MODEL FINANCIAR EDITABIL ==================== -->
+  <section id="tab3" class="tab-panel">
+    <div class="card">
+      <h2>
+        <span>💶 Simulator Financiar Editabil &amp; Funnel Comercial (EUR fără TVA • 1 An Calendaristic)</span>
+        <div style="display:flex; gap:8px; flex-wrap:wrap;">
+          <a href="./03_Model_Financiar_TechCon_UR20.xlsx" download class="btn-navy">⬇️ Descarcă Excel (.xlsx) cu Formule</a>
+          <button type="button" class="btn-sec" onclick="downloadLiveCsv()">📄 Exportă Scenariul Curent (.csv)</button>
+        </div>
+      </h2>
+
+      <div class="scenario-pills">
+        <button type="button" class="preset-btn p-err" style="padding:8px 12px;" onclick="setFinCells(15)">
+          15 Celule (Sub țintă — Eroare frecventă AI)
+          <small>300k / 20k = 15 (omite bugetul de 30k EUR!)</small>
+        </button>
+        <button type="button" class="preset-btn p-ref" style="padding:8px 12px;" onclick="setFinCells(17)">
+          17 Celule (Prag Matematic de Bază)
+          <small>340k - 30k = 310.000 EUR înainte de alte costuri/impozit</small>
+        </button>
+        <button type="button" class="preset-btn p-ok" style="padding:8px 12px;" onclick="setFinCells(20)">
+          20 Celule (Recomandat cu Rezervă Fiscală)
+          <small>370.000 EUR brut - 16% impozit (59.200) = 310.800 EUR net</small>
+        </button>
+      </div>
+
+      <div class="grid-2">
+        <!-- Left: Editable Inputs & 30k Budget -->
+        <div>
+          <h3>1. Date Comune &amp; Parametri Editabili</h3>
+          <table>
+            <tbody>
+              <tr>
+                <td>Preț vânzare celulă UR20 integrată (EUR)</td>
+                <td class="num"><input class="tbl-input" type="number" id="finPrice" value="130000" step="1000" oninput="calcFin()" /></td>
+              </tr>
+              <tr>
+                <td>Cost direct celulă UR20 (EUR)</td>
+                <td class="num"><input class="tbl-input" type="number" id="finCost" value="110000" step="1000" oninput="calcFin()" /></td>
+              </tr>
+              <tr>
+                <td><strong>Număr celule vândute și livrate în an</strong></td>
+                <td class="num"><input class="tbl-input" type="number" id="finCells" value="20" step="1" min="1" oninput="calcFin()" /></td>
+              </tr>
+              <tr>
+                <td>Alte costuri indirecte alocate (EUR/an, opțional)</td>
+                <td class="num"><input class="tbl-input" type="number" id="finIndirect" value="0" step="1000" min="0" oninput="calcFin()" /></td>
+              </tr>
+              <tr>
+                <td>Cotă impozit pe profit estimată (%)</td>
+                <td class="num"><input class="tbl-input" type="number" id="finTax" value="16" step="1" min="0" max="50" oninput="calcFin()" /></td>
+              </tr>
+              <tr>
+                <td>Cereri relevante generate în an (Funnel)</td>
+                <td class="num"><input class="tbl-input" type="number" id="finLeads" value="120" step="5" min="1" oninput="calcFin()" /></td>
+              </tr>
+              <tr>
+                <td>Clienți câștigați din cereri (după 54 întâlniri)</td>
+                <td class="num"><input class="tbl-input" type="number" id="finClients" value="12" step="1" min="1" oninput="calcFin()" /></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <h3>2. Repartizare Buget Anual de Promovare (Plafon 30.000 EUR)</h3>
+          <div id="budgetAlert"></div>
+          <table>
+            <thead>
+              <tr>
+                <th>Direcție / Canal</th>
+                <th>Tip</th>
+                <th class="num">Alocare (EUR)</th>
+                <th class="num">%</th>
+              </tr>
+            </thead>
+            <tbody id="budgetBody"></tbody>
+          </table>
+        </div>
+
+        <!-- Right: Computed Results -->
+        <div>
+          <h3>3. Rezultate Calculate Automat (Conform Paginii 7)</h3>
+          <div class="kpi-grid">
+            <div class="kpi-box info">
+              <div class="kpi-label">Contribuție pe Celulă</div>
+              <div class="kpi-val" id="outUnitContrib">20.000 EUR</div>
+              <div class="kpi-sub">Preț vânzare − Cost direct</div>
+            </div>
+            <div class="kpi-box">
+              <div class="kpi-label">Prag Minim Matematic</div>
+              <div class="kpi-val" id="outMinCells">17 celule</div>
+              <div class="kpi-sub">ROUNDUP((300k + Promovare) / Contribuție)</div>
+            </div>
+            <div class="kpi-box" id="outAfterPromoBox">
+              <div class="kpi-label">Rezultat după Promovare (Brut)</div>
+              <div class="kpi-val" id="outAfterPromo">370.000 EUR</div>
+              <div class="kpi-sub">Înainte de alte costuri și impozit</div>
+            </div>
+            <div class="kpi-box" id="outNetBox">
+              <div class="kpi-label">Profit Net Estimat (după 16%)</div>
+              <div class="kpi-val" id="outNetProfit">310.800 EUR</div>
+              <div class="kpi-sub" id="outNetSub">Ținta acționarilor: 300.000 EUR</div>
+            </div>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Indicator Financiar / Marketing</th>
+                <th class="num">Valoare Calculată</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Venit anual (celule livrate × preț)</td><td class="num"><strong id="tblRevenue">2.600.000 EUR</strong></td></tr>
+              <tr><td>Cost direct anual</td><td class="num" id="tblDirectCost">2.200.000 EUR</td></tr>
+              <tr><td>Total promovare anuală (max 30.000 EUR)</td><td class="num" id="tblPromoTotal">30.000 EUR</td></tr>
+              <tr><td><strong>Rezultat după promovare (Pag. 7)</strong></td><td class="num"><strong id="tblAfterPromo">370.000 EUR</strong></td></tr>
+              <tr><td>Alte costuri indirecte + Impozit profit estimat</td><td class="num" id="tblTaxTotal">59.200 EUR</td></tr>
+              <tr><td><strong>Profit net estimat după impozit</strong></td><td class="num"><strong id="tblNetProfit">310.800 EUR</strong></td></tr>
+              <tr><td>Cost pe cerere relevantă (tot bugetul 30k / cereri)</td><td class="num" id="tblCplAll">250,00 EUR</td></tr>
+              <tr><td>Cost pe cerere relevantă (doar canale active)</td><td class="num" id="tblCplActive">187,50 EUR</td></tr>
+              <tr><td>Cost pe client câștigat (tot bugetul / clienți)</td><td class="num" id="tblCac">2.500,00 EUR</td></tr>
+              <tr><td>Cost promovare per celulă livrată</td><td class="num" id="tblPromoPerCell">1.500,00 EUR</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== TAB 4: GHID JURIU & CRM ==================== -->
+  <section id="tab4" class="tab-panel">
+    <div class="grid-2">
+      <div class="card">
+        <h2>🧪 Instrucțiuni Scurte de Testare pentru Juriu (30 secunde)</h2>
+        <ol style="padding-left:18px; font-size:0.88rem; line-height:1.6;">
+          <li><strong>Caz Normal:</strong> În Tab 1, apăsați butonul verde <em>„🟢 Caz Normal (Fabrică Lactate/Sosuri)”</em>. Verificați sarcina totală (<code>14,0 kg / 20 kg</code>), recomandarea (<code>1 Celulă UR20</code>), rezerva de timp la schimbul manual al paletului (<code>+5,7 min</code>) și apăsați <em>„📤 Validează și Înregistrează Cererea”</em> pentru a genera fișa CRM.</li>
+          <li><strong>Caz Date Lipsă / Greșite:</strong> Apăsați butonul roșu <em>„🔴 Caz 2A: Date Lipsă / Invalide”</em> și încercați trimiterea formularului — aplicația evidențiază erorile pe fiecare câmp (masă negativă, debit 0, spațiu insuficient, companie goală, e-mail invalid) și blochează înregistrarea.</li>
+          <li><strong>Caz Incompatibilitate &amp; Blocaj Aval:</strong> Apăsați butonul portocaliu <em>„🟠 Caz 2B”</em> — deși găleata are 17,5 kg (&lt;20 kg), cu gripperul SICK 2D de 4 kg depășește <strong>21,5 kg &gt; 20 kg</strong>, iar schimbul manual de 12 min creează <strong>blocaj în aval</strong>.</li>
+          <li><strong>Model Financiar Editabil:</strong> În Tab 3, comutați între <em>15, 17 și 20 celule</em> sau modificați bugetul de promovare (vedeți alerta automată la depășirea plafonului de 30.000 EUR).</li>
+        </ol>
+      </div>
+
+      <div class="card">
+        <h2>🗂️ Registru Demonstrativ CRM (Cereri Relevante Înregistrate)</h2>
+        <p class="hint" style="margin-top:0;">Include o cerere fictivă inițială + toate cererile valide trimise din Tab 1 în această sesiune (date pur fictive).</p>
+        <table>
+          <thead>
+            <tr>
+              <th>Companie (Fictivă)</th>
+              <th>Hub Alocat</th>
+              <th>Sarcină &amp; Config</th>
+              <th>Status Calificare</th>
+            </tr>
+          </thead>
+          <tbody id="crmTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+  // Register Service Worker for PWA
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js').catch(() => {});
+    });
+  }
+
+  let deferredPrompt = null;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    const btn = document.getElementById('btnInstallPwa');
+    if (btn) btn.style.display = 'inline-block';
+  });
+  document.getElementById('btnInstallPwa').addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    document.getElementById('btnInstallPwa').style.display = 'none';
+  });
+
+  // Tab Navigation
+  document.querySelectorAll('.tab-btn').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach((b) => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach((p) => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Tap-to-measure cadence stopwatch
+  let tapTimes = [];
+  function registerTap() {
+    const now = Date.now();
+    if (tapTimes.length > 0 && now - tapTimes[tapTimes.length - 1] > 20000) {
+      tapTimes = [];
+    }
+    tapTimes.push(now);
+    const status = document.getElementById('tapStatus');
+    if (tapTimes.length < 2) {
+      status.innerHTML = '<strong>1 tap înregistrat.</strong> Mai apasă de 2–4 ori în ritmul transportorului...';
+      return;
+    }
+    const elapsedSec = (tapTimes[tapTimes.length - 1] - tapTimes[0]) / 1000;
+    const intervals = tapTimes.length - 1;
+    const bpm = (intervals / elapsedSec) * 60;
+    const rounded = Math.min(25, Math.max(0.5, Math.round(bpm * 10) / 10));
+    document.getElementById('inRate').value = rounded;
+    status.innerHTML = `<strong>${tapTimes.length} tap-uri măsurate:</strong> Debit detectat = <strong>${rounded.toFixed(1).replace('.', ',')} găleți/min</strong> (completat automat).`;
+    runEvaluator();
+  }
+  function resetTaps() {
+    tapTimes = [];
+    document.getElementById('tapStatus').textContent = 'Apasă butonul de 3–5 ori la fiecare găleată trecută pe transportor pentru a măsura debitul real.';
+  }
+
+  // Preset scenarios
+  function loadPreset(type) {
+    clearFieldErrors();
+    document.getElementById('crmReceipt').style.display = 'none';
+    document.getElementById('formErrorBanner').style.display = 'none';
+    if (type === 'normal') {
+      document.getElementById('inWeight').value = 10;
+      document.getElementById('inGripper').value = 4.0;
+      document.getElementById('inRate').value = 6.5;
+      document.getElementById('inPerPallet').value = 60;
+      document.getElementById('inSwapTime').value = 3.5;
+      document.getElementById('inShifts').value = '2';
+      document.getElementById('inSpace').value = 14;
+      document.getElementById('inHandle').value = 'yes';
+      document.getElementById('inCompany').value = 'LactoVest Banat SRL (Fictiv)';
+      document.getElementById('inRole').value = 'Director Producție';
+      document.getElementById('inRegion').value = 'Vest (Hub Timișoara)';
+      document.getElementById('inEmail').value = 'productie@lactovest-demo.ro';
+      document.getElementById('inNotes').value = 'Găleți 10 kg cu mâner, 2 schimburi/zi, evaluare linie sosuri/lactate.';
+    } else if (type === 'invalid') {
+      document.getElementById('inWeight').value = -5;
+      document.getElementById('inGripper').value = 4.0;
+      document.getElementById('inRate').value = 0;
+      document.getElementById('inPerPallet').value = 0;
+      document.getElementById('inSwapTime').value = 3.0;
+      document.getElementById('inSpace').value = 2;
+      document.getElementById('inCompany').value = '';
+      document.getElementById('inEmail').value = 'director@';
+      document.getElementById('inNotes').value = 'Test caz date lipsă / invalide.';
+      runEvaluator();
+      submitLead();
+      return;
+    } else if (type === 'overload') {
+      document.getElementById('inWeight').value = 17.5;
+      document.getElementById('inGripper').value = 4.0;
+      document.getElementById('inRate').value = 7.6;
+      document.getElementById('inPerPallet').value = 44;
+      document.getElementById('inSwapTime').value = 12.0;
+      document.getElementById('inShifts').value = '3';
+      document.getElementById('inSpace').value = 10;
+      document.getElementById('inHandle').value = 'yes';
+      document.getElementById('inCompany').value = 'AgroCream Sud SA (Fictiv)';
+      document.getElementById('inRole').value = 'Responsabil Investiții (CAPEX)';
+      document.getElementById('inRegion').value = 'Sud (Hub Dragomirești-Deal)';
+      document.getElementById('inEmail').value = 'capex@agrocream-demo.ro';
+      document.getElementById('inNotes').value = 'Test limită sarcină UR20 + blocaj schimb manual palet 12 min.';
+    } else if (type === 'puratos') {
+      document.getElementById('inWeight').value = 13;
+      document.getElementById('inGripper').value = 4.0;
+      document.getElementById('inRate').value = 7.4;
+      document.getElementById('inPerPallet').value = 44;
+      document.getElementById('inSwapTime').value = 3.0;
+      document.getElementById('inShifts').value = '3';
+      document.getElementById('inSpace').value = 22;
+      document.getElementById('inHandle').value = 'yes';
+      document.getElementById('inCompany').value = 'Referință PURATOS (Date Studiu Caz)';
+      document.getElementById('inRole').value = 'Director Producție';
+      document.getElementById('inRegion').value = 'Sud (Hub Dragomirești-Deal)';
+      document.getElementById('inEmail').value = 'referinta@techcon-demo.ro';
+      document.getElementById('inNotes').value = 'Benchmark Anexa 2: 2 celule UR20, 7,4 găleți/min (13 kg) / 8,6/min (5 kg).';
+    }
+    runEvaluator();
+  }
+
+  function resetForm() {
+    loadPreset('normal');
+    resetTaps();
+  }
+
+  function clearFieldErrors() {
+    document.querySelectorAll('.field').forEach((f) => f.classList.remove('invalid'));
+    document.querySelectorAll('.err-msg').forEach((e) => (e.textContent = ''));
+  }
+
+  function setFieldError(fieldId, errId, msg) {
+    const f = document.getElementById(fieldId);
+    const e = document.getElementById(errId);
+    if (f) f.classList.add('invalid');
+    if (e) e.textContent = msg;
+  }
+
+  function fmtNum(val, dec = 1) {
+    return val.toLocaleString('ro-RO', { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  }
+
+  function runEvaluator() {
+    clearFieldErrors();
+    const w = parseFloat(document.getElementById('inWeight').value);
+    const g = parseFloat(document.getElementById('inGripper').value);
+    const rate = parseFloat(document.getElementById('inRate').value);
+    const perPallet = parseFloat(document.getElementById('inPerPallet').value);
+    const swapTime = parseFloat(document.getElementById('inSwapTime').value);
+    const shifts = parseInt(document.getElementById('inShifts').value, 10);
+    const space = parseFloat(document.getElementById('inSpace').value);
+    const hasHandle = document.getElementById('inHandle').value === 'yes';
+
+    const alerts = [];
+    let hasTechInputErr = false;
+
+    if (isNaN(w) || w <= 0 || w > 30) {
+      setFieldError('fld-weight', 'err-weight', 'Introduceți o masă validă (> 0 kg).');
+      hasTechInputErr = true;
+    }
+    if (isNaN(g) || g < 1 || g > 10) {
+      setFieldError('fld-gripper', 'err-gripper', 'Masa gripperului trebuie să fie ≥ 1 kg.');
+      hasTechInputErr = true;
+    }
+    if (isNaN(rate) || rate <= 0 || rate > 30) {
+      setFieldError('fld-rate', 'err-rate', 'Debitul liniei trebuie să fie > 0 găleți/min.');
+      hasTechInputErr = true;
+    }
+    if (isNaN(perPallet) || perPallet < 4) {
+      setFieldError('fld-perPallet', 'err-perPallet', 'Introduceți minim 4 găleți/palet.');
+      hasTechInputErr = true;
+    }
+    if (isNaN(swapTime) || swapTime <= 0) {
+      setFieldError('fld-swapTime', 'err-swapTime', 'Timpul de schimb palet trebuie > 0 min.');
+      hasTechInputErr = true;
+    }
+    if (isNaN(space) || space < 6) {
+      setFieldError('fld-space', 'err-space', 'Spațiu minim necesar pentru celulă + scanere: ≥ 6 m² (ideal ≥ 8 m²).');
+    }
+
+    if (hasTechInputErr) {
+      document.getElementById('diagAlerts').innerHTML = `
+        <div class="alert-box alert-err">
+          <strong>⛔ Date tehnice lipsă sau invalide:</strong> Corectați câmpurile evidențiate cu roșu din stânga pentru a calcula fezabilitatea celulei UR20.
+        </div>`;
+      document.getElementById('kpiPayload').textContent = 'Date invalide';
+      document.getElementById('kpiCells').textContent = '—';
+      document.getElementById('kpiPalletTime').textContent = '—';
+      document.getElementById('kpiTonnage').textContent = '—';
+      return { valid: false };
+    }
+
+    const totalPayload = w + g;
+    const payloadPct = Math.min(100, (totalPayload / 20) * 100);
+    const payloadBox = document.getElementById('kpiPayloadBox');
+    const barPayload = document.getElementById('barPayload');
+    barPayload.style.width = payloadPct + '%';
+    document.getElementById('kpiPayload').textContent = `${fmtNum(totalPayload, 1)} kg / 20,0 kg`;
+    document.getElementById('kpiPayloadSub').textContent = `${fmtNum(w, 1)} kg găleată + ${fmtNum(g, 1)} kg gripper & SICK 2D`;
+
+    if (totalPayload > 20) {
+      payloadBox.className = 'kpi-box err';
+      barPayload.style.background = '#DC2626';
+      alerts.push(`<div class="alert-box alert-err"><strong>⛔ DEPĂȘIRE SARCINĂ TOTALĂ UR20 (${fmtNum(totalPayload,1)} kg &gt; 20 kg):</strong> Chiar dacă găleata are sub 20 kg, sarcina totală include gripperul pneumatic și camera SICK 2D. Este necesară reducerea masei gripperului, alegerea unui alt robot sau testare separată Tech-Con!</div>`);
+    } else if (totalPayload > 18.5) {
+      payloadBox.className = 'kpi-box warn';
+      barPayload.style.background = '#D97706';
+      alerts.push(`<div class="alert-box alert-warn"><strong>⚠️ Marjă mică de sarcină (${fmtNum(totalPayload,1)} kg din 20 kg):</strong> Validare obligatorie a centrului de greutate la testele FAT.</div>`);
+    } else {
+      payloadBox.className = 'kpi-box ok';
+      barPayload.style.background = '#10B981';
+    }
+
+    // PURATOS interpolated capacity benchmark: 8.6/min at 5kg, 7.4/min at 13kg
+    const clampedW = Math.max(5, Math.min(18, w));
+    const singleCellCap = Math.max(5.5, 8.6 - ((clampedW - 5) / 8) * (8.6 - 7.4));
+    const cellsNeeded = Math.max(1, Math.ceil(rate / singleCellCap));
+    document.getElementById('kpiCells').textContent = `${cellsNeeded} ${cellsNeeded === 1 ? 'Celulă UR20' : 'Celule UR20'}`;
+    document.getElementById('kpiCellsSub').textContent = `Reper testat PURATOS interpolat: ~${fmtNum(singleCellCap, 1)} găleți/min per celulă`;
+
+    if (rate < 4.0) {
+      alerts.push(`<div class="alert-box alert-info"><strong>ℹ️ Limitare în AMONTE (${fmtNum(rate,1)} găleți/min):</strong> Celula UR20 va avea rezervă mare de capacitate; un robot mai rapid nu crește debitul fără mărirea vitezei mașinii de umplere.</div>`);
+    } else if (cellsNeeded >= 2) {
+      alerts.push(`<div class="alert-box alert-info"><strong>ℹ️ Necesar 2 Celule UR20 (ca în proiectul PURATOS):</strong> Debitul liniei (${fmtNum(rate,1)}/min) depășește cadența unei singure celule (~${fmtNum(singleCellCap,1)}/min).</div>`);
+    }
+
+    // Bottleneck check (2 palletizing positions!)
+    const palletFillTime = perPallet / rate; // minutes while robot fills Position B
+    const marginMin = palletFillTime - swapTime;
+    const bnBox = document.getElementById('kpiBottleneckBox');
+    document.getElementById('kpiPalletTime').textContent = `${fmtNum(palletFillTime, 1)} min vs. ${fmtNum(swapTime, 1)} min`;
+    if (swapTime > palletFillTime) {
+      bnBox.className = 'kpi-box err';
+      document.getElementById('kpiBottleneckSub').textContent = `Deficit ${fmtNum(Math.abs(marginMin), 1)} min — Blocaj la evacuare manuală!`;
+      alerts.push(`<div class="alert-box alert-err"><strong>⚠️ BLOCAJ ÎN AVAL DETECTAT:</strong> Umplerea unui palet durează <strong>${fmtNum(palletFillTime,1)} min</strong>, dar schimbul manual + separatorul durează <strong>${fmtNum(swapTime,1)} min</strong>. Robotul va staționa așteptând operatorul pe a doua poziție!</div>`);
+    } else {
+      bnBox.className = 'kpi-box ok';
+      document.getElementById('kpiBottleneckSub').textContent = `Marjă confortabilă operator: +${fmtNum(marginMin, 1)} min între schimburi`;
+    }
+
+    if (space < 8) {
+      alerts.push(`<div class="alert-box alert-warn"><strong>⚠️ Spațiu strâmt (${fmtNum(space,1)} m²):</strong> Verificați amplasarea celor 2 poziții de europaleți și a celor 3 scanere de siguranță în evaluarea din fabrică.</div>`);
+    }
+
+    if (alerts.length === 0) {
+      alerts.push(`<div class="alert-box alert-ok"><strong>✅ LINIE COMPATIBILĂ CU CELULA UR20:</strong> Sarcină totală în limite, cadență acoperită și fără blocaj în aval pe cele 2 poziții de paletizare.</div>`);
+    }
+    document.getElementById('diagAlerts').innerHTML = alerts.join('');
+
+    // Ergonomic tonnage (450 min effective/shift)
+    const bucketsPerShift = Math.round(rate * 450);
+    const tonsPerShift = (bucketsPerShift * w) / 1000;
+    const tonsPerDay = tonsPerShift * shifts;
+    const palletsPerShift = Math.round(bucketsPerShift / perPallet);
+    document.getElementById('kpiTonnage').textContent = `${fmtNum(tonsPerDay, 1)} t / zi`;
+    document.getElementById('kpiTonnageSub').textContent = `${fmtNum(tonsPerShift, 1)} t/schimb • ~${palletsPerShift} paleți/schimb (fără garanții salariale)`;
+
+    // Update dynamic checklist item for handle
+    const cl = document.getElementById('techChecklist');
+    cl.children[1].innerHTML = hasHandle
+      ? '✅ <strong>Vedere SICK 2D &amp; Orientare Mâner:</strong> Necesară pentru identificarea poziției mânerului înainte de preluare.'
+      : 'ℹ️ <strong>Recipient fără mâner:</strong> Camera 2D poate fi simplificată; validați suprafața de prindere la auditul FAT.';
+
+    return {
+      valid: totalPayload <= 20 && space >= 6,
+      totalPayload,
+      cellsNeeded,
+      palletFillTime,
+      swapTime,
+      tonsPerDay
+    };
+  }
+
+  // CRM Leads storage
+  const crmLeads = [
+    { company: 'Panificație Sud Demo SA (Fictiv)', hub: 'Hub Dragomirești-Deal', spec: '13,0 kg • 2 celule UR20', status: 'Audit Tehnic Programat' }
+  ];
+
+  function renderCrmTable() {
+    const tbody = document.getElementById('crmTableBody');
+    tbody.innerHTML = crmLeads.map((l) => `
+      <tr>
+        <td><strong>${l.company}</strong></td>
+        <td>${l.hub}</td>
+        <td>${l.spec}</td>
+        <td><span style="color:#065F46; font-weight:700;">${l.status}</span></td>
+      </tr>
+    `).join('');
+  }
+
+  function submitLead() {
+    const res = runEvaluator();
+    const errBanner = document.getElementById('formErrorBanner');
+    const receipt = document.getElementById('crmReceipt');
+    errBanner.style.display = 'none';
+    receipt.style.display = 'none';
+
+    const company = document.getElementById('inCompany').value.trim();
+    const role = document.getElementById('inRole').value;
+    const region = document.getElementById('inRegion').value;
+    const email = document.getElementById('inEmail').value.trim();
+    const notes = document.getElementById('inNotes').value.trim();
+
+    const errs = [];
+    if (!company || company.length < 3) {
+      setFieldError('fld-company', 'err-company', 'Introduceți numele (fictiv) al fabricii.');
+      errs.push('Numele fabricii lipsește.');
+    }
+    if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      setFieldError('fld-email', 'err-email', 'Introduceți o adresă de e-mail validă.');
+      errs.push('Adresa de e-mail este invalidă.');
+    }
+    if (!res || isNaN(parseFloat(document.getElementById('inWeight').value)) || parseFloat(document.getElementById('inWeight').value) <= 0 || parseFloat(document.getElementById('inRate').value) <= 0) {
+      errs.push('Datele tehnice ale liniei sunt invalide sau incomplete.');
+    }
+
+    if (errs.length > 0) {
+      errBanner.style.display = 'block';
+      errBanner.innerHTML = `<strong>⛔ Trimitere blocată (Validare CRM):</strong> ${errs.join(' ')} Completați datele corecte pentru a genera o cerere relevantă.`;
+      return;
+    }
+
+    const hubName = region.includes('Timișoara') ? 'Hub Timișoara' : (region.includes('Iași') ? 'Hub Iași' : 'Hub Dragomirești-Deal');
+    const idCode = 'TC-' + Math.floor(1000 + Math.random() * 9000);
+    const w = parseFloat(document.getElementById('inWeight').value);
+    const specTxt = `${fmtNum(w, 1)} kg (total ${fmtNum(res.totalPayload, 1)} kg) • ${res.cellsNeeded} celulă/e UR20`;
+
+    crmLeads.unshift({
+      company,
+      hub: hubName,
+      spec: specTxt,
+      status: res.totalPayload > 20 ? 'Escaladat Inginerie (Payload > 20 kg)' : 'Cerere Relevantă Calificată'
+    });
+    renderCrmTable();
+
+    receipt.style.display = 'block';
+    receipt.innerHTML = `
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+        <strong style="color:#065F46; font-size:0.95rem;">✅ Fișă de Pre-Evaluare Tehnică &amp; Cerere Înregistrată (${idCode})</strong>
+        <button type="button" class="btn-sec" onclick="window.print()">🖨️ Printează / Salvează PDF</button>
+      </div>
+      <p style="margin:6px 0 0; font-size:0.83rem;">
+        <strong>Fabrică:</strong> ${company} | <strong>Decident:</strong> ${role}<br/>
+        <strong>Alocare Regională:</strong> ${hubName} | <strong>Configurație:</strong> ${specTxt}<br/>
+        <strong>Efort repetitiv preluat:</strong> ${fmtNum(res.tonsPerDay, 1)} tone/zi | <strong>Observații:</strong> ${notes || '—'}
+      </p>
+    `;
+  }
+
+  // ==================== TAB 3: FINANCIAL MODEL ====================
+  const budgetChannels = [
+    { name: '1. Google Search (intenție paletizare)', type: 'Activ', val: 6500 },
+    { name: '2. LinkedIn ABM (Directori Producție & CAPEX)', type: 'Activ', val: 6000 },
+    { name: '3. Marketing Direct & CRM (Outbound 180 fabrici)', type: 'Activ', val: 4000 },
+    { name: '4. Webinare & Parteneriate (ROMALIMENTA/ARC)', type: 'Activ', val: 3500 },
+    { name: '5. YouTube & Distribuție Video Demonstrativ', type: 'Activ', val: 2500 },
+    { name: '6. Pagină Web, PWA LineFit & Optimizare SEO/AI', type: 'Activ digital', val: 3000 },
+    { name: '7. Conținut Tehnic PURATOS (Foto/Video reutilizat)', type: 'Conținut', val: 2250 },
+    { name: '8. Rezervă Distinctă pentru Ajustări (la 60 zile)', type: 'Rezervă', val: 2250 },
+  ];
+
+  function renderBudgetRows() {
+    const tbody = document.getElementById('budgetBody');
+    tbody.innerHTML = budgetChannels.map((ch, idx) => `
+      <tr>
+        <td>${ch.name}</td>
+        <td><span style="font-size:0.75rem; color:var(--muted);">${ch.type}</span></td>
+        <td class="num"><input class="tbl-input" type="number" step="250" min="0" value="${ch.val}" oninput="updateBudget(${idx}, this.value)" /></td>
+        <td class="num" id="bPct${idx}">—</td>
+      </tr>
+    `).join('') + `
+      <tr style="background:#ECFDF5; font-weight:800;">
+        <td colspan="2">TOTAL BUGET PROMOVARE (Plafon 30.000 EUR)</td>
+        <td class="num" id="bTotal">30.000 EUR</td>
+        <td class="num" id="bPctTotal">100,0%</td>
+      </tr>`;
+  }
+
+  function updateBudget(idx, val) {
+    budgetChannels[idx].val = Math.max(0, parseFloat(val) || 0);
+    calcFin();
+  }
+
+  function setFinCells(n) {
+    document.getElementById('finCells').value = n;
+    calcFin();
+  }
+
+  function fmtEur(v, dec = 0) {
+    return v.toLocaleString('ro-RO', { minimumFractionDigits: dec, maximumFractionDigits: dec }) + ' EUR';
+  }
+
+  function calcFin() {
+    const price = parseFloat(document.getElementById('finPrice').value) || 0;
+    const cost = parseFloat(document.getElementById('finCost').value) || 0;
+    const cells = parseFloat(document.getElementById('finCells').value) || 0;
+    const indirect = parseFloat(document.getElementById('finIndirect').value) || 0;
+    const taxRate = (parseFloat(document.getElementById('finTax').value) || 0) / 100;
+    const leads = Math.max(1, parseFloat(document.getElementById('finLeads').value) || 1);
+    const clients = Math.max(1, parseFloat(document.getElementById('finClients').value) || 1);
+
+    let totalPromo = 0;
+    let activePromo = 0;
+    budgetChannels.forEach((c) => {
+      totalPromo += c.val;
+      if (c.type === 'Activ') activePromo += c.val;
+    });
+
+    budgetChannels.forEach((c, idx) => {
+      const el = document.getElementById(`bPct${idx}`);
+      if (el) el.textContent = totalPromo > 0 ? fmtNum((c.val / totalPromo) * 100, 1) + '%' : '0%';
+    });
+    document.getElementById('bTotal').textContent = fmtEur(totalPromo);
+    document.getElementById('bPctTotal').textContent = totalPromo > 0 ? '100,0%' : '0%';
+
+    const bAlert = document.getElementById('budgetAlert');
+    if (totalPromo > 30000) {
+      bAlert.innerHTML = `<div class="alert-box alert-err"><strong>⛔ DEPĂȘIRE PLAFON:</strong> Totalul alocărilor (${fmtEur(totalPromo)}) depășește plafonul de 30.000 EUR/an!</div>`;
+    } else if (totalPromo < 30000) {
+      bAlert.innerHTML = `<div class="alert-box alert-warn"><strong>ℹ️ Sub plafon:</strong> Mai aveți ${fmtEur(30000 - totalPromo)} nealocați din bugetul de 30.000 EUR.</div>`;
+    } else {
+      bAlert.innerHTML = `<div class="alert-box alert-ok"><strong>✅ Buget echilibrat:</strong> Suma alocărilor = exact 30.000 EUR (fără costuri numărate de două ori).</div>`;
+    }
+
+    const unitContrib = price - cost;
+    const minCells = unitContrib > 0 ? Math.ceil((300000 + totalPromo) / unitContrib) : 0;
+    const revenue = cells * price;
+    const directCost = cells * cost;
+    const grossContrib = revenue - directCost;
+    const afterPromo = grossContrib - totalPromo;
+    const ebt = afterPromo - indirect;
+    const taxAmt = Math.max(0, ebt) * taxRate;
+    const netProfit = ebt - taxAmt;
+
+    document.getElementById('outUnitContrib').textContent = fmtEur(unitContrib);
+    document.getElementById('outMinCells').textContent = `${minCells} celule`;
+    document.getElementById('outAfterPromo').textContent = fmtEur(afterPromo);
+    document.getElementById('outNetProfit').textContent = fmtEur(netProfit);
+
+    document.getElementById('outAfterPromoBox').className = afterPromo >= 300000 ? 'kpi-box ok' : 'kpi-box err';
+    document.getElementById('outNetBox').className = netProfit >= 300000 ? 'kpi-box ok' : (afterPromo >= 300000 ? 'kpi-box warn' : 'kpi-box err');
+    document.getElementById('outNetSub').textContent = netProfit >= 300000
+      ? `✅ Depășește ținta cu +${fmtEur(netProfit - 300000)}`
+      : (afterPromo >= 300000 ? `⚠️ Acoperă 300k înainte de impozit, dar scade sub 300k după impozit` : `⛔ Sub ținta de 300.000 EUR`);
+
+    document.getElementById('tblRevenue').textContent = fmtEur(revenue);
+    document.getElementById('tblDirectCost').textContent = fmtEur(directCost);
+    document.getElementById('tblPromoTotal').textContent = fmtEur(totalPromo);
+    document.getElementById('tblAfterPromo').textContent = fmtEur(afterPromo);
+    document.getElementById('tblTaxTotal').textContent = fmtEur(indirect + taxAmt);
+    document.getElementById('tblNetProfit').textContent = fmtEur(netProfit);
+    document.getElementById('tblCplAll').textContent = fmtEur(totalPromo / leads, 2);
+    document.getElementById('tblCplActive').textContent = fmtEur(activePromo / leads, 2);
+    document.getElementById('tblCac').textContent = fmtEur(totalPromo / clients, 2);
+    document.getElementById('tblPromoPerCell').textContent = cells > 0 ? fmtEur(totalPromo / cells, 2) : '—';
+  }
+
+  function downloadLiveCsv() {
+    const cells = document.getElementById('finCells').value;
+    const price = document.getElementById('finPrice').value;
+    const cost = document.getElementById('finCost').value;
+    const rows = [
+      ['Indicator', 'Valoare'],
+      ['Celule vandute si livrate', cells],
+      ['Pret vanzare unitar (EUR)', price],
+      ['Cost direct unitar (EUR)', cost],
+      ['Venit anual', document.getElementById('tblRevenue').textContent],
+      ['Cost direct anual', document.getElementById('tblDirectCost').textContent],
+      ['Total promovare', document.getElementById('tblPromoTotal').textContent],
+      ['Rezultat dupa promovare', document.getElementById('tblAfterPromo').textContent],
+      ['Profit net estimat', document.getElementById('tblNetProfit').textContent],
+      ['Cost pe cerere (tot bugetul)', document.getElementById('tblCplAll').textContent],
+      ['Cost pe cerere (canale active)', document.getElementById('tblCplActive').textContent],
+      ['Cost pe client castigat', document.getElementById('tblCac').textContent]
+    ];
+    const csv = rows.map(r => r.map(x => `"${x}"`).join(',')).join('\n');
+    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = `Model_Financiar_TechCon_${cells}_celule.csv`;
+    a.click();
+  }
+
+  // Initial render
+  renderBudgetRows();
+  renderCrmTable();
+  runEvaluator();
+  calcFin();
+</script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+{
+  "name": "Tech-Con UR20 LineFit & ROI Studio",
+  "short_name": "Tech-Con UR20",
+  "description": "Prototip PWA pentru evaluarea tehnică a liniilor de paletizare cu robot colaborativ UR20 și simularea financiară Tech-Con România.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#1E1B4B",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "./assets/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
