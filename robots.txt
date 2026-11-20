@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ghitaalexandrucatalin.github.io/techcon-ur20-pwa-2026/sitemap.xml

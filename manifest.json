@@ -1,18 +1,30 @@
 {
   "name": "Tech-Con UR20 LineFit & ROI Studio",
   "short_name": "Tech-Con UR20",
-  "description": "Prototip PWA pentru evaluarea tehnică a liniilor de paletizare cu robot colaborativ UR20 și simularea financiară Tech-Con România.",
+  "description": "Prototip PWA (Echipa SYSUP072JD) pentru evaluarea tehnică a liniilor de paletizare UR20 în industria alimentară și simulator financiar comercial.",
   "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#0F172A",
   "theme_color": "#1E1B4B",
   "orientation": "portrait-primary",
   "icons": [
     {
+      "src": "./assets/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./assets/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
       "src": "./assets/icon.svg",
       "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
+      "type": "image/svg+xml"
     }
   ]
 }

@@ -4,10 +4,68 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
   <meta name="theme-color" content="#1E1B4B" />
-  <meta name="description" content="Tech-Con Industry — Evaluator Tehnic PWA pentru celule robotice de paletizare UR20 în industria alimentară și simulator financiar comercial." />
-  <title>Tech-Con UR20 LineFit &amp; ROI Studio | Cod Echipă: TECHCON-RO-2026</title>
+  <meta name="description" content="Tech-Con Industry — Evaluator Tehnic PWA (SYSUP072JD) pentru celule robotice de paletizare UR20 în industria alimentară (găleți 5–15 kg) și simulator financiar comercial." />
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+  <link rel="canonical" href="https://ghitaalexandrucatalin.github.io/techcon-ur20-pwa-2026/" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="ro_RO" />
+  <meta property="og:title" content="Tech-Con UR20 LineFit &amp; ROI Studio — Echipa SYSUP072JD" />
+  <meta property="og:description" content="Verifică în 60 de secunde pe telefon compatibilitatea liniei de găleți cu celula UR20 (sarcină cu gripper, blocaje amonte/aval, cadență PURATOS) și simulează bugetul comercial." />
+  <meta property="og:url" content="https://ghitaalexandrucatalin.github.io/techcon-ur20-pwa-2026/" />
+  <meta property="og:image" content="https://ghitaalexandrucatalin.github.io/techcon-ur20-pwa-2026/assets/og-image.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <title>Tech-Con UR20 LineFit &amp; ROI Studio | Cod Echipă: SYSUP072JD</title>
   <link rel="manifest" href="./manifest.json" />
-  <link rel="icon" href="./assets/icon.svg" type="image/svg+xml" />
+  <link rel="icon" href="./assets/icon-192.png" type="image/png" sizes="192x192" />
+  <link rel="apple-touch-icon" href="./assets/icon-192.png" />
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Tech-Con UR20 LineFit & ROI Studio",
+    "url": "https://ghitaalexandrucatalin.github.io/techcon-ur20-pwa-2026/",
+    "inLanguage": "ro",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Any (Web / PWA)",
+    "isAccessibleForFree": true,
+    "audience": {
+      "@type": "BusinessAudience",
+      "audienceType": "Directori de producție și responsabili investiții CAPEX din fabrici alimentare din România (găleți 5–15 kg)"
+    },
+    "featureList": [
+      "Cronometru mobil Tap-to-Measure pentru debitul liniei (găleți/min)",
+      "Verificare sarcină totală UR20 (găleată + gripper pneumatic + cameră SICK 2D <= 20 kg)",
+      "Diagnostic automat de blocaj amonte, celulă și aval (schimb manual palet)",
+      "Rutare geografică automată pe 42 de județe către hub-urile Dragomirești-Deal, Timișoara și Iași",
+      "Simulator financiar editabil (30.000 EUR promovare -> 20 celule prag minim net / 24 plan comercial)"
+    ]
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "inLanguage": "ro",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Ce rezultate a demonstrat celula UR20 implementată de Tech-Con la PURATOS?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Fapt din studiul de caz PURATOS (rezultate de test, nu garanții): 2 celule UR20 cu vedere SICK 2D și gripper pneumatic personalizat, țintă minim 6 găleți/minut; s-au testat 7,4 găleți/min (13 kg, 44/palet) și 8,6 găleți/min (5 kg, 100/palet), cu 0 preluări ratate la FAT. Schimbul paleților și amplasarea separatoarelor rămân manuale; înfolierea și transportul autonom MiR sunt în afara proiectului de bază."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "De ce sarcina totală a găleții nu trebuie să atingă 20 kg pe UR20?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Sarcina nominală de 20 kg a robotului UR20 include și masa gripperului pneumatic și a camerei SICK 2D (~4–5 kg). De aceea segmentul optim este 5–15 kg per găleată, iar aplicația verifică explicit suma masă găleată + masă gripper <= 20 kg."
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     :root {
       --navy: #1E1B4B;
@@ -584,6 +642,56 @@
       gap: 8px;
       margin-bottom: 12px;
     }
+    /* Simulated Sales Automation Timeline */
+    .auto-box {
+      margin-top: 10px;
+      background: #fff;
+      border: 1.5px solid var(--blue);
+      border-radius: 10px;
+      padding: 10px 12px;
+    }
+    .auto-tl { list-style: none; margin: 6px 0 0; padding: 0; }
+    .auto-tl li {
+      position: relative;
+      padding: 0 0 10px 28px;
+      font-size: 0.8rem;
+      line-height: 1.38;
+    }
+    .auto-tl li::before {
+      content: "";
+      position: absolute;
+      left: 9px;
+      top: 20px;
+      bottom: 2px;
+      width: 2px;
+      background: #BAE6FD;
+    }
+    .auto-tl li:last-child::before { display: none; }
+    .auto-tl .dot {
+      position: absolute;
+      left: 0;
+      top: 1px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--green-soft);
+      border: 1.5px solid var(--green);
+      color: #065F46;
+      font-size: 0.72rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    details.mail-prev {
+      margin-top: 5px;
+      background: #F8FAFC;
+      border: 1px solid var(--border);
+      border-radius: 7px;
+      padding: 5px 8px;
+      font-size: 0.76rem;
+    }
+    details.mail-prev summary { cursor: pointer; font-weight: 700; color: var(--navy); }
     @media print {
       .nav-wrap, .preset-bar, .btn-primary, .btn-tap, .btn-sec { display: none !important; }
       body { background: #fff; }
@@ -599,7 +707,7 @@
       <img src="./assets/icon.svg" alt="Tech-Con UR20" />
       <div>
         <h1>Tech-Con Industry | UR20 LineFit &amp; ROI Studio</h1>
-        <p>Evaluare tehnică de paletizare pe telefon și model comercial pentru România (Cod Echipă: <strong>TECHCON-RO-2026</strong>)</p>
+        <p>Evaluare tehnică de paletizare pe telefon și model comercial pentru România (Cod Echipă: <strong>SYSUP072JD</strong>)</p>
       </div>
     </div>
     <div class="badges">
@@ -752,18 +860,42 @@
               <span class="hint">Operatorul amplasează manual separatorul între straturi</span>
               <span class="err-msg" id="err-layers"></span>
             </div>
+
+            <div class="field" id="fld-palletType">
+              <label for="inPalletType">Tip palet</label>
+              <select id="inPalletType" onchange="runEvaluator()">
+                <option value="Europalet 1200×800" selected>Europalet 1200×800 (Testat PURATOS)</option>
+                <option value="Palet industrial 1200×1000">Palet industrial 1200×1000</option>
+                <option value="Altul">Alt format palet</option>
+              </select>
+              <span class="err-msg"></span>
+            </div>
+
+            <div class="field" id="fld-env">
+              <label for="inEnv">Mediu de lucru în hală</label>
+              <select id="inEnv" onchange="runEvaluator()">
+                <option value="Uscat" selected>Uscat (standard)</option>
+                <option value="Umed / Washdown">Umed / cu spălare (necesită validare protecție IP)</option>
+              </select>
+              <span class="err-msg"></span>
+            </div>
           </div>
         </div>
 
         <!-- Lead Form to Tech-Con CRM -->
         <div class="card">
-          <h2>📩 Solicită Evaluare Tehnică &amp; Demo (Trimitere către CRM Tech-Con)</h2>
-          <p class="hint" style="margin-top:0;">Folosiți date fictive în concurs. Validarea blochează câmpurile lipsă sau eronate (Caz 2A) și alocă cererea automat către hub-ul regional Tech-Con.</p>
+          <h2>📩 Solicită Evaluare Tehnică &amp; Demo (Flux Automat CRM)</h2>
+          <p class="hint" style="margin-top:0;">Folosiți date fictive în concurs. Validarea blochează câmpurile lipsă/eronate și simulează rutarea Haversine pe județ către Dragomirești-Deal, Timișoara sau Iași.</p>
           <div class="form-grid">
             <div class="field" id="fld-company">
               <label for="inCompany">Nume fabrică / companie (fictiv)</label>
               <input type="text" id="inCompany" value="LactoVest Banat SRL (Fictiv)" />
               <span class="err-msg" id="err-company"></span>
+            </div>
+            <div class="field" id="fld-contact">
+              <label for="inContact">Persoană de contact (fictiv)</label>
+              <input type="text" id="inContact" value="Andrei Popescu (Fictiv)" />
+              <span class="err-msg" id="err-contact"></span>
             </div>
             <div class="field" id="fld-role">
               <label for="inRole">Rol decident</label>
@@ -774,13 +906,9 @@
               </select>
               <span class="err-msg" id="err-role"></span>
             </div>
-            <div class="field" id="fld-region">
-              <label for="inRegion">Regiune / Județ fabrică (Alocare Hub Tech-Con)</label>
-              <select id="inRegion" onchange="runEvaluator()">
-                <option value="Vest (Hub Timișoara)" selected>Timiș / Arad / Cluj / Vest (→ Hub Timișoara)</option>
-                <option value="Sud (Hub Dragomirești-Deal)">Ilfov / București / Muntenia / SE (→ Hub Dragomirești-Deal)</option>
-                <option value="Est (Hub Iași)">Iași / Bacău / Suceava / Moldova (→ Hub Iași)</option>
-              </select>
+            <div class="field" id="fld-county">
+              <label for="inCounty">Județ fabrică (Rutare automată Hub Tech-Con)</label>
+              <select id="inCounty" onchange="runEvaluator()"></select>
               <span class="err-msg"></span>
             </div>
             <div class="field" id="fld-email">
@@ -788,12 +916,22 @@
               <input type="email" id="inEmail" value="productie@lactovest-demo.ro" />
               <span class="err-msg" id="err-email"></span>
             </div>
+            <div class="field" id="fld-timeline">
+              <label for="inTimeline">Termen estimat investiție</label>
+              <select id="inTimeline">
+                <option value="0–3 luni" selected>0–3 luni (prioritate T1–T2)</option>
+                <option value="3–6 luni">3–6 luni</option>
+                <option value="6–12 luni">6–12 luni</option>
+                <option value="Exploratoriu">Exploratoriu</option>
+              </select>
+              <span class="err-msg"></span>
+            </div>
             <div class="field full" id="fld-notes">
               <label for="inNotes">Observații linie (opțional)</label>
               <input type="text" id="inNotes" value="Găleți plastic 10 kg cu mâner, europalet, interes pentru evaluare în fabrică." />
             </div>
           </div>
-          <button type="button" class="btn-primary" onclick="submitLead()">📤 Validează și Înregistrează Cererea Relevantă în CRM</button>
+          <button type="button" class="btn-primary" onclick="submitLead()">📤 Validează, Califică și Declanșează Fluxul CRM</button>
           <div id="formErrorBanner" class="alert-box alert-err" style="display:none; margin-top:10px;"></div>
           <div id="crmReceipt" class="crm-receipt"></div>
         </div>
@@ -957,16 +1095,20 @@
 
       <div class="scenario-pills">
         <button type="button" class="preset-btn p-err" style="padding:8px 12px;" onclick="setFinCells(15)">
-          15 Celule (Sub țintă — Eroare frecventă AI)
-          <small>300k / 20k = 15 (omite bugetul de 30k EUR!)</small>
+          15 Celule (Eroare naivă AI)
+          <small>300k / 20k = 15 (omite promovarea 30k și impozitul!)</small>
         </button>
         <button type="button" class="preset-btn p-ref" style="padding:8px 12px;" onclick="setFinCells(17)">
-          17 Celule (Prag Matematic de Bază)
-          <small>340k - 30k = 310.000 EUR înainte de alte costuri/impozit</small>
+          17 Celule (Prag Matematic Fără Impozit)
+          <small>340k - 30k = 310.000 EUR înainte de alte costuri și impozit</small>
         </button>
         <button type="button" class="preset-btn p-ok" style="padding:8px 12px;" onclick="setFinCells(20)">
-          20 Celule (Recomandat cu Rezervă Fiscală)
-          <small>370.000 EUR brut - 16% impozit (59.200) = 310.800 EUR net</small>
+          20 Celule (Minim Corect după 16% Impozit)
+          <small>370.000 EUR brut - 59.200 impozit = 310.800 EUR net</small>
+        </button>
+        <button type="button" class="preset-btn p-ok" style="padding:8px 12px;" onclick="setFinCells(24)">
+          24 Celule (Plan Comercial +20% Rezervă)
+          <small>450.000 EUR brut - 72.000 impozit = 378.000 EUR net (acoperă costuri fixe)</small>
         </button>
       </div>
 
@@ -1093,16 +1235,22 @@
       </div>
 
       <div class="card">
-        <h2>🗂️ Registru Demonstrativ CRM (Cereri Relevante Înregistrate)</h2>
-        <p class="hint" style="margin-top:0;">Include o cerere fictivă inițială + toate cererile valide trimise din Tab 1 în această sesiune (date pur fictive).</p>
+        <h2>
+          <span>🗂️ Panou CRM Simulat (Cereri Relevante LocalStorage)</span>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" class="btn-sec" onclick="exportCrmCsv()">⬇️ Exportă CRM (.csv)</button>
+            <button type="button" class="btn-sec" onclick="clearCrmData()">🗑️ Șterge datele</button>
+          </div>
+        </h2>
+        <p class="hint" style="margin-top:0;">Include o cerere demonstrativă + toate cererile valide trimise din Tab 1 (salvate local în browser; nimic nu pleacă spre server).</p>
         <div class="table-wrap">
         <table>
           <thead>
             <tr>
-              <th>Companie (Fictivă)</th>
-              <th>Hub Alocat</th>
-              <th>Sarcină &amp; Config</th>
-              <th>Status Calificare</th>
+              <th>ID &amp; Companie (Fictivă)</th>
+              <th>Hub &amp; Distanță</th>
+              <th>Config &amp; Scor</th>
+              <th>Etapă Pâlnie</th>
             </tr>
           </thead>
           <tbody id="crmTableBody"></tbody>
@@ -1178,6 +1326,48 @@
 
   let isPuratosPreset = false;
 
+  const COUNTIES = ['Alba','Arad','Argeș','Bacău','Bihor','Bistrița-Năsăud','Botoșani','Brăila','Brașov','București','Buzău','Călărași','Caraș-Severin','Cluj','Constanța','Covasna','Dâmbovița','Dolj','Galați','Giurgiu','Gorj','Harghita','Hunedoara','Ialomița','Iași','Ilfov','Maramureș','Mehedinți','Mureș','Neamț','Olt','Prahova','Satu Mare','Sălaj','Sibiu','Suceava','Teleorman','Timiș','Tulcea','Vaslui','Vâlcea','Vrancea'];
+  const COUNTY_GEO = {'Alba':[46.07,23.58],'Arad':[46.18,21.32],'Argeș':[44.86,24.87],'Bacău':[46.57,26.91],'Bihor':[47.05,21.92],'Bistrița-Năsăud':[47.13,24.50],'Botoșani':[47.75,26.67],'Brăila':[45.27,27.97],'Brașov':[45.65,25.61],'București':[44.43,26.10],'Buzău':[45.15,26.82],'Călărași':[44.20,27.33],'Caraș-Severin':[45.30,21.89],'Cluj':[46.77,23.59],'Constanța':[44.18,28.65],'Covasna':[45.86,25.79],'Dâmbovița':[44.93,25.46],'Dolj':[44.32,23.80],'Galați':[45.44,28.05],'Giurgiu':[43.90,25.97],'Gorj':[45.04,23.27],'Harghita':[46.36,25.80],'Hunedoara':[45.88,22.91],'Ialomița':[44.57,27.37],'Iași':[47.16,27.59],'Ilfov':[44.56,25.95],'Maramureș':[47.66,23.57],'Mehedinți':[44.63,22.66],'Mureș':[46.54,24.56],'Neamț':[46.93,26.37],'Olt':[44.43,24.37],'Prahova':[44.94,26.03],'Satu Mare':[47.79,22.88],'Sălaj':[47.19,23.06],'Sibiu':[45.79,24.15],'Suceava':[47.65,26.26],'Teleorman':[43.97,25.33],'Timiș':[45.75,21.23],'Tulcea':[45.18,28.80],'Vaslui':[46.64,27.73],'Vâlcea':[45.10,24.37],'Vrancea':[45.70,27.18]};
+  const HUBS = [
+    { name: 'Dragomirești-Deal', lat: 44.47, lon: 25.99 },
+    { name: 'Timișoara', lat: 45.75, lon: 21.23 },
+    { name: 'Iași', lat: 47.16, lon: 27.59 }
+  ];
+
+  (function populateCounties() {
+    const sel = document.getElementById('inCounty');
+    COUNTIES.forEach((c) => {
+      const opt = document.createElement('option');
+      opt.value = c;
+      opt.textContent = c;
+      if (c === 'Timiș') opt.selected = true;
+      sel.appendChild(opt);
+    });
+  })();
+
+  function haversineKm(lat1, lon1, lat2, lon2) {
+    const R = 6371, rad = Math.PI / 180;
+    const dLat = (lat2 - lat1) * rad, dLon = (lon2 - lon1) * rad;
+    const a = Math.sin(dLat / 2) ** 2 + Math.cos(lat1 * rad) * Math.cos(lat2 * rad) * Math.sin(dLon / 2) ** 2;
+    return 2 * R * Math.asin(Math.sqrt(a));
+  }
+
+  function routeLeadByCounty(county) {
+    const coords = COUNTY_GEO[county];
+    if (!coords) return { hub: 'Dragomirești-Deal', km: 0, text: 'Hub Dragomirești-Deal (implicit)' };
+    let best = HUBS[0], minD = Infinity;
+    HUBS.forEach((h) => {
+      const d = haversineKm(coords[0], coords[1], h.lat, h.lon);
+      if (d < minD) { minD = d; best = h; }
+    });
+    const km = Math.round(minD / 10) * 10;
+    return {
+      hub: best.name,
+      km,
+      text: `Hub ${best.name} (${km === 0 ? '< 10 km' : '≈ ' + km + ' km'} de ${county})`
+    };
+  }
+
   // Preset scenarios
   function loadPreset(type) {
     clearFieldErrors();
@@ -1195,11 +1385,15 @@
       document.getElementById('inHandle').value = 'yes';
       document.getElementById('inSector').value = 'food';
       document.getElementById('inLayers').value = 4;
+      document.getElementById('inPalletType').value = 'Europalet 1200×800';
+      document.getElementById('inEnv').value = 'Uscat';
       document.getElementById('inCompany').value = 'LactoVest Banat SRL (Fictiv)';
+      document.getElementById('inContact').value = 'Andrei Popescu (Fictiv)';
       document.getElementById('inRole').value = 'Director Producție';
-      document.getElementById('inRegion').value = 'Vest (Hub Timișoara)';
+      document.getElementById('inCounty').value = 'Timiș';
       document.getElementById('inEmail').value = 'productie@lactovest-demo.ro';
-      document.getElementById('inNotes').value = 'Găleți plastic 10 kg cu mâner, 2 schimburi/zi, evaluare linie sosuri/lactate.';
+      document.getElementById('inTimeline').value = '0–3 luni';
+      document.getElementById('inNotes').value = 'Găleți plastic 10 kg cu mâner, europalet, interes pentru evaluare în fabrică.';
     } else if (type === 'invalid') {
       document.getElementById('inWeight').value = -5;
       document.getElementById('inGripper').value = 4.0;
@@ -1210,6 +1404,7 @@
       document.getElementById('inSector').value = 'food';
       document.getElementById('inLayers').value = 4;
       document.getElementById('inCompany').value = '';
+      document.getElementById('inContact').value = '';
       document.getElementById('inEmail').value = 'director@';
       document.getElementById('inNotes').value = 'Test caz date lipsă / invalide.';
       runEvaluator();
@@ -1226,10 +1421,14 @@
       document.getElementById('inHandle').value = 'yes';
       document.getElementById('inSector').value = 'food';
       document.getElementById('inLayers').value = 4;
+      document.getElementById('inPalletType').value = 'Europalet 1200×800';
+      document.getElementById('inEnv').value = 'Uscat';
       document.getElementById('inCompany').value = 'AgroCream Sud SA (Fictiv)';
+      document.getElementById('inContact').value = 'Elena Ionescu (Fictiv)';
       document.getElementById('inRole').value = 'Responsabil Investiții (CAPEX)';
-      document.getElementById('inRegion').value = 'Sud (Hub Dragomirești-Deal)';
+      document.getElementById('inCounty').value = 'Ilfov';
       document.getElementById('inEmail').value = 'capex@agrocream-demo.ro';
+      document.getElementById('inTimeline').value = '3–6 luni';
       document.getElementById('inNotes').value = 'Test limită sarcină UR20 + blocaj schimb manual palet 12 min.';
     } else if (type === 'puratos') {
       document.getElementById('inWeight').value = 13;
@@ -1242,10 +1441,14 @@
       document.getElementById('inHandle').value = 'yes';
       document.getElementById('inSector').value = 'food';
       document.getElementById('inLayers').value = 4;
+      document.getElementById('inPalletType').value = 'Europalet 1200×800';
+      document.getElementById('inEnv').value = 'Uscat';
       document.getElementById('inCompany').value = 'Referință PURATOS (Date Studiu Caz)';
+      document.getElementById('inContact').value = 'Director Producție (Benchmark)';
       document.getElementById('inRole').value = 'Director Producție';
-      document.getElementById('inRegion').value = 'Sud (Hub Dragomirești-Deal)';
+      document.getElementById('inCounty').value = 'Ilfov';
       document.getElementById('inEmail').value = 'referinta@techcon-demo.ro';
+      document.getElementById('inTimeline').value = '0–3 luni';
       document.getElementById('inNotes').value = 'Benchmark Anexa 2: 2 celule UR20, 7,4 găleți/min (13 kg) / 8,6/min (5 kg).';
     }
     runEvaluator();
@@ -1284,6 +1487,8 @@
     const hasHandle = document.getElementById('inHandle').value === 'yes';
     const sector = document.getElementById('inSector').value;
     const layers = parseInt(document.getElementById('inLayers').value, 10);
+    const palletType = document.getElementById('inPalletType').value;
+    const env = document.getElementById('inEnv').value;
 
     const alerts = [];
     let hasTechInputErr = false;
@@ -1355,7 +1560,7 @@
       barPayload.style.background = '#10B981';
     }
 
-    // PURATOS interpolated capacity benchmark: 8.6/min at 5kg, 7.4/min at 13kg (rounded cleanly to avoid IEEE float drift)
+    // PURATOS interpolated capacity benchmark: 8.6/min at 5kg, 7.4/min at 13kg (rounded cleanly)
     const clampedW = Math.max(5, Math.min(18, w));
     const singleCellCap = Math.round(Math.max(5.5, 8.6 - ((clampedW - 5) / 8) * (8.6 - 7.4)) * 100) / 100;
     const cellsNeeded = isPuratosPreset && Math.abs(w - 13) < 0.01 && Math.abs(rate - 7.4) < 0.01
@@ -1378,7 +1583,7 @@
     }
 
     // Bottleneck check (2 palletizing positions per cell!)
-    const palletFillTime = perPallet / ratePerCell; // minutes while robot fills Position A on each cell
+    const palletFillTime = perPallet / ratePerCell;
     const marginMin = palletFillTime - swapTime;
     const bnBox = document.getElementById('kpiBottleneckBox');
     document.getElementById('kpiPalletTime').textContent = `${fmtNum(palletFillTime, 1)} min vs. ${fmtNum(swapTime, 1)} min`;
@@ -1395,6 +1600,15 @@
     if (space < 8) {
       score -= 12;
       alerts.push(`<div class="alert-box alert-warn"><strong>⚠️ Spațiu strâmt (${fmtNum(space,1)} m²):</strong> Verificați amplasarea celor 2 poziții de europaleți și a celor 3 scanere de siguranță în evaluarea din fabrică.</div>`);
+    }
+
+    if (palletType !== 'Europalet 1200×800') {
+      score -= 5;
+      alerts.push(`<div class="alert-box alert-warn"><strong>⚠️ Format palet diferit (${escHtml(palletType)}):</strong> Pattern-ul de așezare și accesul pe cele 2 poziții trebuie validate separat față de europaletul PURATOS.</div>`);
+    }
+    if (env !== 'Uscat') {
+      score -= 5;
+      alerts.push(`<div class="alert-box alert-warn"><strong>⚠️ Mediu umed / washdown:</strong> Necesită validarea protecției IP a camerei SICK 2D, gripperului și robotului pentru spălare alimentară.</div>`);
     }
 
     if (sector === 'paint_non_atex') {
@@ -1427,18 +1641,18 @@
     const perLayer = Math.max(1, Math.round(perPallet / layers));
     const sepCount = Math.max(0, layers - 1);
     document.getElementById('liveFlowSummary').textContent =
-      `Conveyor (${fmtNum(rate, 1)}/min) → ${hasHandle ? 'SICK 2D (mâner)' : 'Centrare'} → ${cellsNeeded}× UR20 (${fmtNum(totalPayload, 1)} kg) → 2 poziții (${perPallet} buc, ${layers} straturi).`;
+      `Conveyor (${fmtNum(rate, 1)}/min) → ${hasHandle ? 'SICK 2D (mâner)' : 'Centrare'} → ${cellsNeeded}× UR20 (${fmtNum(totalPayload, 1)} kg) → 2 poziții ${palletType.split(' ')[0]} (${perPallet} buc, ${layers} straturi).`;
     document.getElementById('posRobotDesc').textContent =
       `Încarcă ${perPallet} găleți în ${fmtNum(palletFillTime, 1)} min (~${perLayer}/strat)`;
     document.getElementById('posHumanDesc').textContent =
       `Schimb palet (${fmtNum(swapTime, 1)} min) & ${sepCount} separatoare/palet`;
 
-    // Update dynamic checklist item for handle
     const cl = document.getElementById('techChecklist');
     cl.children[1].innerHTML = hasHandle
       ? '<span>✅</span><span><strong>Vedere SICK 2D &amp; Orientare Mâner:</strong> Necesară pentru identificarea poziției mânerului înainte de preluare.</span>'
       : '<span>ℹ️</span><span><strong>Recipient fără mâner:</strong> Camera 2D poate fi simplificată; validați suprafața de prindere la auditul FAT.</span>';
 
+    const warnCount = alerts.filter((a) => a.includes('alert-warn') || a.includes('alert-err')).length + 2;
     return {
       valid: totalPayload <= 20 && space >= 6 && sector !== 'atex',
       inputError: false,
@@ -1447,34 +1661,146 @@
       cellsNeeded,
       palletFillTime,
       swapTime,
+      tonsPerShift,
       tonsPerDay,
-      sector
+      palletsPerShift,
+      shifts,
+      rate,
+      w,
+      perPallet,
+      palletType,
+      env,
+      sector,
+      warnCount
     };
   }
 
-  // CRM Leads storage
-  const crmLeads = [
-    { company: 'Panificație Sud Demo SA (Fictiv)', hub: 'Hub Dragomirești-Deal', spec: '13,0 kg • 2 celule UR20', status: 'Audit Tehnic Programat' }
-  ];
+  // CRM Leads storage (localStorage + default benchmark demo)
+  const STORE_KEY = 'ur20_sysup072jd_crm_v2';
+  const SEQ_KEY = 'ur20_sysup072jd_seq_v2';
+  const DEFAULT_LEAD = {
+    id: 'UR20-2026-0001',
+    company: 'Panificație Sud Demo SA (Fictiv)',
+    contact: 'Mihai Pop (Fictiv)',
+    role: 'Director Producție',
+    county: 'Ilfov',
+    hub: 'Dragomirești-Deal',
+    km: 10,
+    spec: '13,0 kg (total 17,0 kg) • 2 celule UR20',
+    score: 92,
+    stage: 'Cerere relevantă (Audit Programat)',
+    email: 'demo@panificatie-fictiv.ro',
+    timeline: '0–3 luni',
+    created: '20.11.2026'
+  };
+
+  function loadCrmLeads() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORE_KEY) || '[]');
+      if (Array.isArray(saved) && saved.length > 0) return saved;
+    } catch (e) {}
+    return [DEFAULT_LEAD];
+  }
+  let crmLeads = loadCrmLeads();
+
+  function saveCrmLeads() {
+    try { localStorage.setItem(STORE_KEY, JSON.stringify(crmLeads)); } catch (e) {}
+  }
+
+  function nextLeadId() {
+    let n = crmLeads.length + 1;
+    try {
+      n = (parseInt(localStorage.getItem(SEQ_KEY), 10) || 1) + 1;
+      localStorage.setItem(SEQ_KEY, String(n));
+    } catch (e) {}
+    return 'UR20-2026-' + String(n).padStart(4, '0');
+  }
 
   function renderCrmTable() {
     const tbody = document.getElementById('crmTableBody');
     tbody.innerHTML = crmLeads.map((l) => `
       <tr>
-        <td><strong>${escHtml(l.company)}</strong></td>
-        <td>${escHtml(l.hub)}</td>
-        <td>${escHtml(l.spec)}</td>
-        <td><span style="color:#065F46; font-weight:700;">${escHtml(l.status)}</span></td>
+        <td><strong>${escHtml(l.id)}</strong><br/><span style="font-size:0.78rem;">${escHtml(l.company)}</span></td>
+        <td>Hub ${escHtml(l.hub)}<br/><span class="hint">${l.km === 0 ? '< 10 km' : '≈ ' + l.km + ' km'} (${escHtml(l.county)})</span></td>
+        <td>${escHtml(l.spec)}<br/><span class="hint">Scor ${l.score}/100</span></td>
+        <td><span style="color:#065F46; font-weight:700;">${escHtml(l.stage)}</span></td>
       </tr>
     `).join('');
   }
 
+  function pad2(n) { return (n < 10 ? '0' : '') + n; }
+  function fmtDateRo(d) { return `${pad2(d.getDate())}.${pad2(d.getMonth() + 1)}.${d.getFullYear()}`; }
+  function addDays(d, n) { return new Date(d.getFullYear(), d.getMonth(), d.getDate() + n); }
+  function addBizDays(d, n) {
+    const x = new Date(d.getFullYear(), d.getMonth(), d.getDate());
+    let added = 0;
+    while (added < n) { x.setDate(x.getDate() + 1); if (x.getDay() !== 0 && x.getDay() !== 6) added++; }
+    return x;
+  }
+
   let lastCrmText = '';
+  let lastRecord = null;
+
   function copyCrmSummary() {
     if (!lastCrmText) return;
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(lastCrmText).then(() => alert('Fișa de pre-evaluare CRM a fost copiată în clipboard!'));
     }
+  }
+
+  function downloadFile(filename, mime, content) {
+    const blob = new Blob([content], { type: mime });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(() => { URL.revokeObjectURL(url); a.remove(); }, 400);
+  }
+
+  function downloadLastTxt() {
+    if (!lastCrmText) return;
+    downloadFile(`${lastRecord.id}_rezumat.txt`, 'text/plain;charset=utf-8', '\ufeff' + lastCrmText);
+  }
+
+  function downloadLastIcs() {
+    if (!lastRecord) return;
+    const d = addBizDays(new Date(), 5);
+    d.setHours(10, 0, 0, 0);
+    const end = new Date(d.getTime() + 60 * 60000);
+    const icsDt = (dt) => `${dt.getFullYear()}${pad2(dt.getMonth()+1)}${pad2(dt.getDate())}T${pad2(dt.getHours())}${pad2(dt.getMinutes())}00`;
+    const ics = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//TechCon UR20//SYSUP072JD//RO', 'BEGIN:VEVENT',
+      `UID:${lastRecord.id}@techcon-ur20`,
+      `DTSTART:${icsDt(d)}`, `DTEND:${icsDt(end)}`,
+      `SUMMARY:Evaluare tehnică UR20 — ${lastRecord.company} (Hub ${lastRecord.hub})`,
+      `DESCRIPTION:${lastRecord.spec} | Scor ${lastRecord.score}/100 | Prototip demonstrativ SYSUP072JD`,
+      `LOCATION:Hub Tech-Con ${lastRecord.hub} / Online`,
+      'END:VEVENT', 'END:VCALENDAR'
+    ].join('\r\n');
+    downloadFile(`${lastRecord.id}_demo.ics`, 'text/calendar;charset=utf-8', ics);
+  }
+
+  function csvSafeCell(v) {
+    let s = String(v == null ? '' : v);
+    if (/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+    if (/[";\r\n]/.test(s)) s = '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  }
+
+  function exportCrmCsv() {
+    const rows = [['ID Lead', 'Companie', 'Contact', 'Rol', 'Județ', 'Hub Alocat', 'Distanță (km)', 'Specificație', 'Scor', 'Etapă', 'E-mail', 'Termen', 'Creat']];
+    crmLeads.forEach((l) => rows.push([l.id, l.company, l.contact || '', l.role || '', l.county, l.hub, l.km, l.spec, l.score, l.stage, l.email || '', l.timeline || '', l.created || '']));
+    const csv = '\ufeff' + rows.map((r) => r.map(csvSafeCell).join(';')).join('\r\n');
+    downloadFile('crm_techcon_ur20_SYSUP072JD.csv', 'text/csv;charset=utf-8', csv);
+  }
+
+  function clearCrmData() {
+    try { localStorage.removeItem(STORE_KEY); localStorage.removeItem(SEQ_KEY); } catch (e) {}
+    crmLeads = [DEFAULT_LEAD];
+    renderCrmTable();
+    alert('Datele salvate local au fost șterse și resetate la exemplul inițial.');
   }
 
   function submitLead() {
@@ -1485,15 +1811,21 @@
     receipt.style.display = 'none';
 
     const company = document.getElementById('inCompany').value.trim();
+    const contact = document.getElementById('inContact').value.trim();
     const role = document.getElementById('inRole').value;
-    const region = document.getElementById('inRegion').value;
+    const county = document.getElementById('inCounty').value;
     const email = document.getElementById('inEmail').value.trim();
+    const timeline = document.getElementById('inTimeline').value;
     const notes = document.getElementById('inNotes').value.trim();
 
     const errs = [];
     if (!company || company.length < 3) {
       setFieldError('fld-company', 'err-company', 'Introduceți numele (fictiv) al fabricii.');
       errs.push('Numele fabricii lipsește.');
+    }
+    if (!contact || contact.length < 2) {
+      setFieldError('fld-contact', 'err-contact', 'Introduceți numele persoanei de contact (fictiv).');
+      errs.push('Persoana de contact lipsește.');
     }
     if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
       setFieldError('fld-email', 'err-email', 'Introduceți o adresă de e-mail validă.');
@@ -1509,39 +1841,86 @@
       return;
     }
 
-    const hubName = region.includes('Timișoara') ? 'Hub Timișoara' : (region.includes('Iași') ? 'Hub Iași' : 'Hub Dragomirești-Deal');
-    const idCode = 'TC-' + Math.floor(1000 + Math.random() * 9000);
-    const w = parseFloat(document.getElementById('inWeight').value);
-    const specTxt = `${fmtNum(w, 1)} kg (total ${fmtNum(res.totalPayload, 1)} kg) • ${res.cellsNeeded} celulă/e UR20 • Scor ${res.score}/100`;
-    const nextStep = (res.totalPayload > 20 || res.sector === 'atex')
-      ? `Escaladare inginerie ${hubName}: validare sarcină/ATEX și testare probă ambalaj`
-      : `Audit tehnic la fabrică din ${hubName}: măsurare semnale conveyor și test probă gripper`;
+    const route = routeLeadByCounty(county);
+    const idCode = nextLeadId();
+    const now = new Date();
+    const taskDue = fmtDateRo(addBizDays(now, 2));
+    const hot = res.score >= 70 && res.valid;
+    const stage = (res.totalPayload > 20 || res.sector === 'atex')
+      ? 'Escaladat Inginerie (Payload/ATEX)'
+      : (hot ? 'Cerere Relevantă Calificată' : 'De Nutrit / Validare Separată');
 
-    crmLeads.unshift({
+    const specTxt = `${fmtNum(res.w, 1)} kg (total ${fmtNum(res.totalPayload, 1)} kg) • ${res.cellsNeeded} celulă/e UR20`;
+    const nextStep = (res.totalPayload > 20 || res.sector === 'atex')
+      ? `Escaladare inginerie Hub ${route.hub}: validare sarcină/ATEX și probă ambalaj`
+      : `Audit tehnic din Hub ${route.hub} până la ${taskDue}: semnale conveyor & probă gripper`;
+
+    const leadRec = {
+      id: idCode,
       company,
-      hub: hubName,
+      contact,
+      role,
+      county,
+      hub: route.hub,
+      km: route.km,
       spec: specTxt,
-      status: (res.totalPayload > 20 || res.sector === 'atex') ? 'Escaladat Inginerie' : 'Cerere Relevantă Calificată'
-    });
+      score: res.score,
+      stage,
+      email,
+      timeline,
+      created: fmtDateRo(now)
+    };
+    lastRecord = leadRec;
+    crmLeads.unshift(leadRec);
+    saveCrmLeads();
     renderCrmTable();
 
-    lastCrmText = `FIȘĂ CRM ${idCode} | Fabrică: ${company} | Decident: ${role} | ${hubName} | ${specTxt} | Efort preluat: ${fmtNum(res.tonsPerDay, 1)} t/zi | Pas următor: ${nextStep}`;
+    let utm = 'direct/QR';
+    try { utm = (new URLSearchParams(location.search).get('utm_source') || '').trim().slice(0, 32) || 'direct/QR'; } catch (e) {}
+
+    const emails = hot ? [
+      { day: 0, date: fmtDateRo(now), subj: `${fmtNum(res.tonsPerShift, 1)} t/schimb ridicate manual? Rezumatul liniei ${company}` },
+      { day: 3, date: fmtDateRo(addDays(now, 3)), subj: 'Ce a arătat testul PURATOS (7,4–8,6/min) și ce rămâne manual' },
+      { day: 7, date: fmtDateRo(addDays(now, 7)), subj: `Invitație evaluare tehnică din Hub ${route.hub}` }
+    ] : [
+      { day: 0, date: fmtDateRo(now), subj: `Pre-evaluare tehnică ${company}: puncte de verificat înainte de ofertă` },
+      { day: 7, date: fmtDateRo(addDays(now, 7)), subj: 'Verificarea blocajelor din amonte/aval și sarcina gripperului' },
+      { day: 14, date: fmtDateRo(addDays(now, 14)), subj: `Disponibilitate inginer Hub ${route.hub} pentru audit` }
+    ];
+
+    lastCrmText = [
+      `FIȘĂ CRM ${idCode} (Echipa SYSUP072JD — Prototip date fictive)`,
+      `Companie: ${company} | Contact: ${contact} (${role}) | E-mail: ${email}`,
+      `Județ: ${county} -> Rutare: ${route.text} | Termen: ${timeline}`,
+      `Linie: ${specTxt} | ${res.palletType} | Mediu: ${res.env} | Scor LineFit: ${res.score}/100`,
+      `Efort repetitiv preluat: ${fmtNum(res.tonsPerShift, 1)} t/schimb (${fmtNum(res.tonsPerDay, 1)} t/zi)`,
+      `Sarcină inginer: ${nextStep} | Observații: ${notes || '—'}`
+    ].join('\r\n');
+
+    const mailPreviewBody = `Bună ziua, ${contact},\n\nVă mulțumim pentru evaluarea liniei pentru ${company} (${specTxt}).\nUn inginer Tech-Con din Hub ${route.hub} vă va contacta până la ${taskDue} (preferință termen: ${timeline}).\n\nNotă: Valorile PURATOS (7,4–8,6 găleți/min) sunt rezultate de test, nu garanții; schimbul paleților și separatoarele rămân manuale.\n[Link dezabonare / STOP — prototip simulat]`;
 
     receipt.style.display = 'block';
     receipt.innerHTML = `
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
-        <strong style="color:#065F46; font-size:0.95rem;">✅ Fișă de Pre-Evaluare Tehnică &amp; Cerere Înregistrată (${idCode})</strong>
+        <strong style="color:#065F46; font-size:0.95rem;">✅ Fișă CRM ${escHtml(idCode)} — Scor LineFit ${res.score}/100 (${escHtml(stage)})</strong>
         <div style="display:flex; gap:6px; flex-wrap:wrap;">
-          <button type="button" class="btn-sec" onclick="copyCrmSummary()">📋 Copiază Fișa</button>
-          <button type="button" class="btn-sec" onclick="window.print()">🖨️ Printează PDF</button>
+          <button type="button" class="btn-sec" onclick="copyCrmSummary()">📋 Copiază</button>
+          <button type="button" class="btn-sec" onclick="downloadLastTxt()">📄 .txt</button>
+          <button type="button" class="btn-sec" onclick="downloadLastIcs()">📅 .ics</button>
+          <button type="button" class="btn-sec" onclick="window.print()">🖨️ PDF</button>
         </div>
       </div>
-      <p style="margin:6px 0 0; font-size:0.83rem;">
-        <strong>Fabrică:</strong> ${escHtml(company)} | <strong>Decident:</strong> ${escHtml(role)}<br/>
-        <strong>Alocare:</strong> ${escHtml(hubName)} | <strong>Configurație:</strong> ${escHtml(specTxt)}<br/>
-        <strong>Efort repetitiv preluat:</strong> ${fmtNum(res.tonsPerDay, 1)} tone/zi | <strong>Pas următor:</strong> ${escHtml(nextStep)}<br/>
-        <strong>Observații:</strong> ${escHtml(notes || '—')}
-      </p>
+      <div class="auto-box">
+        <strong style="font-size:0.84rem; color:var(--navy);">⚡ Flux Automat Declanșat (Simulat în Browser — Fără Server)</strong>
+        <ol class="auto-tl">
+          <li><span class="dot">1</span><strong>Rutare Haversine:</strong> ${escHtml(route.text)}</li>
+          <li><span class="dot">2</span><strong>Fișă CRM creată:</strong> <code>${escHtml(idCode)}</code> • sursă <code>${escHtml(utm)}</code> • salvată în Panou CRM (Tab 4)</li>
+          <li><span class="dot">3</span><strong>Secvență 3 e-mailuri programată:</strong> Zi ${emails[0].day} (${emails[0].date}), Zi ${emails[1].day} (${emails[1].date}), Zi ${emails[2].day} (${emails[2].date})
+            <details class="mail-prev"><summary>Previzualizare e-mail 1: ${escHtml(emails[0].subj)}</summary><pre style="white-space:pre-wrap; font-family:inherit; margin:5px 0 0;">${escHtml(mailPreviewBody)}</pre></details>
+          </li>
+          <li><span class="dot">4</span><strong>Sarcină inginer (+2 zile lucrătoare):</strong> Termen <strong>${taskDue}</strong> • ${res.warnCount} puncte de verificat la audit • ${escHtml(nextStep)}</li>
+        </ol>
+      </div>
     `;
   }
 
@@ -1621,7 +2000,8 @@
     }
 
     const unitContrib = price - cost;
-    const minCells = unitContrib > 0 ? Math.ceil((300000 + totalPromo) / unitContrib) : 0;
+    const minCellsPreTax = unitContrib > 0 ? Math.ceil((300000 + totalPromo + indirect) / unitContrib) : 0;
+    const minCellsNet = unitContrib > 0 ? Math.ceil(((300000 / Math.max(0.01, 1 - taxRate)) + totalPromo + indirect) / unitContrib) : 0;
     const revenue = cells * price;
     const directCost = cells * cost;
     const grossContrib = revenue - directCost;
@@ -1631,7 +2011,8 @@
     const netProfit = ebt - taxAmt;
 
     document.getElementById('outUnitContrib').textContent = fmtEur(unitContrib);
-    document.getElementById('outMinCells').textContent = `${minCells} celule`;
+    document.getElementById('outMinCells').textContent = `${minCellsNet} celule (net)`;
+    document.getElementById('outMinCells').nextElementSibling.textContent = `După ${Math.round(taxRate * 100)}% impozit (sau ${minCellsPreTax} celule înainte de impozit)`;
     document.getElementById('outAfterPromo').textContent = fmtEur(afterPromo);
     document.getElementById('outNetProfit').textContent = fmtEur(netProfit);
 

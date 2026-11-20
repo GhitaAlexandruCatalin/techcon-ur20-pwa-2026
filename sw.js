@@ -1,10 +1,12 @@
-const CACHE_NAME = 'techcon-ur20-pwa-v1';
+const CACHE_NAME = 'techcon-ur20-pwa-v2';
 const ASSETS = [
   './',
   './index.html',
   './manifest.json',
   './assets/puratos_ur20.jpg',
-  './assets/icon.svg'
+  './assets/icon.svg',
+  './assets/icon-192.png',
+  './assets/icon-512.png'
 ];
 
 self.addEventListener('install', (event) => {
