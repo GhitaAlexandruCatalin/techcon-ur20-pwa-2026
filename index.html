@@ -692,8 +692,61 @@
       font-size: 0.76rem;
     }
     details.mail-prev summary { cursor: pointer; font-weight: 700; color: var(--navy); }
+    /* Ad-Landing Hero Banner */
+    .ad-hero {
+      background: linear-gradient(135deg, #0F172A 0%, #1E1B4B 65%, #1E3A8A 100%);
+      color: #fff;
+      border-radius: var(--radius);
+      padding: 16px 18px;
+      margin-bottom: 14px;
+      border: 1.5px solid #0284C7;
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 16px;
+      align-items: center;
+      box-shadow: var(--shadow);
+    }
+    @media (max-width: 820px) {
+      .ad-hero { grid-template-columns: 1fr; }
+    }
+    .ad-hero h2 { margin: 0 0 6px; font-size: clamp(1.08rem, 2.5vw, 1.32rem); color: #fff; line-height: 1.24; }
+    .ad-hero h2 em { font-style: normal; color: #38BDF8; }
+    .ad-hero p { margin: 0 0 10px; font-size: 0.85rem; color: #CBD5E1; line-height: 1.42; }
+    .ad-proofs { display: flex; flex-wrap: wrap; gap: 6px; }
+    .ad-proof {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(56, 189, 248, 0.4);
+      padding: 4px 9px;
+      border-radius: 999px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: #E0F2FE;
+    }
+    .ad-photo {
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1.5px solid #38BDF8;
+      background: #0F172A;
+    }
+    .ad-photo img { width: 100%; height: 138px; object-fit: cover; display: block; }
+    .ad-photo small { display: block; padding: 5px 8px; font-size: 0.72rem; color: #CBD5E1; background: rgba(15,23,42,0.9); }
+    .scanner-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 8px;
+      font-size: 0.72rem;
+      text-align: center;
+    }
+    @media (max-width: 520px) {
+      .scanner-strip { grid-template-columns: 1fr; }
+    }
+    .sc-zone { padding: 4px 6px; border-radius: 6px; font-weight: 700; }
+    .sc-g { background: rgba(16, 185, 129, 0.2); border: 1px solid #10B981; color: #A7F3D0; }
+    .sc-y { background: rgba(217, 119, 6, 0.22); border: 1px solid #F59E0B; color: #FDE68A; }
+    .sc-r { background: rgba(220, 38, 38, 0.22); border: 1px solid #EF4444; color: #FECACA; }
     @media print {
-      .nav-wrap, .preset-bar, .btn-primary, .btn-tap, .btn-sec { display: none !important; }
+      .nav-wrap, .preset-bar, .btn-primary, .btn-tap, .btn-sec, .ad-hero { display: none !important; }
       body { background: #fff; }
       .card { box-shadow: none; border: 1px solid #ccc; }
     }
@@ -712,13 +765,13 @@
     </div>
     <div class="badges">
       <span class="badge">📍 Hub-uri: Dragomirești-Deal • Timișoara • Iași</span>
-      <span class="badge badge-warn">⚠️ Prototip Web PWA — Date fictive pentru testare (Fără date personale reale)</span>
+      <span class="badge badge-warn">⚠️ Prototip Web PWA — Date fictive (Fără date personale reale)</span>
     </div>
   </div>
   <div class="pwa-strip">
     <div>
-      <strong>De ce aplicație web PWA (3.000 EUR) în loc de o pagină simplă sau App Store?</strong>
-      Directorul de Producție poate măsura cadența găleților direct lângă transportor pe telefon (inclusiv offline în hală, cu icon pe ecran) și vede instant blocajele din amonte/aval, fără costuri de publicare iOS/Android.
+      <strong>De ce PWA pe GitHub Pages (0 EUR găzduire)?</strong>
+      Tot bugetul de 3.000 EUR intră în funcționalitate și SEO/AI (zero taxe App Store/server). Un singur link urmărește toate campaniile (<code>?utm_source=...</code>) și funcționează inclusiv offline în hală.
     </div>
     <button class="btn-install" id="btnInstallPwa" style="display:none;">📲 Instalează PWA pe ecran</button>
   </div>
@@ -737,6 +790,25 @@
 
   <!-- ==================== TAB 1: EVALUATOR TEHNIC UR20 ==================== -->
   <section id="tab1" class="tab-panel active">
+    <div class="ad-hero">
+      <div>
+        <h2>13 kg × 7 găleți/min = ~5,5 t/oră ridicate de mână. <em>Verifică în 60s dacă linia ta se potrivește cu UR20.</em></h2>
+        <p>
+          Soluție replicată după aplicația reală implementată de <strong>Tech-Con la PURATOS</strong> pentru fabrici alimentare din România (găleți 5–15 kg). Fără garanții false, fără promisiuni salariale: verificăm sarcina reală cu tot cu gripper, cadența și blocajele amonte/aval.
+        </p>
+        <div class="ad-proofs">
+          <span class="ad-proof">✅ Test PURATOS: 7,4/min (13 kg) &amp; 8,6/min (5 kg)</span>
+          <span class="ad-proof">👁️ Vedere SICK 2D + 3 Scanere siguranță</span>
+          <span class="ad-proof">🚀 0 erori FAT • Livrare ~4 luni</span>
+          <span class="ad-proof" id="utmBadge">🔗 Sursă campanie: direct/QR</span>
+        </div>
+      </div>
+      <div class="ad-photo">
+        <img src="./assets/puratos_ur20.jpg" alt="Celule UR20 PURATOS" />
+        <small>📸 Aplicație reală PURATOS (2 celule UR20, 2 poziții). Rezultate de test, nu garanții.</small>
+      </div>
+    </div>
+
     <div class="preset-bar">
       <div class="preset-title">
         <span>⚡ Testare Rapidă Juriu (1-Click — Caz Normal, Date Lipsă/Greșite, Incompatibilitate &amp; Referință PURATOS)</span>
@@ -993,6 +1065,15 @@
                 <strong>👷 Poziția B (Operator + 3 Scanere)</strong><br/>
                 <span id="posHumanDesc">Schimb palet (3,5 min) &amp; separator ×3/palet</span>
               </div>
+            </div>
+            <div class="scanner-strip" aria-label="Zone de siguranță cu 3 scanere laser">
+              <span class="sc-zone sc-g">🟢 Acces liber Poziția B</span>
+              <span class="sc-zone sc-y">🟡 3 Scanere: Încetinire UR20</span>
+              <span class="sc-zone sc-r">🔴 Oprire sigură (fără gard perimetral)</span>
+            </div>
+            <div style="margin-top:10px; display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+              <span style="font-size:0.72rem; color:#94A3B8;">Document pregătit pentru aprobare management / achiziții (fără promisiuni financiare).</span>
+              <button type="button" class="btn btn-outline btn-sm" style="background:rgba(255,255,255,0.08); color:#F8FAFC; border-color:rgba(255,255,255,0.28);" onclick="downloadCapexBrief()">📄 Descarcă Fișa de Pre-Evaluare CAPEX (.txt)</button>
             </div>
           </div>
 
@@ -1588,13 +1669,15 @@
     const bnBox = document.getElementById('kpiBottleneckBox');
     document.getElementById('kpiPalletTime').textContent = `${fmtNum(palletFillTime, 1)} min vs. ${fmtNum(swapTime, 1)} min`;
     if (swapTime > palletFillTime) {
+      const activePct = Math.max(1, Math.round((palletFillTime / swapTime) * 100));
+      const idlePct = Math.max(1, 100 - activePct);
       score -= 30;
       bnBox.className = 'kpi-box err';
-      document.getElementById('kpiBottleneckSub').textContent = `Deficit ${fmtNum(Math.abs(marginMin), 1)} min — Blocaj la evacuare manuală!`;
-      alerts.push(`<div class="alert-box alert-err"><strong>⚠️ BLOCAJ ÎN AVAL DETECTAT:</strong> Umplerea unui palet durează <strong>${fmtNum(palletFillTime,1)} min</strong>, dar schimbul manual + separatorul durează <strong>${fmtNum(swapTime,1)} min</strong>. Robotul va staționa așteptând operatorul pe a doua poziție!</div>`);
+      document.getElementById('kpiBottleneckSub').textContent = `Deficit ${fmtNum(Math.abs(marginMin), 1)} min (${idlePct}% timp mort robot)`;
+      alerts.push(`<div class="alert-box alert-err"><strong>⚠️ BLOCAJ ÎN AVAL DETECTAT (${idlePct}% staționare robot):</strong> Umplerea unui palet durează <strong>${fmtNum(palletFillTime,1)} min</strong>, dar schimbul manual + separatorul durează <strong>${fmtNum(swapTime,1)} min</strong>. Robotul va staționa ${fmtNum(Math.abs(marginMin),1)} min așteptând operatorul!<br/><span style="font-size:0.78rem;">💡 <strong>Corecție recomandată fără robot suplimentar:</strong> pre-poziționați paletul gol + separatoarele lângă Poziția B sau folosiți transpalet dedicat pentru a coborî schimbul sub ${fmtNum(palletFillTime,1)} min.</span></div>`);
     } else {
       bnBox.className = 'kpi-box ok';
-      document.getElementById('kpiBottleneckSub').textContent = `Marjă operator: +${fmtNum(marginMin, 1)} min • 1 palet la ${fmtNum(palletFillTime, 1)} min`;
+      document.getElementById('kpiBottleneckSub').textContent = `Marjă operator: +${fmtNum(marginMin, 1)} min • Utilizare ciclu robot 100%`;
     }
 
     if (space < 8) {
@@ -1875,8 +1958,7 @@
     saveCrmLeads();
     renderCrmTable();
 
-    let utm = 'direct/QR';
-    try { utm = (new URLSearchParams(location.search).get('utm_source') || '').trim().slice(0, 32) || 'direct/QR'; } catch (e) {}
+    const utm = getUtmSource();
 
     const emails = hot ? [
       { day: 0, date: fmtDateRo(now), subj: `${fmtNum(res.tonsPerShift, 1)} t/schimb ridicate manual? Rezumatul liniei ${company}` },
@@ -2060,7 +2142,53 @@
     a.click();
   }
 
+  function getUtmSource() {
+    try {
+      return (new URLSearchParams(location.search).get('utm_source') || '').trim().slice(0, 32) || 'direct/QR';
+    } catch (e) {
+      return 'direct/QR';
+    }
+  }
+
+  function downloadCapexBrief() {
+    const res = runEvaluator();
+    if (!res || res.inputError) {
+      alert('Completați date tehnice valide înainte de a descărca fișa CAPEX.');
+      return;
+    }
+    const utm = getUtmSource();
+    const budgetCap = res.cellsNeeded * 130000;
+    const content = [
+      'TECH-CON UR20 LINEFIT — FISA TEHNICA PRE-EVALUARE CAPEX (INTERN)',
+      `Echipa: SYSUP072JD | Sursa campanie: ${utm} | Data: ${fmtDateRo(new Date())}`,
+      '========================================================================',
+      '1. PARAMETRI LINIE EVALUATA',
+      `   • Recipient: ${fmtNum(res.w, 1)} kg + gripper & camera SICK 2D = ${fmtNum(res.totalPayload, 1)} kg / 20,0 kg`,
+      `   • Cadenta linie: ${fmtNum(res.rate, 1)} galeti/min | Schimburi/zi: ${res.shifts}`,
+      `   • Paletizare: ${res.perPallet} galeti/palet (${res.palletType}) | Mediu: ${res.env}`,
+      '',
+      '2. REZULTAT CONFIGURATIE & GARGALUI',
+      `   • Scor LineFit: ${res.score}/100`,
+      `   • Necesar estimat: ${res.cellsNeeded} x celula UR20 (2 pozitii alternante/celula)`,
+      `   • Ciclu umplere palet vs. schimb manual: ${fmtNum(res.palletFillTime, 1)} min vs. ${fmtNum(res.swapTime, 1)} min`,
+      `   • Efort ergonomic preluat: ~${fmtNum(res.tonsPerShift, 1)} tone/schimb (~${fmtNum(res.tonsPerDay, 1)} tone/zi, ${res.palletsPerShift} paleti/schimb)`,
+      `   • Puncte de verificat in audit: ${res.warnCount} (inclusiv zona 3 scanere + spatiu)`,
+      '',
+      '3. REPERE DE BUZUNAR / LIVRARE (FARA PROMISIUNI NEACOPERITE)',
+      `   • Investitie orientativa celule standard: ${res.cellsNeeded} x 130.000 EUR = ${budgetCap.toLocaleString('ro-RO')} EUR (fara TVA)`,
+      '   • Termen orientativ de livrare si integrare: ~4 luni (referinta PURATOS)',
+      '   • Inclus in configuratia de referinta: UR20, gripper pneumatic, SICK 2D, 3 scanere, 2 pozitii palet',
+      '   • Exclus din oferta standard: infoliere palet, transport AGV/MiR, schimb palet & separatoare (raman manuale)',
+      '   • NOTA: Valorile PURATOS (8,6/min la 5 kg; 7,4/min la 13 kg; 0 erori FAT) sunt rezultate testate,',
+      '     NU garantii automate de ROI sau economii salariale. Validare finala la evaluarea in fabrica.',
+      '========================================================================'
+    ].join('\n');
+    downloadFile(`Fisa_CAPEX_UR20_${res.cellsNeeded}cel_Scor${res.score}.txt`, 'text/plain;charset=utf-8', '\ufeff' + content);
+  }
+
   // Initial render
+  const initUtmEl = document.getElementById('utmBadge');
+  if (initUtmEl) initUtmEl.textContent = `🔗 Sursă campanie: ${getUtmSource()}`;
   renderBudgetRows();
   renderCrmTable();
   runEvaluator();
