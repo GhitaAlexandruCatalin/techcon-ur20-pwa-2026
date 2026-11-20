@@ -1873,6 +1873,7 @@
     }
     if (isNaN(space) || space < 6) {
       setFieldError('fld-space', 'err-space', 'Spațiu minim necesar pentru celulă + scanere: ≥ 6 m² (ideal ≥ 8 m²).');
+      if (isNaN(space) || space <= 0) hasTechInputErr = true;
     }
 
     if (hasTechInputErr) {
@@ -1881,9 +1882,21 @@
           <strong>EROARE DATE TEHNICE:</strong> Corectați câmpurile evidențiate cu roșu din stânga pentru a calcula fezabilitatea celulei UR20.
         </div>`;
       document.getElementById('kpiPayload').textContent = 'Date invalide';
+      document.getElementById('kpiPayloadSub').textContent = 'Completați masa găleții și a gripperului.';
+      document.getElementById('kpiPayloadBox').className = 'kpi-box err';
+      document.getElementById('barPayload').style.width = '0%';
       document.getElementById('kpiCells').textContent = '—';
+      document.getElementById('kpiCellsSub').textContent = 'Necesar indisponibil pentru date invalide';
       document.getElementById('kpiPalletTime').textContent = '—';
+      document.getElementById('kpiBottleneckSub').textContent = 'Verificați debitul și gălețile per palet';
+      document.getElementById('kpiBottleneckBox').className = 'kpi-box';
       document.getElementById('kpiTonnage').textContent = '—';
+      document.getElementById('kpiTonnageSub').textContent = '—';
+      const commBar = document.getElementById('liveCommercialBar');
+      if (commBar) commBar.innerHTML = '<strong>Proiecție Comercială suspendată:</strong> Corectați datele tehnice invalide pentru a calcula investiția și hub-ul Tech-Con.';
+      document.getElementById('liveFlowSummary').textContent = 'Flux indisponibil — introduceți parametri tehnici valizi.';
+      document.getElementById('posRobotDesc').textContent = '—';
+      document.getElementById('posHumanDesc').textContent = '—';
       const scoreEl = document.getElementById('lineFitScore');
       scoreEl.textContent = 'Scor LineFit: 0/100';
       scoreEl.className = 'score-pill err';
